@@ -1,27 +1,34 @@
 {
-  "name": "coinbar",
-  "version": "1.0.0",
-  "description": "A taskbar application for tracking your cryptocurrencies. Built using electron, react, and webpack.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/C-Rodg/Coinbar.git"
-  },
-  "keywords": [
-    "crypto",
-    "blockchain",
-    "taskbar",
-    "electron",
-    "react",
-    "webpack"
-  ],
-  "author": "C-Rodg",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/C-Rodg/Coinbar/issues"
-  },
-  "homepage": "https://github.com/C-Rodg/Coinbar#readme"
+	"name": "coinbar",
+	"version": "1.0.0",
+	"description": "A taskbar application for tracking your cryptocurrencies. Built using electron, react, and webpack.",
+	"main": "main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/C-Rodg/Coinbar.git"
+	},
+	"keywords": [
+		"crypto",
+		"blockchain",
+		"taskbar",
+		"electron",
+		"react",
+		"webpack"
+	],
+	"author": "C-Rodg",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/C-Rodg/Coinbar/issues"
+	},
+	"homepage": "https://github.com/C-Rodg/Coinbar#readme",
+	"dependencies": {
+		"menubar": "^5.2.3"
+	},
+	"devDependencies": {
+		"electron-packager": "^9.1.0",
+		"electron": "^1.7.9"
+	}
 }

@@ -48,7 +48,7 @@ module.exports = {
 	target: "electron-renderer",
 	plugins: [
 		new HtmlWebpackPlugin({
-			favicon: "./src/static/favicon.ico",
+			//favicon: "./src/static/favicon.ico",
 			title: "Coinbar"
 		}),
 		new ExtractTextPlugin("bundle.css"),
@@ -57,7 +57,7 @@ module.exports = {
 		}),
 		new BabiliPlugin()
 	],
-	states: {
+	stats: {
 		colors: true,
 		children: false,
 		chunks: false,

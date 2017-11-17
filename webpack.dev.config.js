@@ -1,8 +1,7 @@
 const webpack = require("webpack"),
 	path = require("path"),
-	HtmlWebpackPlugin = require("html-webpack-plugin"),
-	BabiliPlugin = require("babili-webpack-plugin"),
-	ExtractTextPlugin = require("extract-text-webpack-plugin");
+	HtmlWebpackPlugin = require("html-webpack-plugin");
+const { spawn } = require("child_process");
 
 const SRC_DIR = path.resolve(__dirname, "src");
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
@@ -13,17 +12,14 @@ module.exports = {
 	entry: SRC_DIR + "/index.js",
 	output: {
 		path: OUTPUT_DIR,
-		publicPath: "./",
+		publicPath: "/",
 		filename: "bundle.js"
 	},
 	module: {
 		rules: [
 			{
 				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-					fallback: "style-loader",
-					use: "css-loader"
-				}),
+				use: [{ loader: "style-loader" }, { loader: "css-loader" }],
 				include: defaultInclude
 			},
 			{
@@ -32,7 +28,7 @@ module.exports = {
 				include: defaultInclude
 			},
 			{
-				test: /\.(jpg?g|png|gif)$/,
+				test: /\.(jpe?g|png|gif)$/,
 				use: [{ loader: "file-loader?name=img/[name]__[hash:base64:5].[ext]" }],
 				include: defaultInclude
 			},
@@ -51,16 +47,26 @@ module.exports = {
 			favicon: "./src/static/favicon.ico",
 			title: "Coinbar"
 		}),
-		new ExtractTextPlugin("bundle.css"),
 		new webpack.DefinePlugin({
-			"process.env.NODE_ENV": JSON.stringify("production")
-		}),
-		new BabiliPlugin()
+			"process.env.NODE_ENV": JSON.stringify("development")
+		})
 	],
-	states: {
-		colors: true,
-		children: false,
-		chunks: false,
-		modules: false
+	devtool: "cheap-source-map",
+	devServer: {
+		contentBase: OUTPUT_DIR,
+		stats: {
+			colors: true,
+			chunks: false,
+			children: false
+		},
+		before() {
+			spawn("electron", ["."], {
+				shell: true,
+				env: process.env,
+				stdio: "inherit"
+			})
+				.on("close", code => process.exit(0))
+				.on("error", spawnError => console.log(spawnError));
+		}
 	}
 };

@@ -44,7 +44,7 @@ module.exports = {
 	target: "electron-renderer",
 	plugins: [
 		new HtmlWebpackPlugin({
-			favicon: "./src/static/favicon.ico",
+			//favicon: "./src/static/favicon.ico",
 			title: "Coinbar"
 		}),
 		new webpack.DefinePlugin({

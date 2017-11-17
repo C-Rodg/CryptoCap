@@ -31,7 +31,8 @@ if (dev && process.argv.indexOf("--noDevServer") === -1) {
 const mb = menubar({
 	tooltip: "One click away!",
 	icon: "src/static/icon.png",
-	index: indexPath
+	index: indexPath,
+	alwaysOnTop: dev
 });
 
 mb.on("ready", () => {

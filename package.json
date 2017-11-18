@@ -1,19 +1,15 @@
 {
 	"name": "coinbar",
 	"version": "1.0.0",
-	"description":
-		"A taskbar application for tracking your cryptocurrencies. Built using electron, react, and webpack.",
+	"description": "A taskbar application for tracking your cryptocurrencies. Built using electron, react, and webpack.",
 	"main": "main.js",
 	"scripts": {
 		"start": "electron .",
-		"prod":
-			"webpack --config webpack.build.config.js && electron --noDevServer .",
-		"dev":
-			"webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
+		"prod": "webpack --config webpack.build.config.js && electron --noDevServer .",
+		"dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
 		"build": "webpack --config webpack.build.config.js",
 		"package": "webpack --config webpack.build.config.js",
-		"postpackage":
-			"electron-packager ./ Coinbar --out=./builds --asar --app-version=1.0.0 --icon=src/static/icons/win/icon.ico --prune=true"
+		"postpackage": "electron-packager ./ Coinbar --out=./builds --asar --app-version=1.0.0 --icon=src/static/icons/win/icon.ico --prune=true"
 	},
 	"repository": {
 		"type": "git",

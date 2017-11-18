@@ -30,7 +30,7 @@ if (dev && process.argv.indexOf("--noDevServer") === -1) {
 
 const mb = menubar({
 	tooltip: "One click away!",
-	icon: "src/static/icon.png",
+	icon: "assets/icons/png/cb_tray_icon.png",
 	index: indexPath,
 	alwaysOnTop: dev
 });

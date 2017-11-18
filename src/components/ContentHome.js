@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContentHome = () => {
+const ContentHome = ({ globalInfo, currencyList }) => {
 	return (
 		<div className="content-home container">
 			<div>Home content here!</div>

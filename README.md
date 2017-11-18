@@ -4,7 +4,7 @@ A taskbar application for tracking your cryptocurrencies. Built using electron, 
 
 ## To Do
 - [x] Setup webpack build chain
-- [ ] Add react-router
+- [x] Add react-router
 - [ ] Fix taskbar icon
 - [ ] Create sprite classes
 - [ ] /list route UI

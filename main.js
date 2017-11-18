@@ -32,7 +32,9 @@ const mb = menubar({
 	tooltip: "One click away!",
 	icon: "assets/icons/png/cb_tray_icon.png",
 	index: indexPath,
-	alwaysOnTop: dev
+	alwaysOnTop: dev,
+	width: 800,
+	height: 300
 });
 
 mb.on("ready", () => {

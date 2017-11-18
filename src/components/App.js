@@ -12,7 +12,8 @@ class App extends Component {
 		fullCurrencyList: [],
 		myCurrencyList: [],
 		savedIds: ["bitcoin", "ethereum", "monero"],
-		globalInfo: {}
+		globalInfo: {},
+		timeFormat: "7d" // '24h', '1h'
 	};
 
 	componentDidMount() {
@@ -75,6 +76,7 @@ class App extends Component {
 								{...props}
 								currencyList={this.state.myCurrencyList}
 								globalInfo={this.state.globalInfo}
+								timeFormat={this.state.timeFormat}
 							/>
 						);
 					}}

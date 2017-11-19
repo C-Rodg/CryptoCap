@@ -28,101 +28,10 @@ body {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	background-color: #f5f5f5;
+	background-color: #0b222e;
+	color: #f5f5f5;
 }
 
-.hidden {
-	display: none;
-}
-
-.card {
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-	background-color: #fff;
-	max-width: 460px;
-	border-radius: 7px;
-	box-sizing: border-box;
-	position: relative;
-	margin: 0 15px 30px 15px;
-	color: rgba(0, 0, 0, 0.87);
-	flex: 1 1 300px;
-	padding: 15px;
-}
-
-.card .card-title {
-	font-weight: 600;
-	margin-bottom: 6px;
-	font-size: 1.3rem;
-}
-
-.card-row {
-	line-height: 1.5;
-}
-
-.card-info-title {
-	font-weight: 500;
-	padding-right: 10px;
-}
-
-.icon-card-hover {
-	background-color: #fff;
-	transition: background-color 0.3s ease-in-out;
-	position: absolute;
-	top: 4px;
-	right: 4px;
-	cursor: pointer;
-	line-height: 28px;
-	width: 28px;
-	text-align: center;
-	height: 28px;
-	border-radius: 50%;
-}
-
-.icon-card-hover:hover {
-	background-color: #e7e7e7;
-}
-
-.icon-card-hover i {
-	line-height: 28px;
-}
-
-.action-button {
-	font-weight: 500;
-	color: #fff;
-	border-radius: 45px;
-	padding: 10px 25px;
-	font-size: 1.5rem;
-	letter-spacing: 0.08em;
-	cursor: pointer;
-	user-select: none;
-}
-
-.upload-action-button {
-	background-color: #578c88;
-	transition: background-color 0.3s ease;
-	border: 5px solid #6ea9a2;
-	text-align: center;
-}
-
-.upload-action-button:hover {
-	background-color: #6ea9a2;
-}
-
-.clear-action-button {
-	background-color: #e45f51;
-	transition: background-color 0.3s ease;
-	border: 5px solid #f18a7d;
-}
-
-.clear-action-button:hover {
-	background-color: #f18a7d;
-}
-
-.center-flex {
-	justify-content: center;
-	align-items: center;
-}
-
-.alert-controller div {
-	font-size: 12px !important;
-	line-height: 1.4;
+.container {
+	padding: 10px 15px;
 }

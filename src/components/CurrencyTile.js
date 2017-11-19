@@ -1,20 +1,32 @@
 import React from "react";
 const numeral = require("numeral");
 
+import {
+	Card,
+	Row,
+	Col,
+	CurrencyTitles,
+	CurrencySymbol,
+	CurrencyPercent
+} from "./Styled";
+
 const CurrencyTile = props => {
 	const price = numeral(props.price_usd).format("$0,0.00");
 	const priceChange = `${props["percent_change_" + props.timeFormat]}%`;
+	let negative = priceChange.indexOf("-") === -1 ? false : true;
 	return (
-		<div className="currency-tile">
-			<div className="left-col">
-				<div>{props.name}</div>
-				<div>{props.symbol}</div>
-			</div>
-			<div className="right-col">
-				<div>{price}</div>
-				<div>{priceChange}</div>
-			</div>
-		</div>
+		<Card className="currency-tile">
+			<Row>
+				<Col>
+					<CurrencyTitles>{props.name}</CurrencyTitles>
+					<CurrencySymbol>{props.symbol}</CurrencySymbol>
+				</Col>
+				<Col right>
+					<CurrencyTitles>{price}</CurrencyTitles>
+					<CurrencyPercent negative={negative}>{priceChange}</CurrencyPercent>
+				</Col>
+			</Row>
+		</Card>
 	);
 };
 

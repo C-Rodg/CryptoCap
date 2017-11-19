@@ -11,7 +11,7 @@ class App extends Component {
 	state = {
 		fullCurrencyList: [],
 		myCurrencyList: [],
-		savedIds: ["bitcoin", "ethereum", "monero"],
+		savedIds: ["bitcoin", "ethereum", "monero", "bitcoin-cash"],
 		globalInfo: {},
 		timeFormat: "7d" // '24h', '1h'
 	};

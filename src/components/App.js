@@ -39,18 +39,6 @@ class App extends Component {
 			});
 	}
 
-	// Get specific currency
-	getOneTicker(id) {
-		axios
-			.get(`https://api.coinmarketcap.com/v1/ticker/${id}`)
-			.then(resp => {
-				console.log(resp);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	}
-
 	// Get global information
 	getGlobalInfo() {
 		axios
@@ -63,6 +51,13 @@ class App extends Component {
 				console.log(err);
 			});
 	}
+
+	// Switch from "7d", '24h', '1h' formats
+	switchTimeFormat = timeFormat => {
+		this.setState({
+			timeFormat
+		});
+	};
 
 	render() {
 		return (
@@ -77,6 +72,7 @@ class App extends Component {
 								currencyList={this.state.myCurrencyList}
 								globalInfo={this.state.globalInfo}
 								timeFormat={this.state.timeFormat}
+								onSwitchTime={this.switchTimeFormat}
 							/>
 						);
 					}}

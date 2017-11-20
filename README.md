@@ -7,10 +7,11 @@ A taskbar application for tracking your cryptocurrencies. Built using electron, 
 - [x] Add react-router
 - [ ] Fix taskbar icon
 - [ ] Create sprite classes
-- [ ] /list route UI
+- [x] Home route UI
 - [ ] /crypto/:id route UI
 - [ ] /settings route UI
-- [ ] Container methods for getting data
+- [ ] Refresh data on tick (2 mins?)
+- [x] Container methods for getting data
 - [ ] Save crypto list to persistant data
 
 ## Resources

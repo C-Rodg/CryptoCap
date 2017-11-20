@@ -20,18 +20,18 @@ const CurrencyTile = props => {
 	}
 	return (
 		<Card className="currency-tile">
-			<Row>
-				<Col>
-					<Link to={"/crypto/" + props.id}>
+			<Link to={{ pathname: "/crypto/" + props.id, state: { coin: props } }}>
+				<Row>
+					<Col>
 						<CurrencyTitles>{props.name}</CurrencyTitles>
 						<CurrencySymbol>{props.symbol}</CurrencySymbol>
-					</Link>
-				</Col>
-				<Col right>
-					<CurrencyTitles>{price}</CurrencyTitles>
-					<CurrencyPercent negative={negative}>{priceChange}</CurrencyPercent>
-				</Col>
-			</Row>
+					</Col>
+					<Col right>
+						<CurrencyTitles>{price}</CurrencyTitles>
+						<CurrencyPercent negative={negative}>{priceChange}</CurrencyPercent>
+					</Col>
+				</Row>
+			</Link>
 		</Card>
 	);
 };

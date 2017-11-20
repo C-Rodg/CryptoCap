@@ -21,6 +21,8 @@ export const Row = styled.div`
 `;
 
 export const Col = styled.div`
+	display: flex;
+	flex-direction: column;
 	flex: 1;
 	margin-right: 15px;
 	text-align: ${props => (!props.right ? "left" : "right")};
@@ -29,6 +31,8 @@ export const Col = styled.div`
 		margin-right: 0;
 	}
 `;
+
+export const ScrollContent = styled.div`overflow-y: auto;`;
 
 export const Card = styled.div`
 	background-color: #0e2c3b;

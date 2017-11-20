@@ -11,7 +11,8 @@ import {
 	Card,
 	CardRow,
 	CardRowTitle,
-	CardRowResponse
+	CardRowResponse,
+	ScrollContent
 } from "./Styled";
 
 const ContentHome = ({ globalInfo, currencyList, timeFormat }) => {
@@ -21,11 +22,11 @@ const ContentHome = ({ globalInfo, currencyList, timeFormat }) => {
 			<Row>
 				<Col>
 					<SubTitle>My Currencies:</SubTitle>
-					<div>
+					<ScrollContent>
 						{currencyList.map(curr => (
 							<CurrencyTile key={curr.id} timeFormat={timeFormat} {...curr} />
 						))}
-					</div>
+					</ScrollContent>
 				</Col>
 				<Col>
 					<SubTitle>Global Marketplace:</SubTitle>

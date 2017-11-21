@@ -3,6 +3,7 @@ const numeral = require("numeral");
 import styled from "styled-components";
 
 import CurrencyTile from "./CurrencyTile";
+import CardContentRow from "./CardContentRow";
 import {
 	NavTitle,
 	SubTitleContainer,
@@ -60,32 +61,42 @@ const ContentHome = ({
 				<Col>
 					<SubTitle>Global Marketplace:</SubTitle>
 					<Card className="marketplace-card">
-						<CardRow>
-							<CardRowTitle>Total Market-Cap:</CardRowTitle>
-							<CardRowResponse>
-								{numeral(globalInfo.total_market_cap_usd).format("$0,0.00")}
-							</CardRowResponse>
-						</CardRow>
-						<CardRow>
-							<CardRowTitle>Volume in last 24hrs:</CardRowTitle>
-							<CardRowResponse>
-								{numeral(globalInfo.total_24h_volume_usd).format("$0,0.00")}
-							</CardRowResponse>
-						</CardRow>
-						<CardRow>
-							<CardRowTitle>Bitcoin Dominance:</CardRowTitle>{" "}
-							<CardRowResponse>
-								{globalInfo.bitcoin_percentage_of_market_cap}%
-							</CardRowResponse>
-						</CardRow>
-						<CardRow>
-							<CardRowTitle>Active Currencies:</CardRowTitle>
-							{numeral(globalInfo.active_assets).format("0,0")} currencies
-						</CardRow>
-						<CardRow>
-							<CardRowTitle>Active Markets:</CardRowTitle>{" "}
-							{numeral(globalInfo.active_markets).format("0,0")} markets
-						</CardRow>
+						<CardContentRow
+							title="Total Market-Cap"
+							val={globalInfo.total_market_cap_usd}
+							format="$0,0.00"
+							isNumeral={true}
+						/>
+
+						<CardContentRow
+							title="Volume in last 24hrs"
+							val={globalInfo.total_24h_volume_usd}
+							format="$0,0.00"
+							isNumeral={true}
+						/>
+
+						<CardContentRow
+							title="Bitcoin Dominance"
+							val={globalInfo.bitcoin_percentage_of_market_cap}
+							isNumeral={true}
+							postFix="%"
+						/>
+
+						<CardContentRow
+							title="Active Currencies"
+							val={globalInfo.active_assets}
+							format="0,0"
+							isNumeral={true}
+							postFix=" currencies"
+						/>
+
+						<CardContentRow
+							title="Active Markets"
+							val={globalInfo.active_markets}
+							format="0,0"
+							isNumeral={true}
+							postFix=" markets"
+						/>
 					</Card>
 				</Col>
 			</Row>

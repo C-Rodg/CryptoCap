@@ -46,3 +46,11 @@ body {
 	display: flex;
 	flex-direction: column;
 }
+
+.success {
+	color: #91e697;
+}
+
+.error {
+	color: #fd7576;
+}

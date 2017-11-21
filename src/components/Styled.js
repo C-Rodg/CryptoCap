@@ -67,14 +67,16 @@ export const Col = styled.div`
 	flex: 1;
 	margin-right: 15px;
 	text-align: ${props => (!props.right ? "left" : "right")};
-	max-width: 50%;
+	max-width: 60%;
 
 	&:last-child {
 		margin-right: 0;
 	}
 `;
 
-export const ScrollContent = styled.div`overflow-y: auto;`;
+export const ScrollContent = styled.div`
+	overflow-y: auto;
+`;
 
 export const Card = styled.div`
 	background-color: #0e2c3b;

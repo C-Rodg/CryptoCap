@@ -14,6 +14,7 @@ import {
 	CardRowResponse
 } from "./Styled";
 
+import CardContentRow from "./CardContentRow";
 import BackBtn from "./BackBtn";
 
 const ContentCoin = props => {
@@ -45,72 +46,78 @@ const ContentCoin = props => {
 					<SubTitle>{coin.symbol}</SubTitle>
 					<ScrollContent>
 						<Card>
-							<CardRow>
-								<CardRowTitle>Current Price (USD):</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Current Price (BTC):</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_btc).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Percent Change - 1 hour:</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Percent Change - 24 hours:</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Percent Change - 7 days:</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Volume in last 24 hours (USD):</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Market Cap (USD):</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Cryptocurrency Rank:</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Available Supply:</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Total Supply:</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
-							<CardRow>
-								<CardRowTitle>Max Supply:</CardRowTitle>
-								<CardRowResponse>
-									{numeral(coin.price_usd).format("$0,0.00")}
-								</CardRowResponse>
-							</CardRow>
+							<CardContentRow
+								title="Current Price (USD)"
+								val={coin.price_usd}
+								format="$0,0.00"
+								isNumeral={true}
+							/>
+							<CardContentRow
+								title="Current Price (BTC)"
+								val={coin.price_btc}
+								isNumeral={false}
+								postFix=" coins"
+							/>
+							<CardContentRow
+								title="Percent Change - 1 hour"
+								val={coin.percent_change_1h}
+								isNumeral={false}
+								postFix="%"
+								isPercent={true}
+							/>
+							<CardContentRow
+								title="Percent Change - 24 hours"
+								val={coin.percent_change_24h}
+								isNumeral={false}
+								postFix="%"
+								isPercent={true}
+							/>
+							<CardContentRow
+								title="Percent Change - 7 days"
+								val={coin.percent_change_7d}
+								isNumeral={false}
+								postFix="%"
+								isPercent={true}
+							/>
+							<CardContentRow
+								title="Volume in last 24 hours"
+								val={coin["24h_volume_usd"]}
+								format="$0,0.00"
+								isNumeral={true}
+							/>
+							<CardContentRow
+								title="Market Cap (USD)"
+								val={coin.market_cap_usd}
+								format="$0,0.00"
+								isNumeral={true}
+							/>
+							<CardContentRow
+								title="Cryptocurrency Rank"
+								val={coin.rank}
+								format="0o"
+								isNumeral={true}
+							/>
+							<CardContentRow
+								title="Available Supply"
+								val={coin.available_supply}
+								format="0,0"
+								isNumeral={true}
+								postFix=" coins"
+							/>
+							<CardContentRow
+								title="Total Supply"
+								val={coin.total_supply}
+								format="0,0"
+								isNumeral={true}
+								postFix=" coins"
+							/>
+							<CardContentRow
+								title="Max Supply"
+								val={coin.max_supply}
+								format="0,0"
+								isNumeral={true}
+								postFix=" coins"
+							/>
 						</Card>
 					</ScrollContent>
 				</Col>

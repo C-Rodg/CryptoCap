@@ -34,7 +34,7 @@ const mb = menubar({
 	index: indexPath,
 	alwaysOnTop: dev,
 	width: 800,
-	height: 300
+	height: 345
 });
 
 mb.on("ready", () => {

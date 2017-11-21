@@ -43,6 +43,19 @@ export const TimeSwitchContainer = styled.div`
 	}
 `;
 
+export const BackLink = styled.span`
+	float: right;
+	background-color: #0e2c3b;
+	color: #aaa;
+	border-radius: 15px;
+	font-size: 0.9rem;
+	text-align: center;
+	display: inline-block;
+	padding: 2px 10px;
+	line-height: 1.9rem;
+	font-weight: 500;
+`;
+
 export const Row = styled.div`
 	width: 100%;
 	display: flex;
@@ -54,6 +67,7 @@ export const Col = styled.div`
 	flex: 1;
 	margin-right: 15px;
 	text-align: ${props => (!props.right ? "left" : "right")};
+	max-width: 50%;
 
 	&:last-child {
 		margin-right: 0;

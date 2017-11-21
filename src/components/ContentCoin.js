@@ -13,12 +13,31 @@ import {
 	CardRowResponse
 } from "./Styled";
 
+import BackBtn from "./BackBtn";
+
 const ContentCoin = props => {
+	if (!props.location.state) {
+		return (
+			<div className="content-coin container">
+				<NavTitle>
+					Coinbar <BackBtn />
+				</NavTitle>
+				<Row>
+					<Col>
+						<SubTitle>-no currency selected-</SubTitle>
+					</Col>
+				</Row>
+			</div>
+		);
+	}
 	const { coin } = props.location.state;
 
 	return (
 		<div className="content-coin container">
-			<NavTitle>{coin.name}</NavTitle>
+			<NavTitle>
+				{coin.name}
+				<BackBtn />
+			</NavTitle>
 			<Row>
 				<Col>
 					<SubTitle>{coin.symbol}</SubTitle>

@@ -87,7 +87,15 @@ class App extends Component {
 					path="/settings"
 					exact
 					render={props => {
-						return <ContentSettings {...props} />;
+						return (
+							<ContentSettings
+								{...props}
+								currencyList={this.state.fullCurrencyList}
+								savedIds={this.state.savedIds}
+								timeFormat={this.state.timeFormat}
+								onSwitchTime={this.switchTimeFormat}
+							/>
+						);
 					}}
 				/>
 			</div>

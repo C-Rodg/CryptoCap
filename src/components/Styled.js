@@ -10,6 +10,8 @@ export const NavTitle = styled.div`
 export const SubTitleContainer = styled.div`
 	display: flex;
 	width: 100%;
+	align-items: center;
+	margin-bottom: 7px;
 `;
 
 export const SubTitle = styled.div`
@@ -17,12 +19,11 @@ export const SubTitle = styled.div`
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: #487991;
-	margin-bottom: 5px;
 `;
 
 export const TimeSwitchContainer = styled.div`
 	text-align: right;
-	margin-bottom: 10px;
+
 	font-size: 0.9rem;
 	flex: 1;
 

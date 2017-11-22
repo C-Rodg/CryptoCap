@@ -32,9 +32,9 @@ const ContentHome = ({
 				Coinbar <SettingsBtn />
 			</NavTitle>
 			<Row>
-				{generateCurrencyColumn(currencyList, timeFormat)}
+				{generateCurrencyColumn(currencyList, onSwitchTime, timeFormat)}
 				<Col>
-					<SubTitle>Global Marketplace:</SubTitle>
+					<SubTitle className="m-b-9">Global Marketplace:</SubTitle>
 					<Card className="marketplace-card">
 						<CardContentRow
 							title="Total Market-Cap"
@@ -83,7 +83,7 @@ const ContentHome = ({
 	);
 };
 
-const generateCurrencyColumn = (currencyList, timeFormat) => {
+const generateCurrencyColumn = (currencyList, onSwitchTime, timeFormat) => {
 	if (currencyList && currencyList.length > 0) {
 		return (
 			<Col>

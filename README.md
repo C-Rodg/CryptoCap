@@ -1,7 +1,7 @@
 # Coinbar
 
 A taskbar application for tracking your cryptocurrencies. Built using electron,
-react, and webpack.
+react, styled-components, and webpack.
 
 ## To Do
 

@@ -19,7 +19,7 @@ class App extends Component {
 		this.state = {
 			fullCurrencyList: [],
 			myCurrencyList: [],
-			savedIds: [], //savedIds.split(";"),
+			savedIds: savedIds.split(";"),
 			globalInfo: {},
 			timeFormat: time ? time : "24h"
 		};

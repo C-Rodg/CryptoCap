@@ -45,7 +45,7 @@ const ContentCoin = props => {
 			</NavTitle>
 			<Row>
 				<Col>
-					<SubTitle>{coin.symbol}</SubTitle>
+					<SubTitle className="m-b-9">{coin.symbol}</SubTitle>
 					<ScrollContent>
 						<Card>
 							<CardContentRow
@@ -124,7 +124,7 @@ const ContentCoin = props => {
 					</ScrollContent>
 				</Col>
 				<div>
-					<SubTitle>Last Updated:</SubTitle>
+					<SubTitle className="m-b-9">Last Updated:</SubTitle>
 					<SubTitle>{date}</SubTitle>
 				</div>
 			</Row>

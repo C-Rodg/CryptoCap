@@ -1,6 +1,6 @@
 import React from "react";
-const numeral = require("numeral");
 
+import { getTimeString } from "../utils/dateHelper";
 import {
 	NavTitle,
 	Row,
@@ -34,6 +34,8 @@ const ContentCoin = props => {
 		);
 	}
 	const { coin } = props.location.state;
+
+	const date = getTimeString(coin.last_updated);
 
 	return (
 		<div className="content-coin container">
@@ -121,23 +123,13 @@ const ContentCoin = props => {
 						</Card>
 					</ScrollContent>
 				</Col>
+				<div>
+					<SubTitle>Last Updated:</SubTitle>
+					<SubTitle>{date}</SubTitle>
+				</div>
 			</Row>
 		</div>
 	);
 };
 
 export default ContentCoin;
-
-// price in USD
-// price in bitcoin
-// percent change 1hr
-// percent change 7d
-// percent change 24hr
-// 24 hour volume USD
-// market cap usd
-// rank
-// Available supply
-// total supply
-// max supply
-
-// last updated

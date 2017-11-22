@@ -54,3 +54,7 @@ body {
 .error {
 	color: #fd7576;
 }
+
+.m-10 {
+	margin: 10px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
-const numeral = require("numeral");
 import styled from "styled-components";
 
+import { getTimeString } from "../utils/dateHelper";
 import CurrencyTile from "./CurrencyTile";
 import CardContentRow from "./CardContentRow";
 import {
@@ -24,6 +24,7 @@ const ContentHome = ({
 	timeFormat,
 	onSwitchTime
 }) => {
+	const date = getTimeString(globalInfo.last_updated);
 	return (
 		<div className="content-home container">
 			<NavTitle>Coinbar</NavTitle>
@@ -98,6 +99,10 @@ const ContentHome = ({
 							postFix=" markets"
 						/>
 					</Card>
+					<div className="m-10">
+						<SubTitle>Last Updated:</SubTitle>
+						<SubTitle>{date}</SubTitle>
+					</div>
 				</Col>
 			</Row>
 		</div>

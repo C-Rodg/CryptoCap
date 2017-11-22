@@ -8,21 +8,37 @@ import ContentCoin from "./ContentCoin";
 import ContentSettings from "./ContentSettings";
 
 class App extends Component {
-	state = {
-		fullCurrencyList: [],
-		myCurrencyList: [],
-		savedIds: ["bitcoin", "ethereum", "monero", "bitcoin-cash"],
-		globalInfo: {},
-		timeFormat: "7d" // '24h', '1h'
-	};
+	constructor() {
+		super();
+		this.state = {
+			fullCurrencyList: [],
+			myCurrencyList: [],
+			savedIds: ["bitcoin", "ethereum", "monero", "bitcoin-cash"],
+			globalInfo: {},
+			timeFormat: "7d" // '24h', '1h'
+		};
 
-	componentDidMount() {
-		this.getCompleteTicker();
-		this.getGlobalInfo();
+		this.tickerInterval = window.setInterval(this.getTickerInfo, 120000);
 	}
 
+	// Get initial data
+	componentDidMount() {
+		this.getTickerInfo();
+	}
+
+	// Clear interval for checking for data
+	componentWillUnmount() {
+		clearInterval(this.tickerInterval);
+	}
+
+	// Get both ticker and global info
+	getTickerInfo = () => {
+		this.getCompleteTicker();
+		this.getGlobalInfo();
+	};
+
 	// Get Complete list of markets
-	getCompleteTicker() {
+	getCompleteTicker = () => {
 		axios
 			.get("https://api.coinmarketcap.com/v1/ticker/")
 			.then(resp => {
@@ -37,10 +53,10 @@ class App extends Component {
 			.catch(err => {
 				console.log(err);
 			});
-	}
+	};
 
 	// Get global information
-	getGlobalInfo() {
+	getGlobalInfo = () => {
 		axios
 			.get("https://api.coinmarketcap.com/v1/global/")
 			.then(resp => {
@@ -50,7 +66,7 @@ class App extends Component {
 			.catch(err => {
 				console.log(err);
 			});
-	}
+	};
 
 	// Switch from "7d", '24h', '1h' formats
 	switchTimeFormat = timeFormat => {

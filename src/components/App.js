@@ -10,12 +10,18 @@ import ContentSettings from "./ContentSettings";
 class App extends Component {
 	constructor() {
 		super();
+		const time = window.localStorage.getItem("coin_time");
+		const coinIds = window.localStorage.getItem("coin_ids");
+		let savedIds = "bitcoin;ethereum;bitcoin-cash;ripple;monero";
+		if (coinIds) {
+			savedIds = coinIds;
+		}
 		this.state = {
 			fullCurrencyList: [],
 			myCurrencyList: [],
-			savedIds: ["bitcoin", "ethereum", "monero", "bitcoin-cash"],
+			savedIds: [], //savedIds.split(";"),
 			globalInfo: {},
-			timeFormat: "7d" // '24h', '1h'
+			timeFormat: time ? time : "24h"
 		};
 
 		this.tickerInterval = window.setInterval(this.getTickerInfo, 120000);

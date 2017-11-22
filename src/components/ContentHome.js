@@ -32,36 +32,7 @@ const ContentHome = ({
 				Coinbar <SettingsBtn />
 			</NavTitle>
 			<Row>
-				<Col>
-					<SubTitleContainer>
-						<SubTitle>My Currencies:</SubTitle>
-						<TimeSwitchContainer>
-							<a
-								className={timeFormat === "1h" ? "active" : ""}
-								onClick={() => onSwitchTime("1h")}
-							>
-								1hr
-							</a>
-							<a
-								onClick={() => onSwitchTime("24h")}
-								className={timeFormat === "24h" ? "active" : ""}
-							>
-								24hr
-							</a>
-							<a
-								onClick={() => onSwitchTime("7d")}
-								className={timeFormat === "7d" ? "active" : ""}
-							>
-								7d
-							</a>
-						</TimeSwitchContainer>
-					</SubTitleContainer>
-					<ScrollContent>
-						{currencyList.map(curr => (
-							<CurrencyTile key={curr.id} timeFormat={timeFormat} {...curr} />
-						))}
-					</ScrollContent>
-				</Col>
+				{generateCurrencyColumn(currencyList, timeFormat)}
 				<Col>
 					<SubTitle>Global Marketplace:</SubTitle>
 					<Card className="marketplace-card">
@@ -110,6 +81,49 @@ const ContentHome = ({
 			</Row>
 		</div>
 	);
+};
+
+const generateCurrencyColumn = (currencyList, timeFormat) => {
+	if (currencyList && currencyList.length > 0) {
+		return (
+			<Col>
+				<SubTitleContainer>
+					<SubTitle>My Currencies:</SubTitle>
+					<TimeSwitchContainer>
+						<a
+							className={timeFormat === "1h" ? "active" : ""}
+							onClick={() => onSwitchTime("1h")}
+						>
+							1hr
+						</a>
+						<a
+							onClick={() => onSwitchTime("24h")}
+							className={timeFormat === "24h" ? "active" : ""}
+						>
+							24hr
+						</a>
+						<a
+							onClick={() => onSwitchTime("7d")}
+							className={timeFormat === "7d" ? "active" : ""}
+						>
+							7d
+						</a>
+					</TimeSwitchContainer>
+				</SubTitleContainer>
+				<ScrollContent>
+					{currencyList.map(curr => (
+						<CurrencyTile key={curr.id} timeFormat={timeFormat} {...curr} />
+					))}
+				</ScrollContent>
+			</Col>
+		);
+	} else {
+		return (
+			<Col>
+				<SubTitle>-No Saved Currencies-</SubTitle>
+			</Col>
+		);
+	}
 };
 
 export default ContentHome;

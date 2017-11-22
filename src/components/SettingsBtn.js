@@ -5,7 +5,7 @@ import { SettingsLink } from "./Styled";
 
 const SettingsBtn = () => {
 	return (
-		<Link to="/">
+		<Link to="/settings">
 			<SettingsLink>
 				<i className="material-icons">settings</i>
 			</SettingsLink>

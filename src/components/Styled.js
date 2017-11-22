@@ -37,7 +37,9 @@ export const TimeSwitchContainer = styled.div`
 		width: 25px;
 		text-align: center;
 
+		&:hover,
 		&.active {
+			background-color: #153646;
 			color: #fff;
 		}
 	}
@@ -54,6 +56,31 @@ export const BackLink = styled.span`
 	padding: 2px 10px;
 	line-height: 1.9rem;
 	font-weight: 500;
+
+	&:hover {
+		background-color: #153646;
+	}
+`;
+
+export const SettingsLink = styled.span`
+	float: right;
+	background-color: #0e2c3b;
+	color: #aaa;
+	border-radius: 50%;
+	text-align: center;
+	display: inline-block;
+	padding: 2px;
+	width: 28px;
+	height: 28px;
+	vertical-align: middle;
+
+	i {
+		line-height: 28px;
+	}
+
+	&:hover {
+		color: #fff;
+	}
 `;
 
 export const Row = styled.div`
@@ -84,6 +111,12 @@ export const Card = styled.div`
 	padding: 10px;
 	margin-bottom: 8px;
 	font-size: 1.1rem;
+
+	&.currency-tile {
+		&:hover {
+			background-color: #153646;
+		}
+	}
 `;
 
 export const CardRow = styled.div`

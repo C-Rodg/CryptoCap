@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { getTimeString } from "../utils/dateHelper";
 import CurrencyTile from "./CurrencyTile";
 import CardContentRow from "./CardContentRow";
+import SettingsBtn from "./SettingsBtn";
 import {
 	NavTitle,
 	SubTitleContainer,
@@ -27,7 +28,9 @@ const ContentHome = ({
 	const date = getTimeString(globalInfo.last_updated);
 	return (
 		<div className="content-home container">
-			<NavTitle>Coinbar</NavTitle>
+			<NavTitle>
+				Coinbar <SettingsBtn />
+			</NavTitle>
 			<Row>
 				<Col>
 					<SubTitleContainer>

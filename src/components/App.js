@@ -75,9 +75,31 @@ class App extends Component {
 	};
 
 	// Switch from "7d", '24h', '1h' formats
-	switchTimeFormat = timeFormat => {
+	switchTimeFormat = (timeFormat, save) => {
+		if (save) {
+			window.localStorage.setItem("coin_time", timeFormat);
+		}
 		this.setState({
 			timeFormat
+		});
+	};
+
+	// Add or Remove saved id
+	handleToggleSavedId = id => {
+		const { savedIds, fullCurrencyList } = this.state;
+		let newSavedIds = [];
+		if (savedIds.indexOf(id) > -1) {
+			newSavedIds = savedIds.filter(oldId => oldId !== id);
+		} else {
+			newSavedIds = [...savedIds, id];
+		}
+		window.localStorage.setItem("coin_ids", newSavedIds.join(";"));
+
+		this.setState({
+			savedIds: newSavedIds,
+			myCurrencyList: fullCurrencyList.filter(
+				coin => newSavedIds.indexOf(coin.id) > -1
+			)
 		});
 	};
 
@@ -114,8 +136,8 @@ class App extends Component {
 								{...props}
 								currencyList={this.state.fullCurrencyList}
 								savedIds={this.state.savedIds}
-								timeFormat={this.state.timeFormat}
 								onSwitchTime={this.switchTimeFormat}
+								onToggleSavedId={this.handleToggleSavedId}
 							/>
 						);
 					}}

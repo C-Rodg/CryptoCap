@@ -153,3 +153,58 @@ export const CurrencyPercent = styled.div`
 	color: ${props => (props.negative ? "#fd7576" : "#91e697")};
 	letter-spacing: 0.04em;
 `;
+
+export const Searchbar = styled.div`
+	margin: 8px 0;
+	position: relative;
+	color: #aaa;
+
+	i {
+		position: absolute;
+		top: 0;
+		left: 6px;
+		line-height: 35px;
+	}
+
+	input {
+		border-radius: 15px;
+		font-size: 18px;
+		line-height: 35px;
+		padding: 0 15px 0 35px;
+		border: 0;
+		color: #aaa;
+		color: blue;
+		font-family: "raleway", "helvetica", "arial", "sans-serif";
+		box-sizing: border-box;
+		width: 100%;
+		background-color: #0e2c3b;
+
+		&:focus,
+		&:active {
+			background-color: #153646;
+			color: #f5f5f5;
+			outline: 0;
+		}
+
+		&::-webkit-input-placeholder {
+			color: #aaa;
+		}
+	}
+`;
+
+export const SettingsTile = styled.div`
+	color: #aaa;
+	border-radius: 15px;
+	font-size: 18px;
+	background-color: #0e2c3b;
+	margin-bottom: 5px;
+	padding: 8px 12px;
+	cursor: pointer;
+	display: flex;
+
+	&:hover,
+	&.selected {
+		background-color: #153646;
+		color: #f5f5f5;
+	}
+`;

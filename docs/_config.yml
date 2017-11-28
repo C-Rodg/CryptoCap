@@ -1,3 +1,4 @@
 theme: jekyll-theme-architect
 title: Coinbar
 description: A taskbar application for tracking your cryptocurrencies.
+show_downloads: true

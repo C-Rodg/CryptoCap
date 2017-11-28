@@ -5,13 +5,17 @@ export const NavTitle = styled.div`
 	font-weight: 700;
 	letter-spacing: 0.07em;
 	margin-bottom: 8px;
+
+	.currency-icon {
+		margin-right: 10px;
+	}
 `;
 
 export const SubTitleContainer = styled.div`
 	display: flex;
 	width: 100%;
 	align-items: center;
-	margin-bottom: 7px;
+	margin-bottom: 19px;
 `;
 
 export const SubTitle = styled.div`
@@ -165,7 +169,7 @@ export const CurrencyPercent = styled.div`
 `;
 
 export const Searchbar = styled.div`
-	margin: 8px 0;
+	margin: 8px 0 10px 0;
 	position: relative;
 	color: #aaa;
 
@@ -180,7 +184,7 @@ export const Searchbar = styled.div`
 		border-radius: 15px;
 		font-size: 18px;
 		line-height: 35px;
-		padding: 0 15px 0 35px;
+		padding: 0 15px 0 38px;
 		border: 0;
 		color: #aaa;
 		font-family: "raleway", "helvetica", "arial", "sans-serif";
@@ -210,10 +214,21 @@ export const SettingsTile = styled.div`
 	padding: 8px 12px;
 	cursor: pointer;
 	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	min-height: 40px;
 
 	&:hover,
 	&.selected {
 		background-color: #153646;
 		color: #f5f5f5;
+	}
+
+	.currency-title {
+		flex: 1;
+	}
+
+	.currency-icon {
+		margin-right: 10px;
 	}
 `;

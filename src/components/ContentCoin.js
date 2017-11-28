@@ -40,7 +40,9 @@ const ContentCoin = props => {
 	return (
 		<div className="content-coin container">
 			<NavTitle>
+				<span className={["currency-icon", `i-${coin.id}`].join(" ")} />
 				{coin.name}
+
 				<BackBtn />
 			</NavTitle>
 			<Row>

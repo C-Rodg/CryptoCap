@@ -1,0 +1,308 @@
+.currency-icon {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-image: url("../static/crypto_icon_sprite.png");
+	background-repeat: no-repeat;
+}
+
+.i-zencash {
+	background-position: 0 0;
+}
+.i-zcoin {
+	background-position: -16px 0;
+}
+.i-zcash {
+	background-position: 0 -16px;
+}
+.i-waves {
+	background-position: -16px -16px;
+}
+.i-walton {
+	background-position: -32px 0;
+}
+.i-vertcoin {
+	background-position: -32px -16px;
+}
+.i-veritaseum {
+	background-position: 0 -32px;
+}
+.i-verge {
+	background-position: -16px -32px;
+}
+.i-vechain {
+	background-position: -32px -32px;
+}
+.i-ubiq {
+	background-position: -48px 0;
+}
+.i-tron {
+	background-position: -48px -16px;
+}
+.i-tether {
+	background-position: -48px -32px;
+}
+.i-tenx {
+	background-position: 0 -48px;
+}
+.i-syscoin {
+	background-position: -16px -48px;
+}
+.i-substratum {
+	background-position: -64px 0;
+}
+.i-streamr-datacoin {
+	background-position: -64px -16px;
+}
+.i-stratis {
+	background-position: -64px -32px;
+}
+.i-storj {
+	background-position: -64px -48px;
+}
+.i-stellar {
+	background-position: -174px -76px;
+}
+.i-steem {
+	background-position: 0 -64px;
+}
+.i-status {
+	background-position: -16px -64px;
+}
+.i-singulardtv {
+	background-position: -32px -48px;
+}
+.i-siacoin {
+	background-position: -32px -64px;
+}
+.i-santiment {
+	background-position: -48px -64px;
+}
+.i-salt {
+	background-position: -64px -64px;
+}
+.i-ripple {
+	background-position: -80px 0;
+}
+.i-ripio-credit-network {
+	background-position: -80px -16px;
+}
+.i-raiden-network-token {
+	background-position: -80px -32px;
+}
+.i-quantstamp {
+	background-position: -80px -48px;
+}
+.i-qtum {
+	background-position: -80px -64px;
+}
+.i-pura {
+	background-position: 0 -80px;
+}
+.i-power-ledger {
+	background-position: -16px -80px;
+}
+.i-populous {
+	background-position: -32px -80px;
+}
+.i-pivx {
+	background-position: -48px -80px;
+}
+.i-particl {
+	background-position: -64px -80px;
+}
+.i-omisego {
+	background-position: -80px -80px;
+}
+.i-nxt {
+	background-position: -96px 0;
+}
+.i-nexus {
+	background-position: -96px -16px;
+}
+.i-neo {
+	background-position: -96px -32px;
+}
+.i-nem {
+	background-position: -96px -48px;
+}
+.i-nav-coin {
+	background-position: -96px -64px;
+}
+.i-monero {
+	background-position: -96px -78px;
+}
+.i-monacoin {
+	background-position: 0 -96px;
+}
+.i-monaco {
+	background-position: -16px -96px;
+}
+.i-minexcoin {
+	background-position: -32px -96px;
+}
+.i-metaverse {
+	background-position: -48px -96px;
+}
+.i-metal {
+	background-position: -64px -96px;
+}
+.i-maidsafecoin {
+	background-position: -80px -96px;
+}
+.i-lykke {
+	background-position: -96px -96px;
+}
+.i-litecoin {
+	background-position: -112px 0;
+}
+.i-lisk {
+	background-position: -112px -16px;
+}
+.i-kyber-network {
+	background-position: -112px -32px;
+}
+.i-komodo {
+	background-position: -112px -48px;
+}
+.i-iota {
+	background-position: -112px -64px;
+}
+.i-iconomi {
+	background-position: -112px -80px;
+}
+.i-hshare {
+	background-position: -112px -96px;
+}
+.i-gxshares {
+	background-position: 0 -112px;
+}
+.i-golem-network-tokens {
+	background-position: -16px -112px;
+}
+.i-gnosis-gno {
+	background-position: -48px -48px;
+}
+.i-gas {
+	background-position: -28px -112px;
+}
+.i-gamecredits {
+	background-position: -44px -112px;
+}
+.i-funfair {
+	background-position: -60px -112px;
+}
+.i-factom {
+	background-position: -76px -112px;
+}
+.i-exchange-union {
+	background-position: -92px -112px;
+}
+.i-ethos {
+	background-position: -108px -112px;
+}
+.i-ethereum-classic {
+	background-position: -142px 0;
+}
+.i-ethereum {
+	background-position: -128px 0;
+}
+.i-eos {
+	background-position: -142px -16px;
+}
+.i-einsteinium {
+	background-position: -142px -32px;
+}
+.i-edgeless {
+	background-position: -142px -48px;
+}
+.i-dogecoin {
+	background-position: -142px -64px;
+}
+.i-digixdao {
+	background-position: -142px -80px;
+}
+.i-digibyte {
+	background-position: -142px -96px;
+}
+.i-decred {
+	background-position: -142px -112px;
+}
+.i-dash {
+	background-position: 0 -128px;
+}
+.i-cryptonex {
+	background-position: 0 -142px;
+}
+.i-counterparty {
+	background-position: -16px -142px;
+}
+.i-civic {
+	background-position: -32px -142px;
+}
+.i-cardano {
+	background-position: -48px -142px;
+}
+.i-bytom {
+	background-position: -64px -142px;
+}
+.i-bytecoin-bcn {
+	background-position: -80px -142px;
+}
+.i-byteball {
+	background-position: -96px -142px;
+}
+.i-blocknet {
+	background-position: -112px -142px;
+}
+.i-bitshares {
+	background-position: -128px -142px;
+}
+.i-bitconnect {
+	background-position: -158px 0;
+}
+.i-bitcoindark {
+	background-position: -158px -16px;
+}
+.i-bitcoin-gold {
+	background-position: -158px -48px;
+}
+.i-bitcoin-cash {
+	background-position: -158px -64px;
+}
+.i-bitcoin {
+	background-position: -158px -32px;
+}
+.i-bitbay {
+	background-position: -158px -80px;
+}
+.i-binance-coin {
+	background-position: -158px -96px;
+}
+.i-basic-attention-token {
+	background-position: -158px -112px;
+}
+.i-bancor {
+	background-position: -158px -128px;
+}
+.i-augur {
+	background-position: 0 -158px;
+}
+.i-ark {
+	background-position: -16px -158px;
+}
+.i-ardor {
+	background-position: -174px 0;
+}
+.i-aragon {
+	background-position: -174px -16px;
+}
+.i-aeternity {
+	background-position: -174px -32px;
+}
+.i-adx-net {
+	background-position: -174px -44px;
+}
+.i-0x {
+	background-position: -174px -60px;
+}

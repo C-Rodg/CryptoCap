@@ -7,8 +7,7 @@ react, styled-components, and webpack.
 
 * [x] Setup webpack build chain
 * [x] Add react-router
-* [ ] Fix taskbar icon
-* [ ] Create sprite classes
+* [x] Create sprite classes
 * [x] Home route UI
 * [x] /crypto/:id route UI
 * [x] /settings route UI
@@ -16,6 +15,8 @@ react, styled-components, and webpack.
 * [x] Container methods for getting data
 * [x] Save crypto list to persistant data
 * [ ] Create OSX, Windows packagers
+* [ ] Remove from saved coins from /coin/:id route
+* [ ] Fix taskbar icon
 
 ## Resources
 

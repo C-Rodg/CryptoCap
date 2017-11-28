@@ -2,3 +2,4 @@
 node_modules/
 dist/
 builds/
+docs/_site/

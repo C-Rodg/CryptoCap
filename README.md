@@ -14,9 +14,9 @@ react, styled-components, and webpack.
 * [x] Refresh data on tick (2 mins?)
 * [x] Container methods for getting data
 * [x] Save crypto list to persistant data
-* [ ] Create OSX, Windows packagers
-* [ ] Remove from saved coins from /coin/:id route
+* [x] Remove from saved coins from /coin/:id route
 * [ ] Fix taskbar icon
+* [ ] Create OSX, Windows packagers
 
 ## Resources
 

@@ -124,7 +124,13 @@ class App extends Component {
 				<Route
 					path="/crypto/:id"
 					render={props => {
-						return <ContentCoin {...props} />;
+						return (
+							<ContentCoin
+								{...props}
+								onToggleSavedId={this.handleToggleSavedId}
+								savedIds={this.state.savedIds}
+							/>
+						);
 					}}
 				/>
 				<Route

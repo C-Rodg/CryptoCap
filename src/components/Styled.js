@@ -25,6 +25,16 @@ export const SubTitle = styled.div`
 	color: #487991;
 `;
 
+export const ToggleTitle = styled.div`
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	margin-top: 20px;
+	cursor: pointer;
+	padding: 0 1px;
+	font-size: 0.8rem;
+	color: ${props => (!props.isSelected ? "#7cb380" : "#b54e52")};
+`;
+
 export const TimeSwitchContainer = styled.div`
 	text-align: right;
 

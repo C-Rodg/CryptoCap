@@ -11,7 +11,8 @@ import {
 	Card,
 	CardRow,
 	CardRowTitle,
-	CardRowResponse
+	CardRowResponse,
+	ToggleTitle
 } from "./Styled";
 
 import CardContentRow from "./CardContentRow";
@@ -36,6 +37,11 @@ const ContentCoin = props => {
 	const { coin } = props.location.state;
 
 	const date = getTimeString(coin.last_updated);
+
+	let isSelected = true;
+	if (props.savedIds.indexOf(coin.id) === -1) {
+		isSelected = false;
+	}
 
 	return (
 		<div className="content-coin container">
@@ -128,6 +134,12 @@ const ContentCoin = props => {
 				<div>
 					<SubTitle className="m-b-9">Last Updated:</SubTitle>
 					<SubTitle>{date}</SubTitle>
+					<ToggleTitle
+						isSelected={isSelected}
+						onClick={() => props.onToggleSavedId(coin.id)}
+					>
+						{isSelected ? "-Remove from Saved-" : "-Add to Saved-"}
+					</ToggleTitle>
 				</div>
 			</Row>
 		</div>

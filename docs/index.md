@@ -2,24 +2,25 @@
 layout: default
 ---
 
-## [](#header-1)Features
+# [](#header-features)Features
 
 * Track your favorite cryptocurrencies.
 * Get detailed information such as price changes, market cap, and total supply.
 * View the cryptocurrency market as a whole with our global market data.
+* Downloadable installer for Windows and MacOS systems.
 
-## [](#header-2)Motivation
+## [](#header-motivation)Motivation
 
 I was tired of constantly having to open up a new browser page to check prices
 for my coins. This application makes cryptocurrency market details just a click
 away!
 
-## [](#header-2)Data
+## [](#header-data)Data
 
 All supplied market data comes from the
 [CoinMarketCap API](https://coinmarketcap.com/).
 
-## [](#header-2)Cryptocurrency Resources
+## [](#header-crypto)Cryptocurrency Resources
 
 Here are a few resources that I found helpful when learning about how
 cryptocurrency technology works:
@@ -28,15 +29,16 @@ cryptocurrency technology works:
 * Cryptoresource #2.
 * Cryptoresource #3.
 
-## [](#header-2)Project Resources
+## [](#header-project)Project Resources
 
 Interested in how I built this? Check out a few of the technologies I am using
 below for more details:
 
-* Electron
-* React
-* Webpack
-* Axios
+* [Electron](https://electronjs.org/)
+* [React](https://reactjs.org/)
+* [Webpack](https://webpack.js.org/)
+* [Styled Components](https://www.styled-components.com)
+* [Axios](https://github.com/axios/axios)
 * [CoinMarketCap API](https://coinmarketcap.com/api/)
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.

@@ -19,6 +19,7 @@ react, styled-components, and webpack.
 * [ ] Fix taskbar icon
 * [ ] Create OSX, Windows packagers
 * [ ] Create documentation site for code/downloads
+* [ ] Background alerts for price changes
 
 ## Resources
 

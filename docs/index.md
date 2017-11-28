@@ -2,6 +2,43 @@
 layout: default
 ---
 
+## [](#header-1)Features
+
+* Track your favorite cryptocurrencies.
+* Get detailed information such as price changes, market cap, and total supply.
+* View the cryptocurrency market as a whole with our global market data.
+
+## [](#header-2)Motivation
+
+I was tired of constantly having to open up a new browser page to check prices
+for my coins. This application makes cryptocurrency market details just a click
+away!
+
+## [](#header-2)Data
+
+All supplied market data comes from the
+[CoinMarketCap API](https://coinmarketcap.com/).
+
+## [](#header-2)Cryptocurrency Resources
+
+Here are a few resources that I found helpful when learning about how
+cryptocurrency technology works:
+
+* Cryptoresource #1.
+* Cryptoresource #2.
+* Cryptoresource #3.
+
+## [](#header-2)Project Resources
+
+Interested in how I built this? Check out a few of the technologies I am using
+below for more details:
+
+* Electron
+* React
+* Webpack
+* Axios
+* [CoinMarketCap API](https://coinmarketcap.com/api/)
+
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Link to another page](another-page).
@@ -21,7 +58,7 @@ projects from anywhere.
 
 > This is a blockquote following a header.
 
-	When something is important enough, you do it even if the odds are not in your
+    When something is important enough, you do it even if the odds are not in your
 	favor.
 
 ### [](#header-3)Header 3
@@ -82,18 +119,9 @@ end
 
 ### And a nested list:
 
-* level 1 item
-	* level 2 item
-	* level 2 item
-		* level 3 item
-		* level 3 item
-* level 1 item
-	* level 2 item
-	* level 2 item
-	* level 2 item
-* level 1 item
-	* level 2 item
-	* level 2 item
+* level 1 item _ level 2 item _ level 2 item _ level 3 item _ level 3 item
+* level 1 item _ level 2 item _ level 2 item \* level 2 item
+* level 1 item _ level 2 item _ level 2 item
 * level 1 item
 
 ### Small image

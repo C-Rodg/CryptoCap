@@ -17,6 +17,7 @@ react, styled-components, and webpack.
 * [x] Remove from saved coins from /coin/:id route
 * [ ] Fix taskbar icon
 * [ ] Create OSX, Windows packagers
+* [ ] Create documentation site for code/downloads
 
 ## Resources
 

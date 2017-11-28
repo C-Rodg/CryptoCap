@@ -12,7 +12,7 @@ class App extends Component {
 		super();
 		const time = window.localStorage.getItem("coin_time");
 		const coinIds = window.localStorage.getItem("coin_ids");
-		let savedIds = "bitcoin;ethereum;bitcoin-cash;ripple;monero";
+		let savedIds = "bitcoin;ethereum;bitcoin-cash;ripple;litecoin;monero";
 		if (coinIds) {
 			savedIds = coinIds;
 		}

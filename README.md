@@ -11,10 +11,11 @@ react, styled-components, and webpack.
 * [ ] Create sprite classes
 * [x] Home route UI
 * [x] /crypto/:id route UI
-* [ ] /settings route UI
+* [x] /settings route UI
 * [x] Refresh data on tick (2 mins?)
 * [x] Container methods for getting data
-* [ ] Save crypto list to persistant data
+* [x] Save crypto list to persistant data
+* [ ] Create OSX, Windows packagers
 
 ## Resources
 

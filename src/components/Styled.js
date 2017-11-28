@@ -173,7 +173,6 @@ export const Searchbar = styled.div`
 		padding: 0 15px 0 35px;
 		border: 0;
 		color: #aaa;
-		color: blue;
 		font-family: "raleway", "helvetica", "arial", "sans-serif";
 		box-sizing: border-box;
 		width: 100%;

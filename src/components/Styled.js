@@ -69,11 +69,21 @@ export const SettingsLink = styled.span`
 	color: #aaa;
 	border-radius: 50%;
 	text-align: center;
-	display: inline-block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding: 2px;
 	width: 28px;
 	height: 28px;
 	vertical-align: middle;
+
+	svg {
+		fill: #aaa;
+
+		&:hover {
+			fill: #fff;
+		}
+	}
 
 	i {
 		line-height: 28px;
@@ -159,11 +169,11 @@ export const Searchbar = styled.div`
 	position: relative;
 	color: #aaa;
 
-	i {
+	svg {
 		position: absolute;
-		top: 0;
+		top: 6px;
 		left: 6px;
-		line-height: 35px;
+		fill: #aaa;
 	}
 
 	input {

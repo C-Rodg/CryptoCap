@@ -32,7 +32,7 @@ module.exports = {
 				include: defaultInclude
 			},
 			{
-				test: /\.(jpg?g|png|gif)$/,
+				test: /\.(jpe?g|png|gif)$/,
 				use: [{ loader: "file-loader?name=img/[name]__[hash:base64:5].[ext]" }],
 				include: defaultInclude
 			},

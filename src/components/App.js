@@ -8,11 +8,17 @@ import ContentCoin from "./ContentCoin";
 import ContentSettings from "./ContentSettings";
 import ContentCreateAlert from "./ContentCreateAlert";
 
-const samplePriceAlerts = [{ id: "bitcoin", price: 4000, hasAlerted: false }];
+const samplePriceAlerts = [
+	{ id: "bitcoin", price: 4200, hasAlerted: false },
+	{ id: "ripple", price: 30, hasAlerted: false },
+	{ id: "ethereum", price: 400, hasAlerted: false }
+];
 
 class App extends Component {
 	constructor() {
 		super();
+
+		// Get saved settings - coins, time format, and alerts
 		const time = window.localStorage.getItem("coin_time");
 		const coinIds = window.localStorage.getItem("coin_ids");
 		let savedIds = "bitcoin;ethereum;bitcoin-cash;ripple;litecoin;monero";
@@ -24,6 +30,8 @@ class App extends Component {
 		if (savedAlerts) {
 			priceAlerts = JSON.parse(savedAlerts).filter(al => !al.hasAlerted);
 		}
+
+		// Set app state
 		this.state = {
 			fullCurrencyList: [],
 			myCurrencyList: [],
@@ -33,6 +41,7 @@ class App extends Component {
 			priceAlerts: samplePriceAlerts // TESTING
 		};
 
+		// Check for new data at set time
 		this.tickerInterval = window.setInterval(this.getTickerInfo, 120000);
 	}
 
@@ -105,7 +114,7 @@ class App extends Component {
 			newSavedIds = [...savedIds, id];
 		}
 		window.localStorage.setItem("coin_ids", newSavedIds.join(";"));
-		window.localStorage.setItem("coin_alerts", newPriceAlerts);
+		window.localStorage.setItem("coin_alerts", JSON.stringify(newPriceAlerts));
 
 		this.setState({
 			savedIds: newSavedIds,

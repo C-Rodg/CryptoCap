@@ -199,16 +199,16 @@ export const InputBar = styled.div`
 
 	svg {
 		position: absolute;
-		top: 6px;
-		left: 6px;
+		top: 10px;
+		left: 10px;
 		fill: #aaa;
 	}
 
 	input {
-		border-radius: 15px;
+		border-radius: 25px;
 		font-size: 18px;
-		line-height: 35px;
-		padding: 0 15px 0 38px;
+		line-height: 40px;
+		padding: 0 15px 0 43px;
 		border: 0;
 		color: #aaa;
 		font-family: "raleway", "helvetica", "arial", "sans-serif";
@@ -231,11 +231,11 @@ export const InputBar = styled.div`
 
 export const SettingsTile = styled.div`
 	color: #aaa;
-	border-radius: 15px;
+	border-radius: 25px;
 	font-size: 18px;
 	background-color: #0e2c3b;
 	margin-bottom: 5px;
-	padding: 8px 12px;
+	padding: 8px 15px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
@@ -253,7 +253,7 @@ export const SettingsTile = styled.div`
 	}
 
 	.currency-icon {
-		margin-right: 10px;
+		margin-right: 12px;
 	}
 
 	.price-alert {

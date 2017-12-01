@@ -8,6 +8,7 @@ import ContentHome from "./ContentHome";
 import ContentCoin from "./ContentCoin";
 import ContentSettings from "./ContentSettings";
 import ContentCreateAlert from "./ContentCreateAlert";
+import { clearInterval } from "timers";
 
 const samplePriceAlerts = [
 	{ id: "bitcoin", price: 4200, hasAlerted: false },
@@ -21,7 +22,7 @@ class App extends Component {
 
 		// Get saved settings - coins, time format, ticker time, and alerts
 		const time = window.localStorage.getItem("coin_time");
-		const tickerTime = window.localStorage.getItem("coin_ticker");
+		const tickerInt = window.localStorage.getItem("coin_ticker");
 		const coinIds = window.localStorage.getItem("coin_ids");
 		let savedIds = "bitcoin;ethereum;bitcoin-cash;ripple;litecoin;monero";
 		if (coinIds) {
@@ -33,6 +34,17 @@ class App extends Component {
 			priceAlerts = JSON.parse(savedAlerts).filter(al => !al.hasAlerted);
 		}
 
+		// Check for new data at set time
+		let tickerTime = 2;
+		if (tickerInt) {
+			tickerTime = parseInt(tickerInt, 10);
+		}
+
+		this.tickerInterval = window.setInterval(
+			this.getTickerInfo,
+			tickerTime * 1000 * 60
+		);
+
 		// Set app state
 		this.state = {
 			fullCurrencyList: [],
@@ -40,7 +52,8 @@ class App extends Component {
 			savedIds: savedIds.split(";"),
 			globalInfo: {},
 			timeFormat: time ? time : "24h",
-			priceAlerts //: samplePriceAlerts // TESTING
+			priceAlerts,
+			tickerTime
 		};
 
 		// Attempt to allow notifications
@@ -56,13 +69,6 @@ class App extends Component {
 				}
 			});
 		}
-
-		// Check for new data at set time
-		let tickerInt = 120000; // 2 mins
-		if (tickerTime) {
-			tickerInt = parseInt(tickerTime, 10);
-		}
-		this.tickerInterval = window.setInterval(this.getTickerInfo, tickerInt);
 	}
 
 	// Get initial data
@@ -139,7 +145,6 @@ class App extends Component {
 		if (!this._notificationsEnabled) {
 			return false;
 		}
-		console.log(notes);
 		notes.forEach(note => {
 			const no = new Notification(note);
 		});
@@ -220,6 +225,21 @@ class App extends Component {
 		});
 	};
 
+	// Handle updates to ticker time
+	handleTickerTime = time => {
+		this.setState({ tickerTime: time });
+	};
+
+	// Handle set ticker time
+	handleSetTickerTime = time => {
+		clearInterval(this.tickerInterval);
+		window.localStorage.setItem("coin_ticker", time);
+		this.tickerInterval = window.setInterval(
+			this.getTickerInfo,
+			time * 60 * 1000
+		);
+	};
+
 	render() {
 		return (
 			<div className="app">
@@ -276,6 +296,9 @@ class App extends Component {
 								onSwitchTime={this.switchTimeFormat}
 								priceAlerts={this.state.priceAlerts}
 								onToggleSavedId={this.handleToggleSavedId}
+								onUpdateTickerTime={this.handleTickerTime}
+								onSetTickerTime={this.handleSetTickerTime}
+								tickerTime={this.state.tickerTime}
 							/>
 						);
 					}}

@@ -19,8 +19,8 @@ react, styled-components, and webpack.
 * [ ] Fix taskbar icon
 * [ ] Create OSX, Windows packagers
 * [x] Create documentation site for code/downloads
-* [ ] Background alerts for price changes
-* [ ] Slider for update time interval
+* [x] Background alerts for price changes
+* [x] Slider for update time interval
 
 ## Resources
 

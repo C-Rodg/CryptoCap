@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import InputRange from "react-input-range";
+import "../styles/input-slider.css";
 
 import AddRemoveTile from "./AddRemoveTile";
 import BackBtn from "./BackBtn";
@@ -10,7 +12,8 @@ import {
 	SubTitleContainer,
 	TimeSwitchContainer,
 	InputBar,
-	ScrollContent
+	ScrollContent,
+	TickerContainer
 } from "./Styled";
 
 class ContentSettings extends Component {
@@ -108,6 +111,18 @@ class ContentSettings extends Component {
 								</a>
 							</TimeSwitchContainer>
 						</SubTitleContainer>
+						<TickerContainer>
+							<SubTitle className="m-b-25">Update Interval:</SubTitle>
+
+							<InputRange
+								formatLabel={value => `${value} mins`}
+								minValue={1}
+								maxValue={20}
+								value={this.props.tickerTime}
+								onChange={this.props.onUpdateTickerTime}
+								onChangeComplete={this.props.onSetTickerTime}
+							/>
+						</TickerContainer>
 					</Col>
 				</Row>
 			</div>

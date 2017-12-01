@@ -25,6 +25,13 @@ export const SubTitle = styled.div`
 	color: #487991;
 `;
 
+export const TickerContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 19px;
+`;
+
+
 export const ToggleTitle = styled.div`
 	text-transform: uppercase;
 	letter-spacing: 0.04em;

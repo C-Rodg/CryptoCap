@@ -39,6 +39,13 @@ export const ErrorMsg = styled.div`
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	font-size: 0.8rem;
+	color: #b54e52;
+`;
+
+export const SuccessMsg = styled.div`
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-size: 0.8rem;
 	color: #7cb380;
 `;
 

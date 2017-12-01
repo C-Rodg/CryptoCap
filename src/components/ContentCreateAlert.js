@@ -9,13 +9,15 @@ import {
 	SubTitle,
 	InputBar,
 	StyledSubmit,
-	ErrorMsg
+	ErrorMsg,
+	SuccessMsg
 } from "./Styled";
 
 class ContentCreateAlert extends Component {
 	state = {
 		alertCost: "",
-		errorMsg: ""
+		errorMsg: "",
+		success: false
 	};
 
 	// Handle form submission
@@ -45,6 +47,11 @@ class ContentCreateAlert extends Component {
 			id: this.props.location.state.coin.id
 		};
 		this.props.onAddAlert(obj);
+		this.setState({ success: true, errorMsg: "" }, () => {
+			setTimeout(() => {
+				this.props.history.push("/");
+			}, 800);
+		});
 	};
 
 	render() {
@@ -95,6 +102,9 @@ class ContentCreateAlert extends Component {
 							</InputBar>
 							{this.state.errorMsg && (
 								<ErrorMsg>{this.state.errorMsg}</ErrorMsg>
+							)}
+							{this.state.success && (
+								<SuccessMsg>Successfully created alert!</SuccessMsg>
 							)}
 							<StyledSubmit type="submit">Create Alert!</StyledSubmit>
 						</form>

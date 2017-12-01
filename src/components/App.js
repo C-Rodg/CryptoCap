@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
+const numeral = require("numeral");
 
 import "../styles/default.css";
 import ContentHome from "./ContentHome";
@@ -18,8 +19,9 @@ class App extends Component {
 	constructor() {
 		super();
 
-		// Get saved settings - coins, time format, and alerts
+		// Get saved settings - coins, time format, ticker time, and alerts
 		const time = window.localStorage.getItem("coin_time");
+		const tickerTime = window.localStorage.getItem("coin_ticker");
 		const coinIds = window.localStorage.getItem("coin_ids");
 		let savedIds = "bitcoin;ethereum;bitcoin-cash;ripple;litecoin;monero";
 		if (coinIds) {
@@ -38,11 +40,29 @@ class App extends Component {
 			savedIds: savedIds.split(";"),
 			globalInfo: {},
 			timeFormat: time ? time : "24h",
-			priceAlerts: samplePriceAlerts // TESTING
+			priceAlerts //: samplePriceAlerts // TESTING
 		};
 
+		// Attempt to allow notifications
+		this._notificationsEnabled = false;
+		if (Notification && Notification.permission === "granted") {
+			console.log("GRanted!");
+			this._notificationsEnabled = true;
+		} else if (Notification) {
+			Notification.requestPermission(permission => {
+				if (permission === "granted") {
+					this._notificationsEnabled = true;
+					console.log("Now they are granted");
+				}
+			});
+		}
+
 		// Check for new data at set time
-		this.tickerInterval = window.setInterval(this.getTickerInfo, 120000);
+		let tickerInt = 120000; // 2 mins
+		if (tickerTime) {
+			tickerInt = parseInt(tickerTime, 10);
+		}
+		this.tickerInterval = window.setInterval(this.getTickerInfo, tickerInt);
 	}
 
 	// Get initial data
@@ -67,6 +87,7 @@ class App extends Component {
 			.get("https://api.coinmarketcap.com/v1/ticker/")
 			.then(resp => {
 				console.log(resp.data);
+				this.createPriceNotification(resp.data);
 				this.setState({
 					fullCurrencyList: resp.data,
 					myCurrencyList: resp.data.filter(
@@ -77,6 +98,51 @@ class App extends Component {
 			.catch(err => {
 				console.log(err);
 			});
+	};
+
+	// Create notifications for price alerts
+	createPriceNotification = currencyList => {
+		const notifications = [];
+		this.state.priceAlerts.forEach(al => {
+			if (!al.hasAlerted) {
+				const currency = currencyList.find(curr => curr.id === al.id);
+				// If alert id doesn't exist in full currency list, delete..
+				if (!currency) {
+					al.hasAlerted = true;
+					return false;
+				}
+				// If alert price < current price
+				if (parseInt(currency.price_usd, 10) <= al.price) {
+					notifications.push(
+						`${currency.name} is below ${numeral(al.price).format("$0,0")}.`
+					);
+					al.hasAlerted = true;
+				}
+			}
+		});
+
+		// Show the notifications
+		if (notifications.length > 0) {
+			this.showNotifications(notifications);
+		}
+
+		// Clean up alerted prices
+		const newAlertList = this.state.priceAlerts.filter(a => !a.hasAlerted);
+		window.localStorage.setItem("coin_alerts", JSON.stringify(newAlertList));
+		this.setState({
+			priceAlerts: newAlertList
+		});
+	};
+
+	// Display the notifications
+	showNotifications = notes => {
+		if (!this._notificationsEnabled) {
+			return false;
+		}
+		console.log(notes);
+		notes.forEach(note => {
+			const no = new Notification(note);
+		});
 	};
 
 	// Get global information

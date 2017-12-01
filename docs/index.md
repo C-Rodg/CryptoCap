@@ -6,8 +6,8 @@ layout: default
 
 * Track and learn about your favorite cryptocurrencies.
 * Get desktop notifications for custom price alerts.
-* Find information such as price changes, market cap, and total supply for over
-	99 different cryptocurrencies.
+* Find information on price changes, market cap, and total supply for over 99
+	different cryptocurrencies.
 * View the cryptocurrency market as a whole with our global market data.
 * Downloadable installer for Windows and macOS systems.
 

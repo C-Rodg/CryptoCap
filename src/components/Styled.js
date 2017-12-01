@@ -35,6 +35,13 @@ export const ToggleTitle = styled.div`
 	color: ${props => (!props.isSelected ? "#7cb380" : "#b54e52")};
 `;
 
+export const ErrorMsg = styled.div`
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-size: 0.8rem;
+	color: #7cb380;
+`;
+
 export const TimeSwitchContainer = styled.div`
 	text-align: right;
 
@@ -178,7 +185,7 @@ export const CurrencyPercent = styled.div`
 	letter-spacing: 0.04em;
 `;
 
-export const Searchbar = styled.div`
+export const InputBar = styled.div`
 	margin: 8px 0 10px 0;
 	position: relative;
 	color: #aaa;
@@ -240,5 +247,28 @@ export const SettingsTile = styled.div`
 
 	.currency-icon {
 		margin-right: 10px;
+	}
+
+	.price-alert {
+		margin-right: 5px;
+	}
+`;
+
+export const StyledSubmit = styled.button`
+	background-color: transparent;
+	transition: background-color 0.3s ease;
+	outline: 0;
+	font-family: "raleway", "helvetica", "arial", "sans-serif";
+	margin-top: 10px;
+	border-radius: 30px;
+	border: 3px solid #0e2c3b;
+	font-size: 1.3rem;
+	cursor: pointer;
+	color: #aaa;
+	padding: 10px 35px;
+	text-transform: uppercase;
+
+	&:hover {
+		background-color: #0e2c3b;
 	}
 `;

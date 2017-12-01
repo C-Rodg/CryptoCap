@@ -61,3 +61,7 @@ body {
 .m-b-9 {
 	margin-bottom: 9px;
 }
+
+.text-center {
+	text-align: center;
+}

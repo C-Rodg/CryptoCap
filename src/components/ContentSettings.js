@@ -9,7 +9,7 @@ import {
 	SubTitle,
 	SubTitleContainer,
 	TimeSwitchContainer,
-	Searchbar,
+	InputBar,
 	ScrollContent
 } from "./Styled";
 
@@ -20,7 +20,7 @@ class ContentSettings extends Component {
 
 	// Render out currency list
 	renderCurrencyList = () => {
-		const { savedIds, currencyList } = this.props;
+		const { savedIds, currencyList, priceAlerts } = this.props;
 		if (currencyList && currencyList.length > 0) {
 			const searchTerm = this.state.searchTerm.toUpperCase();
 			const filteredList = currencyList.filter(coin => {
@@ -28,9 +28,14 @@ class ContentSettings extends Component {
 			});
 			if (filteredList.length > 0) {
 				return filteredList.map(coin => {
+					// Check if it's saved and for price alerts
 					let saved = false;
+					let hasPriceAlert = false;
 					if (savedIds.indexOf(coin.id) > -1) {
 						saved = true;
+						if (priceAlerts.find(i => i.id === coin.id && !i.hasAlerted)) {
+							hasPriceAlert = true;
+						}
 					}
 					return (
 						<AddRemoveTile
@@ -39,6 +44,7 @@ class ContentSettings extends Component {
 							id={coin.id}
 							isSelected={saved}
 							toggleTile={this.props.onToggleSavedId}
+							hasPriceAlert={hasPriceAlert}
 						/>
 					);
 				});
@@ -58,7 +64,7 @@ class ContentSettings extends Component {
 				<Row>
 					<Col>
 						<SubTitle>Currencies:</SubTitle>
-						<Searchbar>
+						<InputBar>
 							<svg
 								fill="#000000"
 								height="24"
@@ -75,7 +81,7 @@ class ContentSettings extends Component {
 								value={this.state.searchTerm}
 								onChange={ev => this.setState({ searchTerm: ev.target.value })}
 							/>
-						</Searchbar>
+						</InputBar>
 						<ScrollContent>{this.renderCurrencyList()}</ScrollContent>
 					</Col>
 					<Col>

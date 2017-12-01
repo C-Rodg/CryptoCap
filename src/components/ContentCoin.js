@@ -1,4 +1,6 @@
 import React from "react";
+const numeral = require("numeral");
+import { Link } from "react-router-dom";
 
 import { getTimeString } from "../utils/dateHelper";
 import {
@@ -38,9 +40,21 @@ const ContentCoin = props => {
 
 	const date = getTimeString(coin.last_updated);
 
+	// Determine if this coin is saved
 	let isSelected = true;
 	if (props.savedIds.indexOf(coin.id) === -1) {
 		isSelected = false;
+	}
+
+	// Determine if there is a price alert
+	let hasAlert = false,
+		alertPrice = "";
+	if (props.priceAlerts && props.priceAlerts.length > 0) {
+		const thisAlert = props.priceAlerts.find(a => a.id === coin.id);
+		if (thisAlert) {
+			hasAlert = true;
+			alertPrice = numeral(thisAlert.price).format("$0,0");
+		}
 	}
 
 	return (
@@ -134,11 +148,21 @@ const ContentCoin = props => {
 				<div>
 					<SubTitle className="m-b-9">Last Updated:</SubTitle>
 					<SubTitle>{date}</SubTitle>
+					{hasAlert ? (
+						<ToggleTitle
+							isSelected={true}
+							onClick={() => props.onRemoveAlert(coin.id)}
+						>{`-Remove Alert of <${alertPrice}-`}</ToggleTitle>
+					) : (
+						<Link to={{ pathname: "/alert/" + coin.id, state: { coin } }}>
+							<ToggleTitle isSelected={false}>-Create Price Alert-</ToggleTitle>
+						</Link>
+					)}
 					<ToggleTitle
 						isSelected={isSelected}
 						onClick={() => props.onToggleSavedId(coin.id)}
 					>
-						{isSelected ? "-Remove from Saved-" : "-Add to Saved-"}
+						{isSelected ? "-Remove from Saved Coins-" : "-Add to Saved Coins-"}
 					</ToggleTitle>
 				</div>
 			</Row>

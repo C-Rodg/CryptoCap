@@ -6,6 +6,9 @@ import "../styles/default.css";
 import ContentHome from "./ContentHome";
 import ContentCoin from "./ContentCoin";
 import ContentSettings from "./ContentSettings";
+import ContentCreateAlert from "./ContentCreateAlert";
+
+const samplePriceAlerts = [{ id: "bitcoin", price: 4000, hasAlerted: false }];
 
 class App extends Component {
 	constructor() {
@@ -16,12 +19,18 @@ class App extends Component {
 		if (coinIds) {
 			savedIds = coinIds;
 		}
+		let priceAlerts = [];
+		const savedAlerts = window.localStorage.getItem("coin_alerts");
+		if (savedAlerts) {
+			priceAlerts = JSON.parse(savedAlerts).filter(al => !al.hasAlerted);
+		}
 		this.state = {
 			fullCurrencyList: [],
 			myCurrencyList: [],
 			savedIds: savedIds.split(";"),
 			globalInfo: {},
-			timeFormat: time ? time : "24h"
+			timeFormat: time ? time : "24h",
+			priceAlerts: samplePriceAlerts // TESTING
 		};
 
 		this.tickerInterval = window.setInterval(this.getTickerInfo, 120000);
@@ -86,20 +95,53 @@ class App extends Component {
 
 	// Add or Remove saved id
 	handleToggleSavedId = id => {
-		const { savedIds, fullCurrencyList } = this.state;
+		const { savedIds, fullCurrencyList, priceAlerts } = this.state;
 		let newSavedIds = [];
+		let newPriceAlerts = priceAlerts;
 		if (savedIds.indexOf(id) > -1) {
 			newSavedIds = savedIds.filter(oldId => oldId !== id);
+			newPriceAlerts = priceAlerts.filter(al => al.id !== id);
 		} else {
 			newSavedIds = [...savedIds, id];
 		}
 		window.localStorage.setItem("coin_ids", newSavedIds.join(";"));
+		window.localStorage.setItem("coin_alerts", newPriceAlerts);
 
 		this.setState({
 			savedIds: newSavedIds,
 			myCurrencyList: fullCurrencyList.filter(
 				coin => newSavedIds.indexOf(coin.id) > -1
-			)
+			),
+			priceAlerts: newPriceAlerts
+		});
+	};
+
+	// Handle Add Alert
+	handleAddAlert = obj => {
+		const { priceAlerts } = this.state;
+		const newAlerts = priceAlerts.filter(al => {
+			if (al.hasAlerted || al.id === obj.id) {
+				return false;
+			}
+			return true;
+		});
+		newAlerts.push(obj);
+		window.localStorage.setItem("coin_alerts", JSON.stringify(newAlerts));
+		this.setState({ priceAlerts: newAlerts });
+	};
+
+	// Handle removed alert
+	handleRemoveAlert = id => {
+		const { priceAlerts } = this.state;
+		const newAlerts = priceAlerts.filter(al => {
+			if (al.hasAlerted || al.id === id) {
+				return false;
+			}
+			return true;
+		});
+		window.localStorage.setItem("coin_alerts", JSON.stringify(newAlerts));
+		this.setState({
+			priceAlerts: newAlerts
 		});
 	};
 
@@ -129,6 +171,20 @@ class App extends Component {
 								{...props}
 								onToggleSavedId={this.handleToggleSavedId}
 								savedIds={this.state.savedIds}
+								priceAlerts={this.state.priceAlerts}
+								onRemoveAlert={this.handleRemoveAlert}
+							/>
+						);
+					}}
+				/>
+				<Route
+					path="/alert/:id"
+					render={props => {
+						return (
+							<ContentCreateAlert
+								{...props}
+								onRemoveAlert={this.handleRemoveAlert}
+								onAddAlert={this.handleAddAlert}
 							/>
 						);
 					}}
@@ -143,6 +199,7 @@ class App extends Component {
 								currencyList={this.state.fullCurrencyList}
 								savedIds={this.state.savedIds}
 								onSwitchTime={this.switchTimeFormat}
+								priceAlerts={this.state.priceAlerts}
 								onToggleSavedId={this.handleToggleSavedId}
 							/>
 						);

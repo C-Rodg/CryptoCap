@@ -30,7 +30,7 @@ if (dev && process.argv.indexOf("--noDevServer") === -1) {
 
 const mb = menubar({
 	tooltip: "Coinbar",
-	icon: "assets/icons/png/cb_tray_icon.png",
+	icon: "assets/icons/png/cb_tray_icon_v2.png",
 	index: indexPath,
 	alwaysOnTop: dev,
 	width: 800,

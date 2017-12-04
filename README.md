@@ -20,8 +20,11 @@ react, styled-components, and webpack.
 * [x] Create documentation site for code/downloads
 * [x] Background alerts for price changes
 * [x] Slider for update time interval
-* [ ] Create OSX package
 * [x] Create Windows packagers
+* [ ] Create OSX package
+* [ ] Fix default time bug in settings view
+* [ ] Create 'exit' app button
+* [ ] Sign installers
 
 ## Resources
 

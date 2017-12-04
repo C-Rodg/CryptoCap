@@ -21,7 +21,7 @@ react, styled-components, and webpack.
 * [x] Background alerts for price changes
 * [x] Slider for update time interval
 * [ ] Create OSX package
-* [ ] Create Windows packagers
+* [x] Create Windows packagers
 
 ## Resources
 

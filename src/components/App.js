@@ -59,13 +59,11 @@ class App extends Component {
 		// Attempt to allow notifications
 		this._notificationsEnabled = false;
 		if (Notification && Notification.permission === "granted") {
-			console.log("GRanted!");
 			this._notificationsEnabled = true;
 		} else if (Notification) {
 			Notification.requestPermission(permission => {
 				if (permission === "granted") {
 					this._notificationsEnabled = true;
-					console.log("Now they are granted");
 				}
 			});
 		}
@@ -83,8 +81,10 @@ class App extends Component {
 
 	// Get both ticker and global info
 	getTickerInfo = () => {
-		this.getCompleteTicker();
-		this.getGlobalInfo();
+		if (window.navigator.onLine) {
+			this.getCompleteTicker();
+			this.getGlobalInfo();
+		}
 	};
 
 	// Get Complete list of markets
@@ -92,7 +92,6 @@ class App extends Component {
 		axios
 			.get("https://api.coinmarketcap.com/v1/ticker/")
 			.then(resp => {
-				console.log(resp.data);
 				this.createPriceNotification(resp.data);
 				this.setState({
 					fullCurrencyList: resp.data,
@@ -155,7 +154,6 @@ class App extends Component {
 		axios
 			.get("https://api.coinmarketcap.com/v1/global/")
 			.then(resp => {
-				console.log(resp.data);
 				this.setState({ globalInfo: resp.data });
 			})
 			.catch(err => {

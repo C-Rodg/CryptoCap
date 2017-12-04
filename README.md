@@ -16,11 +16,12 @@ react, styled-components, and webpack.
 * [x] Container methods for getting data
 * [x] Save crypto list to persistant data
 * [x] Remove from saved coins from /coin/:id route
-* [ ] Fix taskbar icon
-* [ ] Create OSX, Windows packagers
+* [x] Fix taskbar icon
 * [x] Create documentation site for code/downloads
 * [x] Background alerts for price changes
 * [x] Slider for update time interval
+* [ ] Create OSX package
+* [ ] Create Windows packagers
 
 ## Resources
 

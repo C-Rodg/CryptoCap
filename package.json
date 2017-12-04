@@ -8,8 +8,12 @@
 		"prod": "webpack --config webpack.build.config.js && electron --noDevServer .",
 		"dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
 		"build": "webpack --config webpack.build.config.js",
-		"package": "webpack --config webpack.build.config.js",
-		"postpackage": "electron-packager ./ Coinbar --out=./builds --asar --app-version=1.0.0 --icon=src/static/icons/win/icon.ico --prune=true --all"
+		"package-win": "webpack --config webpack.build.config.js",
+		"package-mac": "webpack --config webpack.build.config.js",
+		"postpackage-win": "electron-packager ./ Coinbar --out=./builds --asar --app-version=1.0.0 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cb_icon.png.ico --prune=true",
+		"postpackage-mac": "electron-packager ./ Coinbar --out=./builds --asar --app-version=1.0.0 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/cb_icon.png.icns --prune=true",
+		"release-win32": "node installer-win-32.js",
+		"release-win": "node installer-win-64.js"
 	},
 	"repository": {
 		"type": "git",
@@ -31,6 +35,7 @@
 	"homepage": "https://github.com/C-Rodg/Coinbar#readme",
 	"dependencies": {
 		"axios": "^0.17.1",
+		"electron-squirrel-startup": "^1.0.0",
 		"menubar": "^5.2.3"
 	},
 	"devDependencies": {
@@ -42,7 +47,9 @@
 		"babili-webpack-plugin": "^0.1.2",
 		"css-loader": "^0.28.7",
 		"electron": "^1.7.9",
+		"electron-installer-dmg": "^0.2.1",
 		"electron-packager": "^9.1.0",
+		"electron-winstaller": "^2.6.3",
 		"extract-text-webpack-plugin": "^3.0.2",
 		"file-loader": "^1.1.5",
 		"html-webpack-plugin": "^2.30.1",

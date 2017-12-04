@@ -1,19 +1,26 @@
 {
 	"name": "coinbar",
 	"version": "1.0.0",
-	"description": "A taskbar application for tracking your cryptocurrencies. Built using electron, react, and webpack.",
+	"description":
+		"A taskbar application for tracking your cryptocurrencies. Built using electron, react, and webpack.",
 	"main": "main.js",
 	"scripts": {
 		"start": "electron .",
-		"prod": "webpack --config webpack.build.config.js && electron --noDevServer .",
-		"dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
+		"prod":
+			"webpack --config webpack.build.config.js && electron --noDevServer .",
+		"dev":
+			"webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
 		"build": "webpack --config webpack.build.config.js",
 		"package-win": "webpack --config webpack.build.config.js",
 		"package-mac": "webpack --config webpack.build.config.js",
-		"postpackage-win": "electron-packager ./ Coinbar --out=./builds --asar --app-version=1.0.0 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cb_icon.png.ico --prune=true",
-		"postpackage-mac": "electron-packager ./ Coinbar --out=./builds --asar --app-version=1.0.0 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/cb_icon.png.icns --prune=true",
+		"postpackage-win":
+			"electron-packager ./ Coinbar --out=./builds/output --asar --app-version=1.0.0 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cb_icon.png.ico --prune=true",
+		"postpackage-mac":
+			"electron-packager ./ Coinbar --out=./builds/output --asar --app-version=1.0.0 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/cb_icon.png.icns --prune=true",
 		"release-win32": "node installer-win-32.js",
-		"release-win": "node installer-win-64.js"
+		"release-win": "node installer-win-64.js",
+		"release-mac":
+			"electron-installer-dmg ./builds/output/Coinbar-darwin-x64/Coinbar.app Coinbar --out=./builds/releases --icon=assets/icons/mac/cb_icon.png.icns --overwrite"
 	},
 	"repository": {
 		"type": "git",

@@ -21,9 +21,9 @@ react, styled-components, and webpack.
 * [x] Background alerts for price changes
 * [x] Slider for update time interval
 * [x] Create Windows packagers
-* [ ] Create OSX package
-* [ ] Fix default time bug in settings view
-* [ ] Create 'exit' app button
+* [x] Create OSX package
+* [x] Fix default time bug in settings view
+* [x] Create 'exit' app button
 * [ ] Sign installers
 
 ## Resources

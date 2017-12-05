@@ -1,4 +1,5 @@
 const menubar = require("menubar");
+const { Menu } = require("electron");
 const path = require("path");
 const url = require("url");
 
@@ -100,7 +101,7 @@ if (dev && process.argv.indexOf("--noDevServer") === -1) {
 
 const mb = menubar({
 	tooltip: "Coinbar",
-	icon: path.join(__dirname, "assets", "icons", "png", "cb_tray_icon_v2.png"), //"assets/icons/png/cb_tray_icon_v2.png",
+	icon: path.join(__dirname, "assets", "icons", "png", "cb_tray_icon_v2.png"),
 	index: indexPath,
 	alwaysOnTop: dev,
 	width: 800,
@@ -108,15 +109,27 @@ const mb = menubar({
 });
 
 mb.on("ready", () => {
-	console.log("App is ready!");
+	// Never highlight tray icon on OS X
+	mb.tray.setHighlightMode("never");
+
+	// Allow right click context menu
+	const contextMenu = Menu.buildFromTemplate([
+		{
+			label: "Learn More",
+			click: () => {
+				require("electron").shell.openExternal(
+					"https://curtisrodgers.com/Coinbar"
+				);
+			}
+		},
+		{ label: "Exit", role: "quit" }
+	]);
+	mb.tray.setContextMenu(contextMenu);
 });
 
+// Open dev tools if needed
 mb.on("after-create-window", () => {
 	if (dev) {
 		mb.window.openDevTools();
 	}
-});
-
-mb.on("after-close", () => {
-	console.log("window object has been deleted.");
 });

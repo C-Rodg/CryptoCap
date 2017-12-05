@@ -17,8 +17,8 @@
 			"electron-packager ./ Coinbar --out=./builds/output --asar --app-version=1.0.1 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cb_icon.png.ico --prune=true --version-string.FileDescription='Coinbar' --app-bundle-id=coinbar",
 		"postpackage-mac":
 			"electron-packager ./ Coinbar --out=./builds/output --asar --app-version=1.0.1 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/cb_icon.png.icns --prune=true --version-string.FileDescription='Coinbar' --app-bundle-id=coinbar",
-		"release-win32": "node installer-win-32.js",
-		"release-win": "node installer-win-64.js",
+		"release-win32": "node installer-win-x86.js",
+		"release-win": "node installer-win-x64.js",
 		"release-mac":
 			"electron-installer-dmg ./builds/output/Coinbar-darwin-x64/Coinbar.app Coinbar --out=./builds/releases --icon=assets/icons/mac/cb_icon.png.icns --overwrite"
 	},

@@ -108,9 +108,9 @@ const mb = menubar({
 	height: 405
 });
 
-mb.on("ready", () => {
+mb.on("ready", function() {
 	// Never highlight tray icon on OS X
-	mb.tray.setHighlightMode("never");
+	this.tray.setHighlightMode("never");
 
 	// Allow right click context menu
 	const contextMenu = Menu.buildFromTemplate([
@@ -122,7 +122,14 @@ mb.on("ready", () => {
 		},
 		{ label: "Exit", role: "quit" }
 	]);
-	mb.tray.setContextMenu(contextMenu);
+
+	// attach context menu to right-click event -- works on OSX
+	this.tray.on("right-click", () => {
+		this.tray.popUpContextMenu(contextMenu);
+	});
+
+	// OLD - attach context menu to right click -- worked on Windows
+	//this.tray.setContextMenu(contextMenu);
 });
 
 // Open dev tools if needed

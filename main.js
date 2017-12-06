@@ -1,5 +1,5 @@
 const menubar = require("menubar");
-const { Menu } = require("electron");
+const { Menu, shell } = require("electron");
 const path = require("path");
 const url = require("url");
 
@@ -117,9 +117,7 @@ mb.on("ready", () => {
 		{
 			label: "Learn More",
 			click: () => {
-				require("electron").shell.openExternal(
-					"https://curtisrodgers.com/Coinbar"
-				);
+				shell.openExternal("https://curtisrodgers.com/Coinbar");
 			}
 		},
 		{ label: "Exit", role: "quit" }

@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Coinbar
 ---
 
 # [](#header-features)Features

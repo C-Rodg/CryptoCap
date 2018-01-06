@@ -100,7 +100,7 @@ if (dev && process.argv.indexOf("--noDevServer") === -1) {
 }
 
 const mb = menubar({
-	tooltip: "Coinbar",
+	tooltip: "CryptoCap",
 	icon: path.join(__dirname, "assets", "icons", "png", "cb_tray_icon_v2.png"),
 	index: indexPath,
 	alwaysOnTop: dev,
@@ -117,7 +117,7 @@ mb.on("ready", function() {
 		{
 			label: "Learn More",
 			click: () => {
-				shell.openExternal("https://curtisrodgers.com/Coinbar");
+				shell.openExternal("https://curtisrodgers.com/CryptoCap");
 			}
 		},
 		{ label: "Exit", role: "quit" }

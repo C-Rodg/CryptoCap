@@ -29,7 +29,7 @@ const ContentHome = ({
 	return (
 		<div className="content-home container">
 			<NavTitle>
-				Coinbar <SettingsBtn />
+				CryptoCap <SettingsBtn />
 			</NavTitle>
 			<Row>
 				{generateCurrencyColumn(currencyList, onSwitchTime, timeFormat)}

@@ -1,6 +1,6 @@
 {
-	"name": "coinbar",
-	"version": "1.0.1",
+	"name": "cryptocap",
+	"version": "1.0.2",
 	"description":
 		"A taskbar application for tracking your cryptocurrencies. Built using electron, react, and webpack.",
 	"main": "main.js",
@@ -14,17 +14,17 @@
 		"package-win": "webpack --config webpack.build.config.js",
 		"package-mac": "webpack --config webpack.build.config.js",
 		"postpackage-win":
-			"electron-packager ./ Coinbar --out=./builds/output --asar --app-version=1.0.1 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cb_icon.png.ico --prune=true --version-string.FileDescription='Coinbar' --app-bundle-id=coinbar",
+			"electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.1 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cb_icon.png.ico --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap",
 		"postpackage-mac":
-			"electron-packager ./ Coinbar --out=./builds/output --asar --app-version=1.0.1 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/cb_icon.png.icns --prune=true --version-string.FileDescription='Coinbar' --app-bundle-id=coinbar",
+			"electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.1 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/cb_icon.png.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap",
 		"release-win32": "node installer-win-x86.js",
 		"release-win": "node installer-win-x64.js",
 		"release-mac":
-			"electron-installer-dmg ./builds/output/Coinbar-darwin-x64/Coinbar.app Coinbar --out=./builds/releases --icon=assets/icons/mac/cb_icon.png.icns --overwrite"
+			"electron-installer-dmg ./builds/output/CryptoCap-darwin-x64/CryptoCap.app CryptoCap --out=./builds/releases --icon=assets/icons/mac/cb_icon.png.icns --overwrite"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/C-Rodg/Coinbar.git"
+		"url": "git+https://github.com/C-Rodg/CryptoCap.git"
 	},
 	"keywords": [
 		"crypto",
@@ -37,9 +37,9 @@
 	"author": "C-Rodg",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/C-Rodg/Coinbar/issues"
+		"url": "https://github.com/C-Rodg/CryptoCap/issues"
 	},
-	"homepage": "https://github.com/C-Rodg/Coinbar#readme",
+	"homepage": "https://github.com/C-Rodg/CryptoCap#readme",
 	"dependencies": {
 		"axios": "^0.17.1",
 		"electron-squirrel-startup": "^1.0.0",

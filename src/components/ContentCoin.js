@@ -26,7 +26,7 @@ const ContentCoin = props => {
 		return (
 			<div className="content-coin container">
 				<NavTitle>
-					Coinbar <BackBtn />
+					CryptoCap <BackBtn />
 				</NavTitle>
 				<Row>
 					<Col>

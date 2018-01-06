@@ -2,11 +2,11 @@ const electronInstaller = require("electron-winstaller"),
 	path = require("path");
 
 const resultPromise = electronInstaller.createWindowsInstaller({
-	appDirectory: "./builds/output/Coinbar-win32-x64",
-	outputDirectory: "./builds/releases/Coinbar_win_x64",
-	exe: "Coinbar.exe",
+	appDirectory: "./builds/output/CryptoCap-win32-x64",
+	outputDirectory: "./builds/releases/CryptoCap_win_x64",
+	exe: "CryptoCap.exe",
 	version: "1.0.1",
-	setupExe: "CoinbarInstaller_x64.exe"
+	setupExe: "CryptoCapInstaller_x64.exe"
 });
 
 resultPromise.then(

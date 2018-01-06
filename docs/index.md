@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Coinbar
+title: CryptoCap
 ---
 
 # [](#header-features)Features
 
 * Track and learn about your favorite cryptocurrencies.
 * Get desktop notifications for custom price alerts.
-* Find information on price changes, market cap, & total supply for over 99	different cryptocurrencies.
+* Find information on price changes, market cap, & total supply for over 99 different cryptocurrencies.
 * View the cryptocurrency market as a whole with our global market data.
 * Downloadable installer for Windows and macOS systems.
 
@@ -50,3 +50,7 @@ below for more details:
 
 Want to see more of my work? Check out my portfolio
 [here](https://curtisrodgers.com/).
+
+#### [](#header-disclaimer)Disclaimer
+
+Do not use soley this application to make investment decisions. Displayed prices may not reflect actual prices.

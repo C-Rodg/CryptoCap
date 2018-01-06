@@ -101,7 +101,7 @@ if (dev && process.argv.indexOf("--noDevServer") === -1) {
 
 const mb = menubar({
 	tooltip: "CryptoCap",
-	icon: path.join(__dirname, "assets", "icons", "png", "cb_tray_icon_v2.png"),
+	icon: path.join(__dirname, "assets", "icons", "png", "taskbar_icon.png"),
 	index: indexPath,
 	alwaysOnTop: dev,
 	width: 800,

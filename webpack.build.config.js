@@ -49,7 +49,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			favicon: "./src/static/favicon.ico",
-			title: "Coinbar"
+			title: "CryptoCap"
 		}),
 		new ExtractTextPlugin("bundle.css"),
 		new webpack.DefinePlugin({

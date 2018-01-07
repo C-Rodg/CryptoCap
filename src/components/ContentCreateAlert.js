@@ -30,10 +30,8 @@ class ContentCreateAlert extends Component {
 			});
 			return false;
 		}
-
-		const stripDec = this.state.alertCost.split(".");
-		const stripChars = stripDec[0].replace(/\D/g, "");
-		const pureNum = parseInt(stripChars, 10);
+		const setPrice = this.state.alertCost;
+		const pureNum = parseFloat(setPrice, 10);
 		if (isNaN(pureNum)) {
 			this.setState({
 				errorMsg: "Invalid price alert value."
@@ -52,6 +50,11 @@ class ContentCreateAlert extends Component {
 				this.props.history.push("/");
 			}, 800);
 		});
+	};
+
+	// Update price input
+	updatePriceInput = ev => {
+		this.setState({ alertCost: ev.target.value });
 	};
 
 	render() {
@@ -97,7 +100,7 @@ class ContentCreateAlert extends Component {
 									type="text"
 									placeholder="Alert me at a price below..."
 									value={this.state.alertCost}
-									onChange={ev => this.setState({ alertCost: ev.target.value })}
+									onChange={this.updatePriceInput}
 								/>
 							</InputBar>
 							{this.state.errorMsg && (

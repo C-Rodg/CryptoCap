@@ -10,12 +10,6 @@ import ContentSettings from "./ContentSettings";
 import ContentCreateAlert from "./ContentCreateAlert";
 import { clearInterval } from "timers";
 
-const samplePriceAlerts = [
-	{ id: "bitcoin", price: 4200, hasAlerted: false },
-	{ id: "ripple", price: 30, hasAlerted: false },
-	{ id: "ethereum", price: 400, hasAlerted: false }
-];
-
 class App extends Component {
 	constructor() {
 		super();
@@ -117,9 +111,9 @@ class App extends Component {
 					return false;
 				}
 				// If alert price < current price
-				if (parseInt(currency.price_usd, 10) <= al.price) {
+				if (parseFloat(currency.price_usd, 10) <= al.price) {
 					notifications.push(
-						`${currency.name} is below ${numeral(al.price).format("$0,0")}.`
+						`${currency.name} is below ${numeral(al.price).format("$0,0.00")}.`
 					);
 					al.hasAlerted = true;
 				}
@@ -144,7 +138,7 @@ class App extends Component {
 		if (!this._notificationsEnabled) {
 			return false;
 		}
-		notes.forEach(note => {
+		notes.forEach((note, idx) => {
 			const no = new Notification(note);
 		});
 	};

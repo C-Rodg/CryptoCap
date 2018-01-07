@@ -17,6 +17,10 @@ I was tired of constantly having to open up a new browser page to check prices
 for my coins. This application makes cryptocurrency market details just a click
 away!
 
+## [](#header-view)The App
+
+![](https://github.com/C-Rodg/CryptoCap/blob/master/assets/crypto.png?raw=true)
+
 ## [](#header-data)Data
 
 All supplied market data comes from the

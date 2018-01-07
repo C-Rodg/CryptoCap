@@ -6,3 +6,21 @@
 .button .long-title {
 	font-size: 18px;
 }
+
+header {
+	position: relative;
+}
+
+header::before {
+	content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: -webkit-gradient(linear,left top, right bottom,from(#104a6d),to(#092635));
+    background-image: -webkit-linear-gradient(top left,#104a6d,#092635);
+    background-image: -o-linear-gradient(top left,#104a6d,#092635);
+    background-image: linear-gradient(to bottom right,#104a6d,#092635);
+    opacity: .6;
+}

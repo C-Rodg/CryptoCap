@@ -51,6 +51,6 @@ below for more details:
 Want to see more of my work? Check out my portfolio
 [here](https://curtisrodgers.com/).
 
-#### [](#header-disclaimer)Disclaimer
+### [](#header-disclaimer)Disclaimer
 
-Do not use soley this application to make investment decisions. Displayed prices may not reflect actual prices.
+This application is not meant to be the sole resource of your investment decisions. Displayed prices may not reflect actual prices.

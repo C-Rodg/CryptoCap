@@ -4,3 +4,4 @@ dist/
 builds/
 docs/_site/
 docs/backup_index.md
+backup/

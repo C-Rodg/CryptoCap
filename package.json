@@ -17,10 +17,9 @@
 		"postpackage-win":
 			"electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.1 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cryptocap.png.ico --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap",
 		"postpackage-mac":
-			"electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.2 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/cryptocap.png.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap --app-category-type=public.app-category.finance",
+			"electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.3 --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/cryptocap.png.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap --app-category-type=public.app-category.finance",
 		"postpackage-mas":
-			"electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.2 --overwrite --platform=mas --arch=x64 --icon=assets/icons/mac/cryptocap.png.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap --app-category-type=public.app-category.finance",
-
+			"electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.3 --overwrite --platform=mas --arch=x64 --icon=assets/icons/mac/cryptocap.png.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap --app-category-type=public.app-category.finance",
 		"release-win32": "node installer-win-x86.js",
 		"release-win": "node installer-win-x64.js",
 		"release-mac":

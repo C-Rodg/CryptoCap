@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
 	font-family: "Raleway";
 	src: url("./raleway-thin.eot");
 	src: url("./raleway-thin.eot?#iefix") format("embedded-opentype"),
@@ -27,7 +27,7 @@
 		url("./raleway-light.svg#ralewaylight") format("svg");
 	font-weight: 300;
 	font-style: normal;
-}
+} */
 @font-face {
 	font-family: "Raleway";
 	src: url("./raleway-regular.eot");
@@ -48,7 +48,7 @@
 	font-weight: 500;
 	font-style: normal;
 }
-@font-face {
+/* @font-face {
 	font-family: "Raleway";
 	src: url("./raleway-semibold.eot");
 	src: url("./raleway-semibold.eot?#iefix") format("embedded-opentype"),
@@ -57,7 +57,7 @@
 		url("./raleway-semibold.svg#ralewaysemibold") format("svg");
 	font-weight: 600;
 	font-style: normal;
-}
+} */
 @font-face {
 	font-family: "Raleway";
 	src: url("./raleway-bold.eot");
@@ -68,7 +68,7 @@
 	font-weight: 700;
 	font-style: normal;
 }
-@font-face {
+/* @font-face {
 	font-family: "Raleway";
 	src: url("./raleway-extrabold.eot");
 	src: url("./raleway-extrabold.eot?#iefix") format("embedded-opentype"),
@@ -87,4 +87,4 @@
 		url("./raleway-heavy.svg#ralewayheavy") format("svg");
 	font-weight: 900;
 	font-style: normal;
-}
+} */

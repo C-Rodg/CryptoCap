@@ -101,7 +101,7 @@ if (dev && process.argv.indexOf("--noDevServer") === -1) {
 
 const mb = menubar({
 	tooltip: "CryptoCap",
-	icon: path.join(__dirname, "assets", "icons", "png", "taskbar_icon.png"),
+	icon: path.join(__dirname, "assets", "icons", "png", "iconTemplate.png"),
 	index: indexPath,
 	alwaysOnTop: dev,
 	width: 800,
@@ -123,13 +123,10 @@ mb.on("ready", function() {
 		{ label: "Exit", role: "quit" }
 	]);
 
-	// attach context menu to right-click event -- works on OSX
+	// attach context menu to right-click event
 	this.tray.on("right-click", () => {
 		this.tray.popUpContextMenu(contextMenu);
 	});
-
-	// OLD - attach context menu to right click -- worked on Windows
-	//this.tray.setContextMenu(contextMenu);
 });
 
 // Open dev tools if needed

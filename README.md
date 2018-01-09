@@ -4,7 +4,7 @@ A taskbar application for tracking your cryptocurrencies. Built using electron,
 react, styled-components, and webpack.
 [https://curtisrodgers.com/CryptoCap/](https://curtisrodgers.com/CryptoCap/)
 
-## To Do
+## Roadmap
 
 * [x] Setup webpack build chain
 * [x] Add react-router
@@ -24,8 +24,12 @@ react, styled-components, and webpack.
 * [x] Create OSX package
 * [x] Fix default time bug in settings view
 * [x] Create 'exit' app button
-* [ ] Create new icon/name
+* [x] Create new icon/name
 * [ ] Sign installers
+
+## Documentation
+
+Please see our [product page](https://curtisrodgers.com/CryptoCap).
 
 ## Resources
 

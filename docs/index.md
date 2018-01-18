@@ -5,6 +5,8 @@ title: CryptoCap
 
 # [](#header-features)Features
 
+Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id1334581292)!
+
 * Track and learn about your favorite cryptocurrencies.
 * Get desktop notifications for custom price alerts.
 * Find information on price changes, market cap, & total supply for over 99 different cryptocurrencies.

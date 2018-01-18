@@ -4,15 +4,15 @@ A taskbar application for tracking your cryptocurrencies. Built using electron,
 react, styled-components, and webpack.
 [https://curtisrodgers.com/CryptoCap/](https://curtisrodgers.com/CryptoCap/)
 
+Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id1334581292)!
+
 ## Future Roadmap
 
 * [ ] Add foreign currency modes
 * [ ] Cleanup unused languages
+* [ ] Better font for currencies
 * [ ] Do not remove missing currency alerts
-* [ ] Sign for Darwin apps
-* [ ] Update documentation for MAS link
 * [ ] Update windows build
-* [ ] Add donation addresses
 
 ## Documentation
 

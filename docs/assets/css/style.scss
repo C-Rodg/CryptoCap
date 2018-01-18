@@ -7,6 +7,11 @@
 	font-size: 18px;
 }
 
+aside#sidebar p.repo-owner, 
+aside#sidebar p.repo-owner a {
+    white-space: nowrap;
+}
+
 header {
 	position: relative;
 }

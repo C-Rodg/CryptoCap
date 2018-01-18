@@ -55,6 +55,16 @@ below for more details:
 Want to see more of my work? Check out my portfolio
 [here](https://curtisrodgers.com/).
 
+### [](#header-generous)Donations
+
+Feeling generous? Feel free to send any crypto tips/gifts here:
+
+**BTC:**17B3RxzY18gJ5WkkJv2a3nZYDiv3F1dr47
+
+**ETH:**0x95b6709d38ee8e191008d6BF120DeeaDAd37be65
+
+**LTC:**LS1iMicJaT52SUJb9w9BRHVYEJW2qQKwGX
+
 ### [](#header-disclaimer)Disclaimer
 
 This application is not meant to be the sole resource of your investment decisions. Displayed prices may not reflect actual prices.

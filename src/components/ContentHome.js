@@ -5,6 +5,7 @@ import { getTimeString } from "../utils/dateHelper";
 import CurrencyTile from "./CurrencyTile";
 import CardContentRow from "./CardContentRow";
 import SettingsBtn from "./SettingsBtn";
+import ExitBtn from "./ExitBtn";
 import {
 	NavTitle,
 	SubTitleContainer,
@@ -23,13 +24,14 @@ const ContentHome = ({
 	globalInfo,
 	currencyList,
 	timeFormat,
-	onSwitchTime
+	onSwitchTime,
+	onCloseApp
 }) => {
 	const date = getTimeString(globalInfo.last_updated);
 	return (
 		<div className="content-home container">
 			<NavTitle>
-				CryptoCap <SettingsBtn />
+				CryptoCap <ExitBtn onCloseApp={onCloseApp} /> <SettingsBtn />
 			</NavTitle>
 			<Row>
 				{generateCurrencyColumn(currencyList, onSwitchTime, timeFormat)}

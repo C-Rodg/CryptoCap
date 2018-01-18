@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
 const numeral = require("numeral");
+const app = require("electron").remote.app;
 
 import "../styles/default.css";
 import ContentHome from "./ContentHome";
@@ -232,6 +233,11 @@ class App extends Component {
 		);
 	};
 
+	// Handle close app event
+	handleCloseApp = () => {
+		app.quit();
+	};
+
 	render() {
 		return (
 			<div className="app">
@@ -246,6 +252,7 @@ class App extends Component {
 								globalInfo={this.state.globalInfo}
 								timeFormat={this.state.timeFormat}
 								onSwitchTime={this.switchTimeFormat}
+								onCloseApp={this.handleCloseApp}
 							/>
 						);
 					}}

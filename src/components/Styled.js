@@ -31,7 +31,6 @@ export const TickerContainer = styled.div`
 	margin-bottom: 19px;
 `;
 
-
 export const ToggleTitle = styled.div`
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
@@ -111,6 +110,8 @@ export const SettingsLink = styled.span`
 	width: 28px;
 	height: 28px;
 	vertical-align: middle;
+	cursor: pointer;
+	margin-left: 8px;
 
 	svg {
 		fill: #aaa;

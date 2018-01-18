@@ -22,7 +22,7 @@
 <body>
   <header>
     <div class="inner">
-      <a href="{{ '/' | absolute_url }}">
+      <a href="https://itunes.apple.com/app/cryptocap/id1334581292">
         <h1>{{ site.title | default: site.github.repository_name }}</h1>
       </a>
       <h2>{{ site.description | default: site.github.project_tagline }}</h2>
@@ -44,24 +44,28 @@
 
       <aside id="sidebar">
         {% if site.show_downloads %}
-        <a href="https://github.com/C-Rodg/CryptoCap/releases/download/v1.0.3/CryptoCap.dmg" class="button">
+        <a href="https://itunes.apple.com/app/cryptocap/id1334581292" class="button">
+          <small>App Store</small>
+          macOS
+        </a>
+        <a href="https://github.com/C-Rodg/CryptoCap/releases/download/v1.0.3/CryptoCap.dmg" class="button hidden">
           <small>Download Installer</small>
           macOS
         </a>
-        <a href="https://github.com/C-Rodg/CryptoCap/releases/download/v1.0.1/CryptoCap_win_x64.zip" class="button">
+        <a href="https://github.com/C-Rodg/CryptoCap/releases/download/v1.0.1/CryptoCap_win_x64.zip" class="button hidden">
           <small>Download Installer</small>
           <span class="long-title">Windows 64-bit</span>
         </a>
-        <a href="https://github.com/C-Rodg/CryptoCap/releases/download/v1.0.1/CryptoCap_win_x86.zip" class="button">
+        <a href="https://github.com/C-Rodg/CryptoCap/releases/download/v1.0.1/CryptoCap_win_x86.zip" class="button hidden">
           <small>Download Installer</small>
           <span class="long-title">Windows 32-bit</span>
         </a>
         <a href="{{ site.github.zip_url }}" class="button">
-          <small>Download Project</small>
+          <small>Download GitHub Project</small>
           .zip file
         </a>
         <a href="{{ site.github.tar_url }}" class="button">
-          <small>Download Project</small>
+          <small>Download GitHub Project</small>
           .tar.gz file
         </a>
         {% endif %} {% if site.github.is_project_page %}

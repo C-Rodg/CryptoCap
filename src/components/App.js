@@ -106,9 +106,8 @@ class App extends Component {
 		this.state.priceAlerts.forEach(al => {
 			if (!al.hasAlerted) {
 				const currency = currencyList.find(curr => curr.id === al.id);
-				// If alert id doesn't exist in full currency list, delete..
+				// If alert id doesn't exist in full currency list, just return - no longer deleting..
 				if (!currency) {
-					al.hasAlerted = true;
 					return false;
 				}
 				// If alert price < current price

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const NavTitle = styled.div`
 	font-size: 1.5rem;
-	font-weight: 700;
-	letter-spacing: 0.07em;
+	font-weight: 400;
+	letter-spacing: 0.09em;
 	margin-bottom: 8px;
 
 	.currency-icon {
@@ -90,7 +90,7 @@ export const BackLink = styled.span`
 	display: inline-block;
 	padding: 2px 10px;
 	line-height: 1.9rem;
-	font-weight: 500;
+	font-weight: 400;
 
 	&:hover {
 		background-color: #153646;

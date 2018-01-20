@@ -1,4 +1,4 @@
-@import "./raleway/raleway.css";
+@import "./sourceCodePro/sourceCodePro.css";
 @import "./icons.css";
 ::-webkit-scrollbar {
 	display: none;
@@ -16,8 +16,9 @@ html {
 body {
 	margin: 0;
 	height: 100%;
-	font-weight: 400;
-	font-family: "Raleway", "Helvetica", "Arial", "sans-serif";
+	font-weight: 300;
+	font-family: "Source Code Pro", "Helvetica", "Arial", "monospace",
+		"sans-serif";
 	display: flex;
 	flex-direction: column;
 }

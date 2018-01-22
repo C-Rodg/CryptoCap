@@ -11,6 +11,7 @@ Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id13
 * Get desktop notifications for custom price alerts.
 * Find information on price changes, market cap, & total supply for over 99 different cryptocurrencies.
 * View the cryptocurrency market as a whole with our global market data.
+* See cryptocurrency prices in over 32 currencies ranging from USD to ZAR!
 * Downloadable installer for Windows and macOS systems.
 
 ## [](#header-motivation)Motivation

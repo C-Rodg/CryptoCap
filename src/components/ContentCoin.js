@@ -17,8 +17,10 @@ import {
 	ToggleTitle
 } from "./Styled";
 
-import CardContentRow from "./CardContentRow";
 import BackBtn from "./BackBtn";
+import CardContentRowNumber from "./CardContentRowNumber";
+import CardContentRowCurrency from "./CardContentRowCurrency";
+import CardContentRowPercent from "./CardContentRowPercent";
 
 const ContentCoin = props => {
 	// No coin selected
@@ -70,83 +72,76 @@ const ContentCoin = props => {
 					<SubTitle className="m-b-9">{coin.symbol}</SubTitle>
 					<ScrollContent>
 						<Card>
-							<CardContentRow
-								title="Current Price (USD)"
-								val={coin.price_usd}
-								format="$0,0.00"
-								isNumeral={true}
+							<CardContentRowCurrency
+								title={`Current Price (${coin.currencyType})`}
+								val={coin["price_" + coin.currencyType.toLowerCase()] || 0}
+								localeType={coin.localeType}
+								currencyType={coin.currencyType}
 							/>
-							<CardContentRow
+							<CardContentRowNumber
 								title="Current Price (BTC)"
 								val={coin.price_btc}
-								isNumeral={false}
+								localeType={coin.localeType}
 								postFix=" coins"
 							/>
-							<CardContentRow
+							<CardContentRowPercent
 								title="Percent Change - 1 hour"
 								val={coin.percent_change_1h}
-								isNumeral={false}
+								localeType={coin.localeType}
 								postFix="%"
-								isPercent={true}
 							/>
-							<CardContentRow
+							<CardContentRowPercent
 								title="Percent Change - 24 hours"
 								val={coin.percent_change_24h}
-								isNumeral={false}
+								localeType={coin.localeType}
 								postFix="%"
-								isPercent={true}
 							/>
-							<CardContentRow
+							<CardContentRowPercent
 								title="Percent Change - 7 days"
 								val={coin.percent_change_7d}
-								isNumeral={false}
+								localeType={coin.localeType}
 								postFix="%"
-								isPercent={true}
 							/>
-							<CardContentRow
+							<CardContentRowCurrency
 								title="Volume in last 24 hours"
-								val={coin["24h_volume_usd"]}
-								format="$0,0.00"
-								isNumeral={true}
+								val={coin["24h_volume_" + coin.currencyType.toLowerCase()] || 0}
+								localeType={coin.localeType}
+								currencyType={coin.currencyType}
 							/>
-							<CardContentRow
-								title="Market Cap (USD)"
-								val={coin.market_cap_usd}
-								format="$0,0.00"
-								isNumeral={true}
+							<CardContentRowCurrency
+								title={`Market Cap (${coin.currencyType})`}
+								val={coin["market_cap_" + coin.currencyType.toLowerCase()] || 0}
+								localeType={coin.localeType}
+								currencyType={coin.currencyType}
 							/>
-							<CardContentRow
+							<CardContentRowNumber
 								title="Cryptocurrency Rank"
 								val={coin.rank}
-								format="0o"
-								isNumeral={true}
+								localeType={coin.localeType}
 							/>
-							<CardContentRow
+							<CardContentRowNumber
 								title="Available Supply"
 								val={coin.available_supply}
-								format="0,0"
-								isNumeral={true}
+								localeType={coin.localeType}
 								postFix=" coins"
 							/>
-							<CardContentRow
+							<CardContentRowNumber
 								title="Total Supply"
 								val={coin.total_supply}
-								format="0,0"
-								isNumeral={true}
+								localeType={coin.localeType}
 								postFix=" coins"
 							/>
-							<CardContentRow
+							<CardContentRowNumber
 								title="Max Supply"
 								val={coin.max_supply}
-								format="0,0"
-								isNumeral={true}
+								localeType={coin.localeType}
 								postFix=" coins"
 							/>
 						</Card>
 					</ScrollContent>
 				</Col>
 				<div>
-					<SubTitle className="m-b-9">Last Updated:</SubTitle>
+					<SubTitle className="m-b-6">Last Updated:</SubTitle>
 					<SubTitle>{date}</SubTitle>
 					{hasAlert ? (
 						<ToggleTitle

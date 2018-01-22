@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import InputRange from "react-input-range";
-import "../styles/input-slider.css";
+import Select from "react-select";
+import "../styles/react-select.css";
 
+import "../styles/input-slider.css";
 import AddRemoveTile from "./AddRemoveTile";
 import BackBtn from "./BackBtn";
+
 import {
 	Row,
 	Col,
@@ -13,7 +16,8 @@ import {
 	TimeSwitchContainer,
 	InputBar,
 	ScrollContent,
-	TickerContainer
+	TickerContainer,
+	CurrencyTypeContainer
 } from "./Styled";
 
 class ContentSettings extends Component {
@@ -22,7 +26,7 @@ class ContentSettings extends Component {
 	};
 
 	// Render out currency list
-	renderCurrencyList = () => {
+	renderCryptoList = () => {
 		const { savedIds, currencyList, priceAlerts } = this.props;
 		if (currencyList && currencyList.length > 0) {
 			const searchTerm = this.state.searchTerm.toUpperCase();
@@ -85,7 +89,7 @@ class ContentSettings extends Component {
 								onChange={ev => this.setState({ searchTerm: ev.target.value })}
 							/>
 						</InputBar>
-						<ScrollContent>{this.renderCurrencyList()}</ScrollContent>
+						<ScrollContent>{this.renderCryptoList()}</ScrollContent>
 					</Col>
 					<Col>
 						<SubTitleContainer>
@@ -110,6 +114,18 @@ class ContentSettings extends Component {
 									7d
 								</a>
 							</TimeSwitchContainer>
+						</SubTitleContainer>
+						<SubTitleContainer>
+							<SubTitle>Currency:</SubTitle>
+							<CurrencyTypeContainer>
+								<Select
+									options={this.props.currencyTypeList}
+									value={this.props.currencyType}
+									onChange={this.props.onCurrencyTypeChange}
+									clearable={false}
+									searchable={false}
+								/>
+							</CurrencyTypeContainer>
 						</SubTitleContainer>
 						<TickerContainer>
 							<SubTitle className="m-b-25">Update Interval:</SubTitle>

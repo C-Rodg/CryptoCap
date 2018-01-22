@@ -1,7 +1,7 @@
 import React from "react";
-const numeral = require("numeral");
 import { Link } from "react-router-dom";
 
+import { formatCurrency } from "../utils/numberFormats";
 import {
 	Card,
 	Row,
@@ -12,7 +12,12 @@ import {
 } from "./Styled";
 
 const CurrencyTile = props => {
-	const price = numeral(props.price_usd).format("$0,0.00");
+	const priceCountry = props["price_" + props.currencyType.toLowerCase()] || 0;
+	const price = formatCurrency(
+		priceCountry,
+		props.localeType,
+		props.currencyType
+	);
 	let priceChange = `${props["percent_change_" + props.timeFormat]}%`;
 	let negative = priceChange.indexOf("-") === -1 ? false : true;
 	if (!negative) {

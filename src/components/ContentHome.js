@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import { getTimeString } from "../utils/dateHelper";
 import CurrencyTile from "./CurrencyTile";
-import CardContentRow from "./CardContentRow";
 import SettingsBtn from "./SettingsBtn";
 import ExitBtn from "./ExitBtn";
 import {
@@ -19,59 +18,78 @@ import {
 	CardRowResponse,
 	ScrollContent
 } from "./Styled";
+import CardContentRowCurrency from "./CardContentRowCurrency";
+import CardContentRowNumber from "./CardContentRowNumber";
+import CardContentRowPercent from "./CardContentRowPercent";
 
 const ContentHome = ({
 	globalInfo,
 	currencyList,
 	timeFormat,
 	onSwitchTime,
-	onCloseApp
+	onCloseApp,
+	currencyType,
+	localeType
 }) => {
 	const date = getTimeString(globalInfo.last_updated);
+	const lowerCurrency = currencyType.toLowerCase();
+
+	const globalMarketCap = globalInfo["total_market_cap_" + lowerCurrency] || 0;
+	const global24Volume = globalInfo["total_24h_volume_" + lowerCurrency] || 0;
+
 	return (
 		<div className="content-home container">
 			<NavTitle>
 				CryptoCap <ExitBtn onCloseApp={onCloseApp} /> <SettingsBtn />
 			</NavTitle>
 			<Row>
-				{generateCurrencyColumn(currencyList, onSwitchTime, timeFormat)}
+				{generateCurrencyColumn(
+					currencyList,
+					onSwitchTime,
+					timeFormat,
+					currencyType,
+					localeType
+				)}
 				<Col>
 					<SubTitle className="m-b-9">Global Marketplace:</SubTitle>
 					<Card className="marketplace-card">
-						<CardContentRow
-							title="Total Market-Cap"
-							val={globalInfo.total_market_cap_usd}
-							format="$0,0.00"
-							isNumeral={true}
+						<CardContentRowCurrency
+							title="Total Market Cap"
+							val={globalMarketCap}
+							currencyType={currencyType}
+							localeType={localeType}
 						/>
-
-						<CardContentRow
+						<CardContentRowCurrency
 							title="Volume in last 24hrs"
-							val={globalInfo.total_24h_volume_usd}
-							format="$0,0.00"
-							isNumeral={true}
+							val={global24Volume}
+							currencyType={currencyType}
+							localeType={localeType}
 						/>
-
-						<CardContentRow
+						<CardContentRowPercent
 							title="Bitcoin Dominance"
 							val={globalInfo.bitcoin_percentage_of_market_cap}
-							isNumeral={true}
-							postFix="%"
+							localeType={localeType}
+							disableStyles={true}
 						/>
 
-						<CardContentRow
-							title="Active Currencies"
+						<CardContentRowNumber
+							title="Active Assets"
 							val={globalInfo.active_assets}
-							format="0,0"
-							isNumeral={true}
+							localeType={localeType}
 							postFix=" currencies"
 						/>
 
-						<CardContentRow
+						<CardContentRowNumber
+							title="Active Currencies"
+							val={globalInfo.active_currencies}
+							localeType={localeType}
+							postFix=" currencies"
+						/>
+
+						<CardContentRowNumber
 							title="Active Markets"
 							val={globalInfo.active_markets}
-							format="0,0"
-							isNumeral={true}
+							localeType={localeType}
 							postFix=" markets"
 						/>
 					</Card>
@@ -85,7 +103,13 @@ const ContentHome = ({
 	);
 };
 
-const generateCurrencyColumn = (currencyList, onSwitchTime, timeFormat) => {
+const generateCurrencyColumn = (
+	currencyList,
+	onSwitchTime,
+	timeFormat,
+	currencyType,
+	localeType
+) => {
 	if (currencyList && currencyList.length > 0) {
 		return (
 			<Col>
@@ -114,7 +138,13 @@ const generateCurrencyColumn = (currencyList, onSwitchTime, timeFormat) => {
 				</SubTitleContainer>
 				<ScrollContent>
 					{currencyList.map(curr => (
-						<CurrencyTile key={curr.id} timeFormat={timeFormat} {...curr} />
+						<CurrencyTile
+							{...curr}
+							key={curr.id}
+							timeFormat={timeFormat}
+							currencyType={currencyType}
+							localeType={localeType}
+						/>
 					))}
 				</ScrollContent>
 			</Col>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
-const numeral = require("numeral");
 const app = require("electron").remote.app;
 
 import "../styles/default.css";
@@ -10,12 +9,16 @@ import ContentCoin from "./ContentCoin";
 import ContentSettings from "./ContentSettings";
 import ContentCreateAlert from "./ContentCreateAlert";
 import { clearInterval } from "timers";
+import { currencyTypes } from "../utils/currencyTypes";
+import { formatCurrency, formatNumber } from "../utils/numberFormats";
 
 class App extends Component {
 	constructor() {
 		super();
 
 		// Get saved settings - coins, time format, ticker time, and alerts
+		const currencyType = window.localStorage.getItem("currency_type");
+		const localeType = window.localStorage.getItem("locale_type");
 		const time = window.localStorage.getItem("coin_time");
 		const tickerInt = window.localStorage.getItem("coin_ticker");
 		const coinIds = window.localStorage.getItem("coin_ids");
@@ -48,7 +51,9 @@ class App extends Component {
 			globalInfo: {},
 			timeFormat: time ? time : "24h",
 			priceAlerts,
-			tickerTime
+			tickerTime,
+			currencyType: currencyType ? currencyType : "USD",
+			localeType: localeType ? localeType : "en-us"
 		};
 
 		// Attempt to allow notifications
@@ -85,7 +90,11 @@ class App extends Component {
 	// Get Complete list of markets
 	getCompleteTicker = () => {
 		axios
-			.get("https://api.coinmarketcap.com/v1/ticker/")
+			.get(
+				`https://api.coinmarketcap.com/v1/ticker/?convert=${
+					this.state.currencyType
+				}`
+			)
 			.then(resp => {
 				this.createPriceNotification(resp.data);
 				this.setState({
@@ -112,9 +121,8 @@ class App extends Component {
 				}
 				// If alert price < current price
 				if (parseFloat(currency.price_usd, 10) <= al.price) {
-					notifications.push(
-						`${currency.name} is below ${numeral(al.price).format("$0,0.00")}.`
-					);
+					const formattedPrice = formatCurrency(al.price, "en-us", "USD");
+					notifications.push(`${currency.name} is below ${formattedPrice}.`);
 					al.hasAlerted = true;
 				}
 			}
@@ -146,7 +154,11 @@ class App extends Component {
 	// Get global information
 	getGlobalInfo = () => {
 		axios
-			.get("https://api.coinmarketcap.com/v1/global/")
+			.get(
+				`https://api.coinmarketcap.com/v1/global/?convert=${
+					this.state.currencyType
+				}`
+			)
 			.then(resp => {
 				this.setState({ globalInfo: resp.data });
 			})
@@ -232,6 +244,21 @@ class App extends Component {
 		);
 	};
 
+	// Handle change of currency type and refresh numbers after change
+	handleCurrencyTypeChange = type => {
+		window.localStorage.setItem("currency_type", type.value);
+		window.localStorage.setItem("locale_type", type.localeCode);
+		this.setState(
+			{
+				currencyType: type.value,
+				localeType: type.localeCode
+			},
+			() => {
+				this.getTickerInfo();
+			}
+		);
+	};
+
 	// Handle close app event
 	handleCloseApp = () => {
 		app.quit();
@@ -247,6 +274,8 @@ class App extends Component {
 						return (
 							<ContentHome
 								{...props}
+								currencyType={this.state.currencyType}
+								localeType={this.state.localeType}
 								currencyList={this.state.myCurrencyList}
 								globalInfo={this.state.globalInfo}
 								timeFormat={this.state.timeFormat}
@@ -297,6 +326,9 @@ class App extends Component {
 								onUpdateTickerTime={this.handleTickerTime}
 								onSetTickerTime={this.handleSetTickerTime}
 								tickerTime={this.state.tickerTime}
+								currencyType={this.state.currencyType}
+								currencyTypeList={currencyTypes}
+								onCurrencyTypeChange={this.handleCurrencyTypeChange}
 							/>
 						);
 					}}

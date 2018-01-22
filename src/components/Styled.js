@@ -15,7 +15,7 @@ export const SubTitleContainer = styled.div`
 	display: flex;
 	width: 100%;
 	align-items: center;
-	margin-bottom: 19px;
+	margin-bottom: 13px;
 `;
 
 export const SubTitle = styled.div`
@@ -23,6 +23,7 @@ export const SubTitle = styled.div`
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: #487991;
+	padding-bottom: 3px;
 `;
 
 export const TickerContainer = styled.div`
@@ -285,5 +286,22 @@ export const StyledSubmit = styled.button`
 
 	&:hover {
 		background-color: #0e2c3b;
+	}
+`;
+
+export const CurrencyTypeContainer = styled.div`
+	flex: 1;
+
+	.Select {
+		max-width: 180px;
+		margin-left: auto;
+
+		.Select-control {
+			background-color: #0e2c3b;
+			color: #f5f5f5;
+			border: 0;
+			color: red;
+			border-radius: 15px;
+		}
 	}
 `;

@@ -8,10 +8,10 @@ Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id13
 
 ## Future Roadmap
 
-* [ ] Add foreign currency modes
+* [x] Switch to monospace font
+* [x] Do not remove missing currency alerts
+* [x] Add foreign currency modes
 * [ ] Cleanup unused languages
-* [ ] Better font for currencies
-* [ ] Do not remove missing currency alerts
 * [ ] Update windows build
 
 ## Documentation

@@ -4,7 +4,10 @@ import { CardRow, CardRowTitle, CardRowResponse } from "./Styled";
 import { formatNumber } from "../utils/numberFormats";
 
 const CardContentRowNumber = ({ title, val, postFix, localeType }) => {
-	const numVal = formatNumber(val, localeType);
+	let numVal = "";
+	if (val) {
+		numVal = formatNumber(val, localeType);
+	}
 	return (
 		<CardRow>
 			<CardRowTitle>{title}:</CardRowTitle>

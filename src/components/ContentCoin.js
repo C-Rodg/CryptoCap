@@ -1,5 +1,4 @@
 import React from "react";
-const numeral = require("numeral");
 import { Link } from "react-router-dom";
 
 import { getTimeString } from "../utils/dateHelper";
@@ -21,6 +20,8 @@ import BackBtn from "./BackBtn";
 import CardContentRowNumber from "./CardContentRowNumber";
 import CardContentRowCurrency from "./CardContentRowCurrency";
 import CardContentRowPercent from "./CardContentRowPercent";
+import { formatCurrency } from "../utils/numberFormats";
+import { ordinalSuffixOf } from "../utils/dateHelper";
 
 const ContentCoin = props => {
 	// No coin selected
@@ -55,7 +56,7 @@ const ContentCoin = props => {
 		const thisAlert = props.priceAlerts.find(a => a.id === coin.id);
 		if (thisAlert) {
 			hasAlert = true;
-			alertPrice = numeral(thisAlert.price).format("$0,0");
+			alertPrice = formatCurrency(thisAlert.price, "en-us", "USD");
 		}
 	}
 
@@ -116,8 +117,9 @@ const ContentCoin = props => {
 							/>
 							<CardContentRowNumber
 								title="Cryptocurrency Rank"
-								val={coin.rank}
+								val=""
 								localeType={coin.localeType}
+								postFix={ordinalSuffixOf(parseInt(coin.rank, 10))}
 							/>
 							<CardContentRowNumber
 								title="Available Supply"

@@ -11,8 +11,10 @@ Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id13
 * [x] Switch to monospace font
 * [x] Do not remove missing currency alerts
 * [x] Add foreign currency modes
-* [ ] Cleanup unused languages
-* [ ] Update windows build
+* [x] Cleanup unused languages
+* [ ] Optimize fonts for windows too
+* [ ] Sign for windows?
+* [ ] Add more coins?
 
 ## Documentation
 

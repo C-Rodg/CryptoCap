@@ -6,3 +6,4 @@ docs/_site/
 docs/backup_index.md
 backup/
 *.provisionprofile
+yarn.lock

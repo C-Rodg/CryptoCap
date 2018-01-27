@@ -9,6 +9,11 @@ a {
 	text-decoration: inherit;
 }
 
+a:focus,
+a:active {
+	outline: 0;
+}
+
 html {
 	height: 100%;
 }

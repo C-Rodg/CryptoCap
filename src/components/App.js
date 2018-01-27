@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
 const app = require("electron").remote.app;
+import update from "immutability-helper";
 
 import "../styles/default.css";
 import ContentHome from "./ContentHome";
@@ -16,16 +17,26 @@ class App extends Component {
 	constructor() {
 		super();
 
-		// Get saved settings - coins, time format, ticker time, and alerts
+		// Get saved settings
+
+		// Fiat Currencies
 		const currencyType = window.localStorage.getItem("currency_type");
 		const localeType = window.localStorage.getItem("locale_type");
+
+		// Time format preference
 		const time = window.localStorage.getItem("coin_time");
+
+		// Background check time
 		const tickerInt = window.localStorage.getItem("coin_ticker");
+
+		// Favorite Cryptos
 		const coinIds = window.localStorage.getItem("coin_ids");
 		let savedIds = "bitcoin;ethereum;bitcoin-cash;ripple;litecoin;monero";
 		if (coinIds) {
 			savedIds = coinIds;
 		}
+
+		// Price Alerts
 		let priceAlerts = [];
 		const savedAlerts = window.localStorage.getItem("coin_alerts");
 		if (savedAlerts) {
@@ -99,15 +110,25 @@ class App extends Component {
 				this.createPriceNotification(resp.data);
 				this.setState({
 					fullCurrencyList: resp.data,
-					myCurrencyList: resp.data.filter(
-						curr => this.state.savedIds.indexOf(curr.id) > -1
-					)
+					myCurrencyList: this.getMyCurrencies(this.state.savedIds, resp.data)
 				});
 			})
 			.catch(err => {
 				console.log(err);
 			});
 	};
+
+	// Preserve order of myCurrencyList
+	getMyCurrencies(savedIds, fullList) {
+		const myList = [];
+		savedIds.forEach(save => {
+			const crypto = fullList.find(item => item.id === save);
+			if (crypto) {
+				myList.push(crypto);
+			}
+		});
+		return myList;
+	}
 
 	// Create notifications for price alerts
 	createPriceNotification = currencyList => {
@@ -193,9 +214,7 @@ class App extends Component {
 
 		this.setState({
 			savedIds: newSavedIds,
-			myCurrencyList: fullCurrencyList.filter(
-				coin => newSavedIds.indexOf(coin.id) > -1
-			),
+			myCurrencyList: this.getMyCurrencies(newSavedIds, fullCurrencyList),
 			priceAlerts: newPriceAlerts
 		});
 	};
@@ -264,6 +283,27 @@ class App extends Component {
 		app.quit();
 	};
 
+	// Handle rearranging tiles
+	handleMoveTile = (dragIndex, hoverIndex) => {
+		const { savedIds, myCurrencyList } = this.state;
+		const dragTileItem = myCurrencyList[dragIndex];
+		const dragIdItem = savedIds[dragIndex];
+
+		this.setState(
+			update(this.state, {
+				myCurrencyList: {
+					$splice: [[dragIndex, 1], [hoverIndex, 0, dragTileItem]]
+				},
+				savedIds: {
+					$splice: [[dragIndex, 1], [hoverIndex, 0, dragIdItem]]
+				}
+			}),
+			() => {
+				window.localStorage.setItem("coin_ids", this.state.savedIds.join(";"));
+			}
+		);
+	};
+
 	render() {
 		return (
 			<div className="app">
@@ -281,6 +321,7 @@ class App extends Component {
 								timeFormat={this.state.timeFormat}
 								onSwitchTime={this.switchTimeFormat}
 								onCloseApp={this.handleCloseApp}
+								onMoveTile={this.handleMoveTile}
 							/>
 						);
 					}}

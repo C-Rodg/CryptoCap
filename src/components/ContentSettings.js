@@ -31,7 +31,10 @@ class ContentSettings extends Component {
 		if (currencyList && currencyList.length > 0) {
 			const searchTerm = this.state.searchTerm.toUpperCase();
 			const filteredList = currencyList.filter(coin => {
-				return coin.name.toUpperCase().indexOf(searchTerm) > -1;
+				return (
+					coin.name.toUpperCase().indexOf(searchTerm) > -1 ||
+					coin.symbol.toUpperCase().indexOf(searchTerm) > -1
+				);
 			});
 			if (filteredList.length > 0) {
 				return filteredList.map(coin => {
@@ -49,6 +52,7 @@ class ContentSettings extends Component {
 							key={coin.id}
 							name={coin.name}
 							id={coin.id}
+							symbol={coin.symbol}
 							isSelected={saved}
 							toggleTile={this.props.onToggleSavedId}
 							hasPriceAlert={hasPriceAlert}

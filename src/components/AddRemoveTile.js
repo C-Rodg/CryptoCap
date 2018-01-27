@@ -1,14 +1,23 @@
 import React from "react";
 import { SettingsTile } from "./Styled";
 
-const AddRemoveTile = ({ name, isSelected, id, toggleTile, hasPriceAlert }) => {
+const AddRemoveTile = ({
+	name,
+	isSelected,
+	id,
+	symbol,
+	toggleTile,
+	hasPriceAlert
+}) => {
 	return (
 		<SettingsTile
 			className={isSelected ? "selected" : ""}
 			onClick={() => toggleTile(id)}
 		>
 			<div className={["currency-icon", `i-${id}`].join(" ")} />
-			<div className="currency-title">{name}</div>
+			<div className="currency-title">
+				{name} {symbol ? `(${symbol})` : ""}
+			</div>
 			{hasPriceAlert && (
 				<svg
 					className="price-alert"

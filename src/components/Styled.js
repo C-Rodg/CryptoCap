@@ -186,7 +186,7 @@ export const CardRowResponse = styled.span`
 
 export const CurrencyTitles = styled.div`
 	font-size: 1.3rem;
-	line-spacing: 150%;
+	line-height: 1.4;
 `;
 
 export const CurrencySymbol = styled.div`

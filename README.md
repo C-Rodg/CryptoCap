@@ -12,9 +12,12 @@ Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id13
 * [x] Do not remove missing currency alerts
 * [x] Add foreign currency modes
 * [x] Cleanup unused languages
+* [ ] Add more coins
+* [ ] Overhaul alert/locale system
+* [ ] Add option for higher price alert for selling
+* [ ] Graphs
 * [ ] Optimize fonts for windows too
 * [ ] Sign for windows?
-* [ ] Add more coins?
 
 ## Documentation
 

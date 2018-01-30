@@ -206,11 +206,12 @@ export const InputBar = styled.div`
 	position: relative;
 	color: #aaa;
 
-	svg {
+	span {
 		position: absolute;
-		top: 10px;
+		top: 14px;
 		left: 10px;
 		fill: #aaa;
+		font-size: 10px;
 	}
 
 	input {

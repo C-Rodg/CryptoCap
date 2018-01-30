@@ -141,8 +141,8 @@ class App extends Component {
 					return false;
 				}
 				// If alert price < current price
-				if (parseFloat(currency.price_usd, 10) <= al.price) {
-					const formattedPrice = formatCurrency(al.price, "en-us", "USD");
+				if (parseFloat(currency["price_" + this.state.currencyType.toLowerCase()], 10) <= al.price) {
+					const formattedPrice = formatCurrency(al.price, this.state.localeType, this.state.currencyType );
 					notifications.push(`${currency.name} is below ${formattedPrice}.`);
 					al.hasAlerted = true;
 				}

@@ -56,7 +56,7 @@ const ContentCoin = props => {
 		const thisAlert = props.priceAlerts.find(a => a.id === coin.id);
 		if (thisAlert) {
 			hasAlert = true;
-			alertPrice = formatCurrency(thisAlert.price, "en-us", "USD");
+			alertPrice = formatCurrency(thisAlert.price, coin.localeType, coin.currencyType);
 		}
 	}
 

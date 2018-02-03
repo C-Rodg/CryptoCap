@@ -14,9 +14,12 @@ Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id13
 * [x] Cleanup unused languages
 * [x] Add search by symbol
 * [x] Add drag and drop
+* [ ] Add more coins
+* [ ] Overhaul alert/locale system
+* [ ] Add option for higher price alert for selling
+* [ ] Graphs
 * [ ] Optimize fonts for windows too
 * [ ] Sign for windows?
-* [ ] Add more coins?
 
 ## Documentation
 

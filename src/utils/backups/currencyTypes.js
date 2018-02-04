@@ -1,3 +1,4 @@
+// https://api.fixer.io/latest?base=USD
 export const currencyTypes = [
 	{
 		value: "USD",

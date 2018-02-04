@@ -1,3 +1,42 @@
+export const EXCHANGE_RATES = {
+    "base": "USD",
+    "date": "2018-02-02",
+    "rates": {
+        "AUD": 1.2512,
+        "BGN": 1.5656,
+        "BRL": 3.2015,
+        "CAD": 1.2317,
+        "CHF": 0.92827,
+        "CNY": 6.288,
+        "CZK": 20.167,
+        "DKK": 5.9581,
+        "EUR": 0.80051,
+        "GBP": 0.70325,
+        "HKD": 7.8204,
+        "HRK": 5.9517,
+        "HUF": 247.75,
+        "IDR": 13466,
+        "ILS": 3.434,
+        "INR": 64.057,
+        "ISK": 100.22,
+        "JPY": 109.85,
+        "KRW": 1084.9,
+        "MXN": 18.457,
+        "MYR": 3.887,
+        "NOK": 7.6579,
+        "NZD": 1.3577,
+        "PHP": 51.625,
+        "PLN": 3.3254,
+        "RON": 3.719,
+        "RUB": 56.271,
+        "SEK": 7.8629,
+        "SGD": 1.3136,
+        "THB": 31.4,
+        "TRY": 3.746,
+        "ZAR": 11.974
+    }
+}
+
 export const API_FULL_CRYPTO_LIST = [
 	{ aliases: [], name: "300 Token", symbol: "300" },
 	{ aliases: [], name: "SixEleven", symbol: "611" },

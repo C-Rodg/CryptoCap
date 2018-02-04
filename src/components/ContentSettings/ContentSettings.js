@@ -7,10 +7,45 @@ import { SubTitle } from "../Common/SubTitle";
 import InputBar from "./InputBar";
 import CryptoTile from "./CryptoTile";
 
+import InputRange from "react-input-range";
+import Select from "react-select";
+import "../../styles/react-select.css";
+import "../../styles/input-slider.css";
+import { currencySelect } from "../../utils/currency";
+import SearchList from "./SearchList";
+
 const ScrollCryptoList = styled.div`
 	overflow-y: auto;
 	margin-top: 8px;
 	height: calc(100% - 4.3rem);
+`;
+
+const CurrencySelectContainer = styled.div`
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+
+	.Select {
+		flex: 1;
+		max-width: 180px;
+		margin-left: auto;
+		.Select-control {
+			background-color: #0e2c3b;
+			color: #f5f5f5;
+			border: 0;
+			color: red;
+			border-radius: 15px;
+		}
+	}
+`;
+
+const InputSliderContainer = styled.div`
+	margin-top: 13px;
+
+	> span {
+		display: block;
+		margin-bottom: 25px;
+	}
 `;
 
 class ContentSettings extends Component {
@@ -28,33 +63,9 @@ class ContentSettings extends Component {
 		const { fullCryptoList } = this.props;
 		if (fullCryptoList && fullCryptoList.length > 0) {
 			const searchTerm = this.state.searchTerm.toUpperCase();
-			const filteredList = fullCryptoList.filter(coin => {
-				if (coin.name && coin.name.toUpperCase().indexOf(searchTerm) > -1) {
-					return true;
-				} else if (
-					coin.symbol &&
-					coin.symbol.toUpperCase().indexOf(searchTerm) > -1
-				) {
-					return true;
-				}
-				return false;
-			});
-			if (filteredList.length > 0) {
-				return filteredList.map(coin => {
-					// TODO: check for saved and price alerts
-					let isSelected = false;
-					let hasPriceAlert = false;
-					return (
-						<CryptoTile
-							key={coin.symbol}
-							symbol={coin.symbol}
-							name={coin.name}
-							isSelected={isSelected}
-							hasPriceAlert={hasPriceAlert}
-						/>
-					);
-				});
-			}
+			return (
+				<SearchList searchTerm={searchTerm} fullCryptoList={fullCryptoList} />
+			);
 		}
 		return <SubTitle> - No Currencies Found -</SubTitle>;
 	}
@@ -81,7 +92,32 @@ class ContentSettings extends Component {
 							{this.renderFullCryptoList()}
 						</ScrollCryptoList>
 					</div>
-					<div>Right</div>
+					<div>
+						<div>
+							<SubTitle>Default Time Format:</SubTitle>
+						</div>
+						<CurrencySelectContainer>
+							<SubTitle>Currency:</SubTitle>
+							<Select
+								options={currencySelect}
+								value={this.props.selectedFiatCurrency}
+								onChange={this.props.onCurrencyTypeChange}
+								clearable={false}
+								searchable={false}
+							/>
+						</CurrencySelectContainer>
+						<InputSliderContainer>
+							<SubTitle>Update Interval:</SubTitle>
+							<InputRange
+								formatLabel={value => `${value} mins`}
+								minValue={1}
+								maxValue={20}
+								value={this.props.backgroundTickerTime}
+								onChange={this.props.onChangeTickerTime}
+								onChangeComplete={this.props.onSetTickerTime}
+							/>
+						</InputSliderContainer>
+					</div>
 				</GridTwoColContainer>
 			</Container>
 		);

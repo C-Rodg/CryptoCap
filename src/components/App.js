@@ -21,7 +21,8 @@ class App extends Component {
 			exchangeRates: {},
 			fullCryptoList: API_FULL_CRYPTO_LIST, //[],
 			mySavedCryptos: [],
-			selectedFiatCurrency: "USD"
+			selectedFiatCurrency: "USD",
+			backgroundTickerTime: 10
 		};
 	}
 
@@ -29,6 +30,21 @@ class App extends Component {
 	handleCloseApp() {
 		app.quit();
 	}
+
+	// Fiat Currency Type Changed
+	handleCurrencyTypeChange = select => {
+		this.setState({ selectedFiatCurrency: select.value });
+	};
+
+	// Update state for backgroundTickerTime
+	handleChangeTickerTime = time => {
+		this.setState({ backgroundTickerTime: time });
+	};
+
+	// New backgroundTickerTime has been set
+	handleSetTickerTime = time => {
+		// TODO: CLEAR INTERVAL, save to local storage, etc.
+	};
 
 	render() {
 		return (
@@ -59,6 +75,11 @@ class App extends Component {
 							<ContentSettings
 								{...props}
 								fullCryptoList={this.state.fullCryptoList}
+								selectedFiatCurrency={this.state.selectedFiatCurrency}
+								onCurrencyTypeChange={this.handleCurrencyTypeChange}
+								backgroundTickerTime={this.state.backgroundTickerTime}
+								onChangeTickerTime={this.handleChangeTickerTime}
+								onSetTickerTime={this.handleSetTickerTime}
 							/>
 						);
 					}}

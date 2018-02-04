@@ -34,7 +34,7 @@ const mb = menubar({
 	icon: path.join(__dirname, "assets", "icons", "png", "iconTemplate.png"),
 	index: indexPath,
 	alwaysOnTop: dev,
-	width: 800,
+	width: 820,
 	height: 405
 });
 

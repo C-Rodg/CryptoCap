@@ -1,6 +1,14 @@
-@import "./icons.css";
+@import "./cryptocoins.css";
 ::-webkit-scrollbar {
 	display: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 a {
@@ -20,14 +28,19 @@ html {
 body {
 	margin: 0;
 	height: 100%;
-	-webkit-text-size-adjust: 100%;
-	font-size: 1rem;
 	font-weight: 300;
+	display: flex;
+	flex-direction: column;
+}
+
+input,
+button,
+body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		"Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
 		"Segoe UI Symbol";
-	display: flex;
-	flex-direction: column;
+	-webkit-text-size-adjust: 100%;
+	font-size: 1rem;
 }
 
 #root {

@@ -11,6 +11,7 @@ const StyledTitle = styled.div`
 	letter-spacing: 0.09em;
 	display: flex;
 	align-items: center;
+	min-height: 34px;
 
 	.currency-icon {
 		margin-right: 10px;
@@ -24,7 +25,14 @@ const NavButtons = styled.div`
 	display: flex;
 `;
 
-const Title = ({ icon, text, showBack, showSettings, showExit }) => {
+const Title = ({
+	icon,
+	text,
+	showBack,
+	showSettings,
+	showExit,
+	onCloseApp
+}) => {
 	return (
 		<StyledTitle>
 			<div>
@@ -34,7 +42,7 @@ const Title = ({ icon, text, showBack, showSettings, showExit }) => {
 			<NavButtons>
 				{showBack && <BackButton />}
 				{showSettings && <SettingsButton />}
-				{showExit && <ExitButton />}
+				{showExit && <ExitButton onCloseApp={onCloseApp} />}
 			</NavButtons>
 		</StyledTitle>
 	);

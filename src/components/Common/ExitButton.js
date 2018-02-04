@@ -2,9 +2,9 @@ import React from "react";
 
 import { IconButton } from "./IconButton";
 
-const ExitButton = () => {
+const ExitButton = ({ onCloseApp }) => {
 	return (
-		<IconButton>
+		<IconButton onClick={onCloseApp}>
 			<svg
 				fill="#000000"
 				height="24"

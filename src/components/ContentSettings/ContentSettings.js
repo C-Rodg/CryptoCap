@@ -83,7 +83,7 @@ class ContentSettings extends Component {
 				<Title text="Settings" showBack={true} />
 				<GridTwoColContainer>
 					<div>
-						<SubTitle>Currencies:</SubTitle>
+						<SubTitle>Cryptocurrencies:</SubTitle>
 						<InputBar
 							value={this.state.searchTerm}
 							onUpdateSearchTerm={this.handleUpdateSearchTerm}
@@ -93,11 +93,8 @@ class ContentSettings extends Component {
 						</ScrollCryptoList>
 					</div>
 					<div>
-						<div>
-							<SubTitle>Default Time Format:</SubTitle>
-						</div>
 						<CurrencySelectContainer>
-							<SubTitle>Currency:</SubTitle>
+							<SubTitle>Fiat Currency:</SubTitle>
 							<Select
 								options={currencySelect}
 								value={this.props.selectedFiatCurrency}

@@ -11,29 +11,40 @@ import ContentPriceAlert from "./ContentPriceAlert/ContentPriceAlert";
 import ContentCoin from "./ContentCoin/ContentCoin";
 
 // TESTING
-import { API_FULL_CRYPTO_LIST } from "../TEST/TEST_API";
+import {
+	API_FULL_CRYPTO_LIST,
+	API_GLOBAL_DATA,
+	EXCHANGE_RATES,
+	API_SAVED_CRYPTO_LIST
+} from "../TEST/TEST_API";
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			exchangeRates: {},
+			exchangeRates: EXCHANGE_RATES, //{},
+			globalData: API_GLOBAL_DATA, // {},
 			fullCryptoList: API_FULL_CRYPTO_LIST, //[],
-			mySavedCryptos: [],
+			mySavedCryptos: API_SAVED_CRYPTO_LIST, //[],
 			selectedFiatCurrency: "USD",
+			selectedLocale: "en-US",
 			backgroundTickerTime: 10
 		};
 	}
 
 	// Quit button clicked
 	handleCloseApp() {
-		app.quit();
+		app.hide();
 	}
 
 	// Fiat Currency Type Changed
 	handleCurrencyTypeChange = select => {
-		this.setState({ selectedFiatCurrency: select.value });
+		console.log(select);
+		this.setState({
+			selectedFiatCurrency: select.value,
+			selectedLocale: select.locale
+		});
 	};
 
 	// Update state for backgroundTickerTime
@@ -46,6 +57,20 @@ class App extends Component {
 		// TODO: CLEAR INTERVAL, save to local storage, etc.
 	};
 
+	// Handle moving of saved cryptos
+	handleMovedCrypto = (dragIndex, hoverIndex) => {
+		const { mySavedCryptos } = this.state;
+		const dragTileItem = mySavedCryptos[dragIndex];
+
+		this.setState(
+			update(this.state, {
+				mySavedCryptos: {
+					$splice: [[dragIndex, 1], [hoverIndex, 0, dragTileItem]]
+				}
+			})
+		);
+	};
+
 	render() {
 		return (
 			<div className="app">
@@ -53,7 +78,18 @@ class App extends Component {
 					path="/"
 					exact
 					render={props => {
-						return <ContentHome {...props} onCloseApp={this.handleCloseApp} />;
+						return (
+							<ContentHome
+								{...props}
+								onCloseApp={this.handleCloseApp}
+								globalData={this.state.globalData}
+								selectedFiatCurrency={this.state.selectedFiatCurrency}
+								selectedLocale={this.state.selectedLocale}
+								exchangeRates={this.state.exchangeRates}
+								mySavedCryptos={this.state.mySavedCryptos}
+								onMovedCrypto={this.handleMovedCrypto}
+							/>
+						);
 					}}
 				/>
 				<Route

@@ -68,11 +68,11 @@ body {
 	flex-direction: column;
 }
 
-.success {
+.percent-positive {
 	color: #91e697;
 }
 
-.error {
+.percent-negative {
 	color: #fd7576;
 }
 

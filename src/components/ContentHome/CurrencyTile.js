@@ -2,6 +2,23 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { DragSource, DropTarget } from "react-dnd";
 import { findDOMNode } from "react-dom";
+import styled from "styled-components";
+
+import { Card, CardRow, CardRowResponse, CardRowTitle } from "../Common/Card";
+import NumberPercent from "../Common/NumberPercent";
+import NumberCurrency from "../Common/NumberCurrency";
+import { colors } from "../../styles/colors";
+
+const CryptoCard = Card.extend`
+	margin-bottom: 7px;
+	padding: 8px 10px;
+`;
+
+const CryptoCardRow = CardRow.extend`
+	color: ${colors.offWhite};
+	line-height: 1.2;
+	font-size: 1.3rem;
+`;
 
 const cardSource = {
 	beginDrag(props) {
@@ -72,9 +89,10 @@ export default class CurrencyTile extends Component {
 			exchangeRates,
 			selectedFiatCurrency,
 			selectedLocale,
-			name,
 			symbol,
-			change,
+			name = symbol,
+			change = 0,
+			price = 0,
 			connectDragSource,
 			connectDropTarget,
 			isDragging
@@ -91,7 +109,29 @@ export default class CurrencyTile extends Component {
 								pathname: "/crypto/" + symbol
 							}}
 						>
-							TEST DATA
+							<CryptoCard>
+								<CryptoCardRow>
+									<CardRowTitle>{name}</CardRowTitle>
+									<CardRowResponse>
+										<NumberCurrency
+											val={price}
+											type={selectedFiatCurrency}
+											exchangeRates={exchangeRates}
+											locale={selectedLocale}
+										/>
+									</CardRowResponse>
+								</CryptoCardRow>
+								<CardRow>
+									<CardRowTitle>{symbol}</CardRowTitle>
+									<CardRowResponse>
+										<NumberPercent
+											val={change}
+											locale={selectedLocale}
+											showColors={true}
+										/>
+									</CardRowResponse>
+								</CardRow>
+							</CryptoCard>
 						</Link>
 					</div>
 				</div>

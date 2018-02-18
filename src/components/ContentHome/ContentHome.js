@@ -33,6 +33,7 @@ const ContentHome = ({
 						selectedLocale={selectedLocale}
 						mySavedCryptos={mySavedCryptos}
 						onMovedCrypto={onMovedCrypto}
+						
 					/>
 				</div>
 				<div>

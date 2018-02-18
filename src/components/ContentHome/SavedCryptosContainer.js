@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
+import styled from "styled-components";
 
 import CurrencyTile from "./CurrencyTile";
+
+const StyledScrollContainer = styled.div`
+	overflow-y: auto;
+	height: calc(100% - 1.2rem);
+`;
 
 @DragDropContext(HTML5Backend)
 export default class SavedCryptosContainer extends Component {
@@ -15,7 +21,7 @@ export default class SavedCryptosContainer extends Component {
 			onMovedCrypto
 		} = this.props;
 		return (
-			<div>
+			<StyledScrollContainer>
 				{mySavedCryptos.map((curr, i) => (
 					<CurrencyTile
 						key={curr.id}
@@ -30,7 +36,7 @@ export default class SavedCryptosContainer extends Component {
 						price={curr.price_usd}
 					/>
 				))}
-			</div>
+			</StyledScrollContainer>
 		);
 	}
 }

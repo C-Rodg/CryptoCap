@@ -69,11 +69,11 @@ body {
 }
 
 .percent-positive {
-	color: #91e697;
+	color: #91e697 !important;
 }
 
 .percent-negative {
-	color: #fd7576;
+	color: #fd7576 !important;
 }
 
 .text-center {

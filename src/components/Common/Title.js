@@ -25,6 +25,10 @@ const NavButtons = styled.div`
 	display: flex;
 `;
 
+const Icon = styled.span`
+	margin-right: 4px;
+`;
+
 const Title = ({
 	icon,
 	text,
@@ -36,7 +40,7 @@ const Title = ({
 	return (
 		<StyledTitle>
 			<div>
-				{icon && icon}
+				{icon && <Icon className={"cc " + icon} />}
 				{text}
 			</div>
 			<NavButtons>

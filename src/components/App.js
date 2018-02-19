@@ -71,6 +71,16 @@ class App extends Component {
 		);
 	};
 
+	// Handle Toggling of saved crypto
+	handleToggleSavedCoin = () => {
+		console.log("TOGGLING CRYPTO");
+	};
+
+	// Remove price alert
+	handleRemovePriceAlert = () => {
+		console.log("REMOVING PRICE ALERT");
+	};
+
 	render() {
 		return (
 			<div className="app">
@@ -95,7 +105,16 @@ class App extends Component {
 				<Route
 					path="/crypto/:id"
 					render={props => {
-						return <ContentCoin {...props} />;
+						return (
+							<ContentCoin
+								{...props}
+								selectedFiatCurrency={this.state.selectedFiatCurrency}
+								selectedLocale={this.state.selectedLocale}
+								exchangeRates={this.state.exchangeRates}
+								onToggleSavedCoin={this.handleToggleSavedCoin}
+								onRemoveAlert={this.handleRemovePriceAlert}
+							/>
+						);
 					}}
 				/>
 				<Route

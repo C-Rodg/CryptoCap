@@ -34,6 +34,7 @@ export default class SavedCryptosContainer extends Component {
 						symbol={curr.id}
 						change={curr.cap24hrChange}
 						price={curr.price_usd}
+						coin={curr}
 					/>
 				))}
 			</StyledScrollContainer>

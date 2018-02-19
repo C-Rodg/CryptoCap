@@ -95,7 +95,8 @@ export default class CurrencyTile extends Component {
 			price = 0,
 			connectDragSource,
 			connectDropTarget,
-			isDragging
+			isDragging,
+			coin
 		} = this.props;
 
 		const opacity = isDragging ? 0 : 1;
@@ -106,7 +107,8 @@ export default class CurrencyTile extends Component {
 					<div>
 						<Link
 							to={{
-								pathname: "/crypto/" + symbol
+								pathname: "/crypto/" + symbol,
+								state: { coin }
 							}}
 						>
 							<CryptoCard>

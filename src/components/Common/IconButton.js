@@ -17,6 +17,7 @@ export const IconButton = styled.span`
 	vertical-align: middle;
 	cursor: pointer;
 	margin-left: 8px;
+	transition: all 0.3s ease;
 	svg {
 		fill: ${colors.cardText};
 		&:hover {

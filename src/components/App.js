@@ -81,6 +81,11 @@ class App extends Component {
 		console.log("REMOVING PRICE ALERT");
 	};
 
+	// Alert has been added
+	handleAddAlert = alertObject => {
+		console.log(alertObject);
+	};
+
 	render() {
 		return (
 			<div className="app">
@@ -120,7 +125,14 @@ class App extends Component {
 				<Route
 					path="/alert/:id"
 					render={props => {
-						return <ContentPriceAlert {...props} />;
+						return (
+							<ContentPriceAlert
+								{...props}
+								selectedFiatCurrency={this.state.selectedFiatCurrency}
+								exchangeRates={this.state.exchangeRates}
+								onAddAlert={this.handleAddAlert}
+							/>
+						);
 					}}
 				/>
 				<Route

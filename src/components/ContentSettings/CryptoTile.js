@@ -32,7 +32,7 @@ const StyledCryptoTile = styled.div`
 	}
 `;
 
-const CryptoTile = ({ name, symbol, isSelected, hasPriceAlert }) => {
+const CryptoTile = ({ symbol, name = symbol, isSelected, hasPriceAlert }) => {
 	return (
 		<StyledCryptoTile
 			className={isSelected ? "selected" : ""}

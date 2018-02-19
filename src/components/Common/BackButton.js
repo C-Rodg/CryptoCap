@@ -15,6 +15,7 @@ const StyledBackButton = styled(Link)`
 	padding: 2px 10px;
 	line-height: 1.9rem;
 	font-weight: 400;
+	transition: all 0.3s ease;
 	&:hover {
 		background-color: ${colors.cardBackgroundHover};
 		color: ${colors.cardTextHover};

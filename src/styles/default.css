@@ -80,3 +80,8 @@ body {
 .text-center {
 	text-align: center;
 }
+
+.recharts-cartesian-axis-tick-value {
+	font-size: 0.9rem;
+	transform: translateY(5px);
+}

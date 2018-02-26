@@ -13,30 +13,12 @@ import "../../styles/react-select.css";
 import "../../styles/input-slider.css";
 import { currencySelect } from "../../utils/currency";
 import SearchList from "./SearchList";
+import { SelectContainer } from "../Common/SelectContainer";
 
 const ScrollCryptoList = styled.div`
 	overflow-y: auto;
 	margin-top: 8px;
 	height: calc(100% - 4.3rem);
-`;
-
-const CurrencySelectContainer = styled.div`
-	display: flex;
-	align-items: center;
-	margin-top: 10px;
-
-	.Select {
-		flex: 1;
-		max-width: 180px;
-		margin-left: auto;
-		.Select-control {
-			background-color: #0e2c3b;
-			color: #f5f5f5;
-			border: 0;
-			color: red;
-			border-radius: 15px;
-		}
-	}
 `;
 
 const InputSliderContainer = styled.div`
@@ -50,6 +32,10 @@ const InputSliderContainer = styled.div`
 
 class ContentSettings extends Component {
 	state = { searchTerm: "" };
+
+	componentWillMount() {
+		console.log("MOUNTING...");
+	}
 
 	// Update search term
 	handleUpdateSearchTerm = ev => {
@@ -93,7 +79,7 @@ class ContentSettings extends Component {
 						</ScrollCryptoList>
 					</div>
 					<div>
-						<CurrencySelectContainer>
+						<SelectContainer>
 							<SubTitle>Fiat Currency:</SubTitle>
 							<Select
 								options={currencySelect}
@@ -102,7 +88,7 @@ class ContentSettings extends Component {
 								clearable={false}
 								searchable={false}
 							/>
-						</CurrencySelectContainer>
+						</SelectContainer>
 						<InputSliderContainer>
 							<SubTitle>Update Interval:</SubTitle>
 							<InputRange

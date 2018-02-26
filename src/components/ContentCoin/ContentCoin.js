@@ -6,6 +6,7 @@ import { SubTitle } from "../Common/SubTitle";
 import CoinCard from "./CoinCard";
 import CreatePriceButton from "./CreatePriceButton";
 import SavedCoinToggleButton from "./SavedCoinToggleButton";
+import SubContainer from "./SubContainer";
 
 class ContentCoin extends Component {
 	// No coin found
@@ -41,7 +42,7 @@ class ContentCoin extends Component {
 				/>
 				<GridTwoColContainer>
 					<div>
-						<SubTitle>{coin.id}</SubTitle>
+						<SubContainer id={coin.id} coin={coin} />
 						<CoinCard
 							price={coin.price_usd || coin.price}
 							rank={coin.rank}
@@ -57,7 +58,6 @@ class ContentCoin extends Component {
 						/>
 					</div>
 					<div>
-						<div>Chart</div>
 						<CreatePriceButton
 							coin={coin}
 							hasAlert={hasAlert}

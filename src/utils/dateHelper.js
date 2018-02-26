@@ -48,3 +48,12 @@ export const ordinalSuffixOf = i => {
 	}
 	return i + "th";
 };
+
+export const dateTickerFormat = t => {
+	const date = new Date(t);
+	return `${date.getHours()}:${leftPad(date.getMinutes())}, ${date.getMonth() +
+		1}/${date.getDate()}/${date
+		.getFullYear()
+		.toString()
+		.substr(-2)}`;
+};

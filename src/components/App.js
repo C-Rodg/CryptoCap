@@ -9,6 +9,7 @@ import ContentHome from "./ContentHome/ContentHome";
 import ContentSettings from "./ContentSettings/ContentSettings";
 import ContentPriceAlert from "./ContentPriceAlert/ContentPriceAlert";
 import ContentCoin from "./ContentCoin/ContentCoin";
+import ContentGraph from "./ContentGraph/ContentGraph";
 
 // TESTING
 import {
@@ -118,6 +119,19 @@ class App extends Component {
 								exchangeRates={this.state.exchangeRates}
 								onToggleSavedCoin={this.handleToggleSavedCoin}
 								onRemoveAlert={this.handleRemovePriceAlert}
+							/>
+						);
+					}}
+				/>
+				<Route
+					path="/graph/:id"
+					render={props => {
+						return (
+							<ContentGraph
+								{...props}
+								selectedFiatCurrency={this.state.selectedFiatCurrency}
+								selectedLocale={this.state.selectedLocale}
+								exchangeRates={this.state.exchangeRates}
 							/>
 						);
 					}}

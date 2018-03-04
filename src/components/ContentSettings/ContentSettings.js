@@ -1,19 +1,26 @@
+// Libraries
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import { Container, GridTwoColContainer } from "../Common/Containers";
+// Components
 import Title from "../Common/Title";
-import { SubTitle } from "../Common/SubTitle";
 import InputBar from "./InputBar";
 import CryptoTile from "./CryptoTile";
-
 import InputRange from "react-input-range";
 import Select from "react-select";
+import SearchList from "./SearchList";
+
+// Styled Components
+import { Container, GridTwoColContainer } from "../Common/Containers";
+import { SelectContainer } from "../Common/SelectContainer";
+import { SubTitle } from "../Common/SubTitle";
+
+// Utilities
+import { currencySelect } from "../../utils/currency";
+
+// Styles
 import "../../styles/react-select.css";
 import "../../styles/input-slider.css";
-import { currencySelect } from "../../utils/currency";
-import SearchList from "./SearchList";
-import { SelectContainer } from "../Common/SelectContainer";
 
 const ScrollCryptoList = styled.div`
 	overflow-y: auto;
@@ -32,9 +39,17 @@ const InputSliderContainer = styled.div`
 
 class ContentSettings extends Component {
 	state = { searchTerm: "" };
+	changedItemFlag = false;
 
 	componentWillMount() {
 		console.log("MOUNTING...");
+	}
+
+	componentWillUnmount() {
+		// If items have changed, update
+		if (this.changedItemFlag) {
+			this.props.getUpdates();
+		}
 	}
 
 	// Update search term
@@ -46,11 +61,15 @@ class ContentSettings extends Component {
 
 	// Render list of all cryptos
 	renderFullCryptoList() {
-		const { fullCryptoList } = this.props;
+		const { fullCryptoList, savedCryptoIds } = this.props;
 		if (fullCryptoList && fullCryptoList.length > 0) {
 			const searchTerm = this.state.searchTerm.toUpperCase();
 			return (
-				<SearchList searchTerm={searchTerm} fullCryptoList={fullCryptoList} />
+				<SearchList
+					searchTerm={searchTerm}
+					fullCryptoList={fullCryptoList}
+					savedCryptoIds={savedCryptoIds}
+				/>
 			);
 		}
 		return <SubTitle> - No Currencies Found -</SubTitle>;
@@ -58,8 +77,11 @@ class ContentSettings extends Component {
 
 	// Crypto Tile clicked
 	onCryptoToggle = ev => {
-		if (ev.target && ev.target.dataset && ev.target.dataset.cryptoid) {
+		const { target: { dataset } } = ev;
+		if (dataset && dataset.cryptoid && dataset.selected) {
 			// Handle saving / removing crypto + alerts
+			this.changedItemFlag = true;
+			this.props.onToggleCoin(dataset.cryptoid, dataset.selected);
 		}
 	};
 

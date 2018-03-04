@@ -1,36 +1,105 @@
+// Libraries
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
 const app = require("electron").remote.app;
 import update from "immutability-helper";
 
+// Styles
 import "../styles/default.css";
+
+// Components
 import ContentHome from "./ContentHome/ContentHome";
 import ContentSettings from "./ContentSettings/ContentSettings";
 import ContentPriceAlert from "./ContentPriceAlert/ContentPriceAlert";
 import ContentCoin from "./ContentCoin/ContentCoin";
 import ContentGraph from "./ContentGraph/ContentGraph";
 
-// TESTING
+// Utilities
 import {
-	API_FULL_CRYPTO_LIST,
-	API_GLOBAL_DATA,
-	EXCHANGE_RATES,
-	API_SAVED_CRYPTO_LIST
-} from "../TEST/TEST_API";
+	getExchangeRates,
+	getGlobalInfo,
+	getFullCryptoList,
+	getSpecificCrypto
+} from "../utils/cryptoApi";
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 
+		const storedSettings = this.getSettingsObject();
+
 		this.state = {
-			exchangeRates: EXCHANGE_RATES, //{},
-			globalData: API_GLOBAL_DATA, // {},
-			fullCryptoList: API_FULL_CRYPTO_LIST, //[],
-			mySavedCryptos: API_SAVED_CRYPTO_LIST, //[],
+			exchangeRates: null,
+			globalData: null,
+			fullCryptoList: [],
+			mySavedCryptos: [],
+			...storedSettings
+		};
+
+		this._tickerInterval = null;
+		this._dailyInterval = null;
+	}
+
+	componentDidMount() {
+		// Set Interval for checking for crypto price changes
+		this._tickerInterval = window.setInterval(
+			this.updateCryptoPrices,
+			this.state.backgroundTickerTime * 1000 * 60
+		);
+
+		// Get Global Info and Saved Crypto Prices
+		this.updateCryptoPrices();
+
+		// Get Initial Exchange Rates, Full Crypto List
+		this.getDailyInformation();
+
+		// Set interval for every 24 hours
+		this._dailyInterval = window.setInterval(
+			this.getDailyInformation,
+			86400000
+		);
+	}
+
+	// Do Daily Tasks
+	getDailyInformation = () => {
+		this.updateExchangeRates();
+		this.updateFullCryptoList();
+	};
+
+	// Get Settings Object from storage
+	getSettingsObject() {
+		const defaultSettings = this.getDefaultSettings();
+		let storedSettings = {};
+		const savedSettingsString = window.localStorage.getItem("crypto_settings");
+		if (savedSettingsString) {
+			storedSettings = JSON.parse(savedSettingsString);
+		}
+		return Object.assign({}, defaultSettings, storedSettings);
+	}
+
+	// Update settings object in storage
+	updateSettingsObject(obj) {
+		const storedSettingsString = window.localStorage.getItem("crypto_settings");
+		let storedSettingsObject = this.getDefaultSettings();
+		if (storedSettingsString) {
+			storedSettingsObject = JSON.parse(storedSettingsString);
+		}
+		const updatedSettings = Object.assign({}, storedSettingsObject, obj);
+		window.localStorage.setItem(
+			"crypto_settings",
+			JSON.stringify(updatedSettings)
+		);
+	}
+
+	// Get Default Settings
+	getDefaultSettings() {
+		return {
 			selectedFiatCurrency: "USD",
 			selectedLocale: "en-US",
-			backgroundTickerTime: 10
+			backgroundTickerTime: 10,
+			mySavedCryptoIds: ["BTC", "ETH", "XRP", "LTC", "NEO", "XMR"],
+			priceAlerts: []
 		};
 	}
 
@@ -41,11 +110,14 @@ class App extends Component {
 
 	// Fiat Currency Type Changed
 	handleCurrencyTypeChange = select => {
-		console.log(select);
-		this.setState({
+		const updateObject = {
 			selectedFiatCurrency: select.value,
 			selectedLocale: select.locale
-		});
+		};
+		this.setState(updateObject);
+
+		// Save to local
+		this.updateSettingsObject(updateObject);
 	};
 
 	// Update state for backgroundTickerTime
@@ -55,26 +127,74 @@ class App extends Component {
 
 	// New backgroundTickerTime has been set
 	handleSetTickerTime = time => {
-		// TODO: CLEAR INTERVAL, save to local storage, etc.
+		// Clear original interval
+		clearInterval(this._tickerInterval);
+
+		// Set new interval
+		this._tickerInterval = window.setInterval(
+			this.updateCryptoPrices,
+			time * 1000 * 60
+		);
+
+		// Save to local
+		this.updateSettingsObject({ backgroundTickerTime: time });
 	};
 
 	// Handle moving of saved cryptos
 	handleMovedCrypto = (dragIndex, hoverIndex) => {
-		const { mySavedCryptos } = this.state;
+		const { mySavedCryptos, mySavedCryptoIds } = this.state;
 		const dragTileItem = mySavedCryptos[dragIndex];
+		const dragTileId = mySavedCryptoIds[dragIndex];
 
 		this.setState(
 			update(this.state, {
 				mySavedCryptos: {
 					$splice: [[dragIndex, 1], [hoverIndex, 0, dragTileItem]]
+				},
+				mySavedCryptoIds: {
+					$splice: [[dragIndex, 1], [hoverIndex, 0, dragTileId]]
 				}
-			})
+			}),
+			() => {
+				this.updateSettingsObject({
+					mySavedCryptoIds: this.state.mySavedCryptoIds
+				});
+			}
 		);
 	};
 
 	// Handle Toggling of saved crypto
-	handleToggleSavedCoin = () => {
-		console.log("TOGGLING CRYPTO");
+	handleToggleSavedCoin = (id, isSelected) => {
+		// Remove from mySavedCryptoIds, mySavedCryptos, and remove price alerts
+		if (isSelected === "true") {
+			const newSavedIds = this.state.mySavedCryptoIds.filter(c => c !== id);
+			const newMySavedCryptos = this.state.mySavedCryptos.filter(
+				c => c.symbol !== id
+			);
+			const newMyPriceAlerts = this.state.priceAlerts.filter(
+				c => c.coin !== id
+			);
+			this.updateSettingsObject({
+				mySavedCryptoIds: newSavedIds,
+				priceAlerts: newMyPriceAlerts
+			});
+			this.setState({
+				mySavedCryptoIds: newSavedIds,
+				mySavedCryptos: newMySavedCryptos,
+				priceAlerts: newMyPriceAlerts
+			});
+		} else {
+			// Add to mySavedCryptoIds, mySavedCryptos
+			this.setState(
+				{ mySavedCryptoIds: [...this.state.mySavedCryptoIds, id] },
+				() => {
+					// Save to local
+					this.updateSettingsObject({
+						mySavedCryptoIds: this.state.mySavedCryptoIds
+					});
+				}
+			);
+		}
 	};
 
 	// Remove price alert
@@ -85,6 +205,61 @@ class App extends Component {
 	// Alert has been added
 	handleAddAlert = alertObject => {
 		console.log(alertObject);
+	};
+
+	// Handle API updates
+	updateCryptoPrices = () => {
+		// Update individual cryptos
+		const cryptoPromises = [];
+		const newCryptoList = [];
+		this.state.mySavedCryptoIds.forEach(id => {
+			cryptoPromises.push(getSpecificCrypto(id));
+		});
+		Promise.all(cryptoPromises).then(results => {
+			results.forEach(r => {
+				if (r.data) {
+					newCryptoList.push(r.data);
+				}
+			});
+			this.setState({
+				mySavedCryptos: newCryptoList
+			});
+		});
+
+		// Update Global Info
+		this.updateGlobalData();
+
+		// Update daily info if it doesn't exist yet
+		if (!this.state.exchangeRates || !this.state.fullCryptoList) {
+			this.getDailyInformation();
+		}
+	};
+
+	// Get Exchange Rates
+	updateExchangeRates = () => {
+		getExchangeRates().then(resp => {
+			this.setState({
+				exchangeRates: resp.data
+			});
+		});
+	};
+
+	// Get Global Data
+	updateGlobalData = () => {
+		getGlobalInfo().then(resp => {
+			this.setState({
+				globalData: resp.data
+			});
+		});
+	};
+
+	// Get Full Crypto List
+	updateFullCryptoList = () => {
+		getFullCryptoList().then(resp => {
+			this.setState({
+				fullCryptoList: resp.data
+			});
+		});
 	};
 
 	render() {
@@ -156,11 +331,14 @@ class App extends Component {
 							<ContentSettings
 								{...props}
 								fullCryptoList={this.state.fullCryptoList}
+								savedCryptoIds={this.state.mySavedCryptoIds}
 								selectedFiatCurrency={this.state.selectedFiatCurrency}
 								onCurrencyTypeChange={this.handleCurrencyTypeChange}
 								backgroundTickerTime={this.state.backgroundTickerTime}
 								onChangeTickerTime={this.handleChangeTickerTime}
 								onSetTickerTime={this.handleSetTickerTime}
+								onToggleCoin={this.handleToggleSavedCoin}
+								getUpdates={this.updateCryptoPrices}
 							/>
 						);
 					}}

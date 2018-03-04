@@ -1,15 +1,19 @@
+// Libraries
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from "axios";
 
-import { SubTitle } from "../Common/SubTitle";
+// Components
 import Select from "react-select";
-import { SelectContainer } from "../Common/SelectContainer";
 import CoinGraph from "./CoinGraph";
 
-// TESTING
-import { API_GRAPH_1DAY, API_GRAPH_7DAY } from "../../TEST/TEST_API";
+// Styled Components
+import { SelectContainer } from "../Common/SelectContainer";
+import { SubTitle } from "../Common/SubTitle";
 
+// Utilities
+import { getCoinHistory } from "../../utils/cryptoApi";
+
+// Styles
 const StyledInlineSelects = styled.div`
 	display: flex;
 	align-items: center;
@@ -25,6 +29,7 @@ const StyledInlineSelects = styled.div`
 	}
 `;
 
+// Timeline Select
 const timelineOptions = [
 	{ value: "1day", label: "24 hours" },
 	{ value: "7day", label: "7 days" },
@@ -34,25 +39,12 @@ const timelineOptions = [
 	{ value: "365day", label: "1 year" }
 ];
 
+// Data Select
 const dataOptions = [
 	{ value: "price", label: "Price" },
 	{ value: "market_cap", label: "Market Cap" },
 	{ value: "volume", label: "Volume" }
 ];
-
-// HELPER - Format Graph Data objects
-const formatGraphDataHelper = type => tup => {
-	return {
-		type,
-		time: tup[0],
-		value: tup[1]
-	};
-};
-
-// HELPER - convert USD to other currency
-const convertUSDdata = fiat => obj => {
-	return Object.assign({}, obj, { value: fiat * obj.value });
-};
 
 class CoinGraphContainer extends Component {
 	state = {
@@ -65,12 +57,7 @@ class CoinGraphContainer extends Component {
 
 	componentDidMount() {
 		// Get Initial Graph Data
-		axios
-			.get(
-				`http://coincap.io/history/${this.state.selectedTimeline}/${
-					this.props.id
-				}`
-			)
+		getCoinHistory(this.state.selectedTimeline, this.props.id)
 			.then(resp => {
 				this._apiGraphData[this.state.selectedTimeline] = resp.data;
 				this.setState({
@@ -95,7 +82,6 @@ class CoinGraphContainer extends Component {
 				formatGraphDataHelper("Market Cap")
 			);
 			const { selectedFiatCurrency, exchangeRates } = this.props;
-			console.log(exchangeRates);
 			if (
 				selectedFiatCurrency !== "USD" &&
 				exchangeRates &&
@@ -134,8 +120,7 @@ class CoinGraphContainer extends Component {
 					isLoading: true
 				},
 				() => {
-					axios
-						.get(`http://coincap.io/history/${ev.value}/${this.props.id}`)
+					getCoinHistory(ev.value, this.props.id)
 						.then(resp => {
 							const { _apiGraphData } = this;
 							_apiGraphData[ev.value] = resp.data;
@@ -196,5 +181,19 @@ class CoinGraphContainer extends Component {
 		);
 	}
 }
+
+// HELPER - Format Graph Data objects
+const formatGraphDataHelper = type => tup => {
+	return {
+		type,
+		time: tup[0],
+		value: tup[1]
+	};
+};
+
+// HELPER - convert USD to other currency
+const convertUSDdata = fiat => obj => {
+	return Object.assign({}, obj, { value: fiat * obj.value });
+};
 
 export default CoinGraphContainer;

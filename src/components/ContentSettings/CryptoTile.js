@@ -37,6 +37,7 @@ const CryptoTile = ({ symbol, name = symbol, isSelected, hasPriceAlert }) => {
 		<StyledCryptoTile
 			className={isSelected ? "selected" : ""}
 			data-cryptoid={symbol}
+			data-selected={isSelected}
 		>
 			<div className="currency-title">
 				{name} {symbol ? `(${symbol})` : ""}

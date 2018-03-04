@@ -74,6 +74,7 @@ const CoinGraph = ({ isLoading, data, selectedTimeline, selectedData }) => {
 // Tooltip Component
 const CustomTooltip = props => {
 	const { active, payload, label } = props;
+	console.log(payload);
 	if (active && payload && payload[0].payload) {
 		const pay = payload[0].payload;
 		return (

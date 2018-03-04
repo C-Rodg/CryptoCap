@@ -1,10 +1,13 @@
+// Libraries
 import React, { Component } from "react";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import styled from "styled-components";
 
+// Components
 import CurrencyTile from "./CurrencyTile";
 
+// Styles
 const StyledScrollContainer = styled.div`
 	overflow-y: auto;
 	height: calc(100% - 1.2rem);

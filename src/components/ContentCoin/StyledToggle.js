@@ -1,5 +1,7 @@
+// Libraries
 import styled from "styled-components";
 
+// Styles
 export const StyledToggle = styled.div`
 	margin-top: 10px;
 	text-transform: uppercase;

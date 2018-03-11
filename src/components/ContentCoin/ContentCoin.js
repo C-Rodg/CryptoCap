@@ -49,6 +49,7 @@ class ContentCoin extends Component {
 	};
 
 	render() {
+		// No coin selected
 		if (!this.props.location.state) {
 			return this.renderEmptyCoin();
 		}
@@ -62,6 +63,7 @@ class ContentCoin extends Component {
 			selectedLocale
 		} = this.props;
 
+		// Determine if coin is saved and has price alerts
 		const isSaved = mySavedCryptoIds.indexOf(coin.id) > -1 ? true : false;
 		const priceAlertAbove = priceAlerts.find(
 			p => p.coin === coin.id && !p.alertBelow

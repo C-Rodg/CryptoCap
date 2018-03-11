@@ -8,6 +8,7 @@ import InputBar from "./InputBar";
 import CryptoTile from "./CryptoTile";
 import InputRange from "react-input-range";
 import Select from "react-select";
+import SearchListContainer from "./SearchListContainer";
 import SearchList from "./SearchList";
 
 // Styled Components
@@ -21,12 +22,6 @@ import { currencySelect } from "../../utils/currency";
 // Styles
 import "../../styles/react-select.css";
 import "../../styles/input-slider.css";
-
-const ScrollCryptoList = styled.div`
-	overflow-y: auto;
-	margin-top: 8px;
-	height: calc(100% - 4.3rem);
-`;
 
 const InputSliderContainer = styled.div`
 	margin-top: 13px;
@@ -59,23 +54,6 @@ class ContentSettings extends Component {
 		});
 	};
 
-	// Render list of all cryptos
-	renderFullCryptoList() {
-		const { fullCryptoList, savedCryptoIds, priceAlerts } = this.props;
-		if (fullCryptoList && fullCryptoList.length > 0) {
-			const searchTerm = this.state.searchTerm.toUpperCase();
-			return (
-				<SearchList
-					searchTerm={searchTerm}
-					fullCryptoList={fullCryptoList}
-					savedCryptoIds={savedCryptoIds}
-					priceAlerts={priceAlerts}
-				/>
-			);
-		}
-		return <SubTitle> - No Currencies Found -</SubTitle>;
-	}
-
 	// Crypto Tile clicked
 	onCryptoToggle = ev => {
 		const { target: { dataset } } = ev;
@@ -97,9 +75,13 @@ class ContentSettings extends Component {
 							value={this.state.searchTerm}
 							onUpdateSearchTerm={this.handleUpdateSearchTerm}
 						/>
-						<ScrollCryptoList onClick={this.onCryptoToggle}>
-							{this.renderFullCryptoList()}
-						</ScrollCryptoList>
+						<SearchListContainer
+							onCryptoToggle={this.onCryptoToggle}
+							fullCryptoList={this.props.fullCryptoList}
+							savedCryptoIds={this.props.savedCryptoIds}
+							priceAlerts={this.props.priceAlerts}
+							searchTerm={this.state.searchTerm}
+						/>
 					</div>
 					<div>
 						<SelectContainer>

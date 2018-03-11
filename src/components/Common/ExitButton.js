@@ -1,5 +1,7 @@
+// Libraries
 import React from "react";
 
+// Icons
 import { IconButton } from "./IconButton";
 
 const ExitButton = ({ onCloseApp }) => {

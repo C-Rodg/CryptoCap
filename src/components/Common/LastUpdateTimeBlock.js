@@ -1,9 +1,14 @@
+// Libraries
 import React from "react";
 import styled from "styled-components";
 
+// Properties
 import { colors } from "../../styles/colors";
+
+// Utilities
 import { getTimeString } from "../../utils/dateHelper";
 
+// Styles
 const StyledTime = styled.div`
 	font-size: 0.9rem;
 	text-transform: uppercase;

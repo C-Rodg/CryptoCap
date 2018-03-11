@@ -1,5 +1,7 @@
+// Libraries
 import styled from "styled-components";
 
+// Styles
 export const Container = styled.div`
 	padding: 5px 10px 5px 10px;
 	flex: 1;

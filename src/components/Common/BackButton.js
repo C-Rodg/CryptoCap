@@ -1,9 +1,12 @@
+// Libraries
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+// Properties
 import { colors } from "../../styles/colors";
 
+// Styles
 const StyledBackButton = styled(Link)`
 	cursor: pointer;
 	background-color: ${colors.cardBackground};

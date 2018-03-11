@@ -1,5 +1,7 @@
+// Libaries
 import React from "react";
 
+// Percent Format Component
 const NumberPercent = ({ val, locale, showColors }) => {
 	const value = val * 0.01;
 	let formattedNumber = Intl.NumberFormat(locale, {

@@ -1,10 +1,15 @@
+// Libraries
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+// Styled Components
 import { SubTitle } from "../Common/SubTitle";
+
+// Properties
 import { colors } from "../../styles/colors";
 
+// Styles
 const StyledSubContainer = styled.div`
 	display: flex;
 	justify-content: space-between;

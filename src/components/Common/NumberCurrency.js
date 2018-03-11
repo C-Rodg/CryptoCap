@@ -1,5 +1,7 @@
+// Libraries
 import React from "react";
 
+// Currency Format Component
 const NumberCurrency = ({ val, type, exchangeRates, locale }) => {
 	let value = val;
 	if (type !== "USD" && exchangeRates && exchangeRates.rates) {

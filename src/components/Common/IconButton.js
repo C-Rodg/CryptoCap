@@ -1,7 +1,10 @@
+// Libraries
 import styled from "styled-components";
 
+// Properties
 import { colors } from "../../styles/colors";
 
+// Styles
 export const IconButton = styled.span`
 	cursor: pointer;
 	background-color: ${colors.cardBackground};

@@ -1,5 +1,7 @@
+// Libraries
 import React from "react";
 
+// Styled Components
 import { InputContainer } from "../Common/InputContainer";
 
 const InputBar = ({ value, onUpdateSearchTerm }) => {

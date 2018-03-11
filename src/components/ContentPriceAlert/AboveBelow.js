@@ -1,9 +1,12 @@
+// Libraries
 import React from "react";
 import styled from "styled-components";
 
+// Styled Components
 import { SubTitle } from "../Common/SubTitle";
 import { colors } from "../../styles/colors";
 
+// Styles
 const StyledAboveBelow = styled.div`
 	margin-top: 7px;
 	display: flex;

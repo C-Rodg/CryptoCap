@@ -1,8 +1,11 @@
+// Libraries
 import React from "react";
 import styled from "styled-components";
 
+// Properties
 import { colors } from "../../styles/colors";
 
+// Styles
 const StyledSubmitBtn = styled.div`
 	text-align: center;
 

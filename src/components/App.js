@@ -261,7 +261,6 @@ class App extends Component {
 			const responseData = [];
 			results.forEach(r => {
 				if (r.data) {
-					console.log(r.data);
 					newCryptoList.push(r.data);
 					responseData.push(r.data);
 				}

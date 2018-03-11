@@ -1,16 +1,10 @@
+// Libraries
 import React, { Component } from "react";
-import CryptoTile from "./CryptoTile";
-class SearchList extends Component {
-	shouldComponentUpdate(nextProps, nextState) {
-		if (
-			this.props.searchTerm === nextProps.searchTerm &&
-			this.props.savedCryptoIds.length === nextProps.savedCryptoIds.length
-		) {
-			return false;
-		}
-		return true;
-	}
 
+// Components
+import CryptoTile from "./CryptoTile";
+
+class SearchList extends Component {
 	render() {
 		const {
 			searchTerm,

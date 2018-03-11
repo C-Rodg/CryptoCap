@@ -1,5 +1,7 @@
+// Libraries
 import styled from "styled-components";
 
+// Styles
 export const SelectContainer = styled.div`
 	display: flex;
 	align-items: center;

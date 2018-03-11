@@ -49,6 +49,7 @@ export const ordinalSuffixOf = i => {
 	return i + "th";
 };
 
+// Get Date Ticker String
 export const dateTickerFormat = t => {
 	const date = new Date(t);
 	return `${date.getHours()}:${leftPad(date.getMinutes())}, ${date.getMonth() +

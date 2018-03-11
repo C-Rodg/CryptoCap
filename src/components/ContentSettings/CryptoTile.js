@@ -1,7 +1,11 @@
+// Libraries
 import React from "react";
 import styled from "styled-components";
+
+// Properties
 import { colors } from "../../styles/colors";
 
+// Styles
 const StyledCryptoTile = styled.div`
 	cursor: pointer;
 	color: ${colors.cardText};

@@ -1,3 +1,4 @@
+// Supported currencies
 export const currencySelect = [
 	{ value: "USD", label: "US Dollar", locale: "en-US" },
 	{ value: "AUD", label: "Australian Dollar", locale: "en-au" },

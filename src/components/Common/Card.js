@@ -1,6 +1,10 @@
+// Libraries
 import styled from "styled-components";
+
+// Properties
 import { colors } from "../../styles/colors";
 
+// Styles
 export const Card = styled.div`
 	margin-top: 5px;
 	margin-bottom: 10px;

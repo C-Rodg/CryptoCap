@@ -1,11 +1,15 @@
+// Libraries
 import React, { Component } from "react";
 
+// Components
 import Title from "../Common/Title";
-import { Container, GridTwoColContainer } from "../Common/Containers";
-import { SubTitle } from "../Common/SubTitle";
 import PriceInput from "./PriceInput";
 import AboveBelow from "./AboveBelow";
 import SubmitButton from "./SubmitButton";
+
+// Styled Components
+import { Container, GridTwoColContainer } from "../Common/Containers";
+import { SubTitle } from "../Common/SubTitle";
 import { MessageContainer } from "./MessageContainer";
 
 class ContentPriceAlert extends Component {
@@ -59,6 +63,7 @@ class ContentPriceAlert extends Component {
 			priceUSD = amountFloat * rate;
 		}
 
+		// Create alert object
 		const alertObject = {
 			hasAlerted: false,
 			alertBelow: this.state.alertBelow,

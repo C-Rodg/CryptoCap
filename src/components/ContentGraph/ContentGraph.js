@@ -1,9 +1,13 @@
+// Libraries
 import React, { Component } from "react";
 
+// Components
 import Title from "../Common/Title";
+import CoinGraphContainer from "./CoinGraphContainer";
+
+// Styled Components
 import { Container, GridTwoColContainer } from "../Common/Containers";
 import { SubTitle } from "../Common/SubTitle";
-import CoinGraphContainer from "./CoinGraphContainer";
 
 class ContentGraph extends Component {
 	renderEmptyCoin() {

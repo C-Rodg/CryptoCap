@@ -1,10 +1,13 @@
+// Libraries
 import React from "react";
 import styled from "styled-components";
 
+// Components
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
 import ExitButton from "./ExitButton";
 
+// Styles
 const StyledTitle = styled.div`
 	font-size: 1.5rem;
 	font-weight: 400;

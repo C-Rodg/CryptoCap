@@ -1,5 +1,10 @@
+// Libraries
 import React from "react";
+
+// Styled Components
 import { Card, CardRow, CardRowTitle, CardRowResponse } from "../Common/Card";
+
+// Components
 import NumberBasic from "../Common/NumberBasic";
 import NumberCurrency from "../Common/NumberCurrency";
 import NumberPercent from "../Common/NumberPercent";

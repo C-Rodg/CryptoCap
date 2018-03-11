@@ -1,7 +1,10 @@
+// Libraries
 import styled from "styled-components";
 
+// Properties
 import { colors } from "../../styles/colors";
 
+// Styles
 export const InputContainer = styled.div`
 	margin-top: 5px;
 	position: relative;

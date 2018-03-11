@@ -53,6 +53,7 @@ class CoinGraphContainer extends Component {
 		formattedGraphData: {},
 		isLoading: true
 	};
+	// Cache graph data
 	_apiGraphData = {};
 
 	componentDidMount() {

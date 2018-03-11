@@ -2,7 +2,7 @@ import React from "react";
 
 const NumberCurrency = ({ val, type, exchangeRates, locale }) => {
 	let value = val;
-	if (type !== "USD" && exchangeRates.rates) {
+	if (type !== "USD" && exchangeRates && exchangeRates.rates) {
 		const multiplier = exchangeRates.rates[type];
 		if (multiplier) {
 			value = val * multiplier;

@@ -66,7 +66,6 @@ class ContentPriceAlert extends Component {
 			coin: coin.id
 		};
 
-		console.log(alertObject);
 		this.props.onAddAlert(alertObject);
 		this.setState({ success: true, errorMessage: false }, () => {
 			setTimeout(() => {

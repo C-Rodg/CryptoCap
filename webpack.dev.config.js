@@ -43,12 +43,11 @@ module.exports = {
 	},
 	target: "electron-renderer",
 	plugins: [
-		new HtmlWebpackPlugin({
-			favicon: "./src/static/favicon.ico",
-			title: "CryptoCap"
-		}),
 		new webpack.DefinePlugin({
 			"process.env.NODE_ENV": JSON.stringify("development")
+		}),
+		new HtmlWebpackPlugin({
+			title: "CryptoCap"
 		})
 	],
 	devtool: "cheap-source-map",

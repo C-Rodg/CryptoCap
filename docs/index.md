@@ -9,9 +9,10 @@ Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id13
 
 * Track and learn about your favorite cryptocurrencies.
 * Get desktop notifications for custom price alerts.
-* Find information on price changes, market cap, & total supply for over 99 different cryptocurrencies.
+* Find information on price changes, market cap, & total supply for over 1000 different cryptocurrencies.
+* View graphs of price, market cap, and volume data from the last 24 hours to 365 days!
 * View the cryptocurrency market as a whole with our global market data.
-* See cryptocurrency prices in over 32 currencies ranging from USD to ZAR!
+* See cryptocurrency prices in over 32 currencies ranging from USD to THB!
 * Downloadable installer for Windows and macOS systems.
 
 ## [](#header-motivation)Motivation
@@ -24,10 +25,15 @@ away!
 
 ![](https://github.com/C-Rodg/CryptoCap/blob/master/assets/crypto.png?raw=true)
 
+## [](#header-where)Where is it?
+
+![](https://github.com/C-Rodg/CryptoCap/blob/master/assets/where.png?raw=true)
+In your taskbar.
+
 ## [](#header-data)Data
 
 All supplied market data comes from the
-[CoinMarketCap API](https://coinmarketcap.com/).
+[CoinMarketCap API](https://coinmarketcap.com/) and [CoinCapDev API](https://github.com/CoinCapDev/CoinCap.io).
 
 ## [](#header-crypto)Cryptocurrency Resources
 
@@ -47,10 +53,13 @@ below for more details:
 
 * [Electron](https://electronjs.org/)
 * [React](https://reactjs.org/)
+* [React-DnD](https://github.com/react-dnd/react-dnd)
+* [Recharts](http://recharts.org/#/en-US/)
 * [Webpack](https://webpack.js.org/)
 * [Styled Components](https://www.styled-components.com)
 * [Axios](https://github.com/axios/axios)
 * [CoinMarketCap API](https://coinmarketcap.com/api/)
+* [CoinCapDev API](https://github.com/CoinCapDev/CoinCap.io)
 * [Jekyll](https://jekyllrb.com/)
 
 ### [](#header-portfolio)My Work

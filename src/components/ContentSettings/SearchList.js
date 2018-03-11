@@ -12,7 +12,12 @@ class SearchList extends Component {
 	}
 
 	render() {
-		const { searchTerm, fullCryptoList, savedCryptoIds } = this.props;
+		const {
+			searchTerm,
+			fullCryptoList,
+			savedCryptoIds,
+			priceAlerts
+		} = this.props;
 		const filteredList = fullCryptoList
 			.filter(coin => {
 				if (coin.name && coin.name.toUpperCase().indexOf(searchTerm) > -1) {
@@ -36,10 +41,11 @@ class SearchList extends Component {
 
 		if (filteredList.length > 0) {
 			return filteredList.map(coin => {
-				// TODO: check  price alerts
-				let isSelected =
+				const isSelected =
 					savedCryptoIds.indexOf(coin.symbol) === -1 ? false : true;
-				let hasPriceAlert = false;
+				const hasPriceAlert = priceAlerts.find(
+					alert => alert.coin === coin.symbol
+				);
 				return (
 					<CryptoTile
 						key={coin.symbol}

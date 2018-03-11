@@ -1,3 +1,4 @@
+// Libraries
 import React from "react";
 import styled from "styled-components";
 import {
@@ -9,8 +10,13 @@ import {
 	Tooltip
 } from "recharts";
 
+// Utilities
 import { dateTickerFormat } from "../../utils/dateHelper";
+
+// Properties
 import { colors } from "../../styles/colors";
+
+// Styled Components
 import { SubTitle } from "../Common/SubTitle";
 
 // Helper - Format y axis
@@ -21,6 +27,7 @@ const yaxisTickFormat = format => t => {
 	return t;
 };
 
+// Styles
 const StyledTooltip = styled.div`
 	background-color: ${colors.cardBackground};
 	border-radius: 6px;
@@ -74,7 +81,6 @@ const CoinGraph = ({ isLoading, data, selectedTimeline, selectedData }) => {
 // Tooltip Component
 const CustomTooltip = props => {
 	const { active, payload, label } = props;
-	console.log(payload);
 	if (active && payload && payload[0].payload) {
 		const pay = payload[0].payload;
 		return (

@@ -61,7 +61,7 @@ class ContentSettings extends Component {
 
 	// Render list of all cryptos
 	renderFullCryptoList() {
-		const { fullCryptoList, savedCryptoIds } = this.props;
+		const { fullCryptoList, savedCryptoIds, priceAlerts } = this.props;
 		if (fullCryptoList && fullCryptoList.length > 0) {
 			const searchTerm = this.state.searchTerm.toUpperCase();
 			return (
@@ -69,6 +69,7 @@ class ContentSettings extends Component {
 					searchTerm={searchTerm}
 					fullCryptoList={fullCryptoList}
 					savedCryptoIds={savedCryptoIds}
+					priceAlerts={priceAlerts}
 				/>
 			);
 		}

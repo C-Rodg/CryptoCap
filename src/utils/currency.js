@@ -33,3 +33,20 @@ export const currencySelect = [
 	{ value: "THB", label: "Thai Baht", locale: "th" },
 	{ value: "TRY", label: "Turkish Lira", locale: "tr" }
 ];
+
+// Format USD or translate to new currency
+export const translateCurrency = (num, type, locale, exchangeRates) => {
+	let val = num;
+	if (
+		type !== "USD" &&
+		exchangeRates &&
+		exchangeRates.rates &&
+		exchangeRates.rates[type]
+	) {
+		val = exchangeRates.rates[type] * num;
+	}
+	return new Intl.NumberFormat(locale, {
+		style: "currency",
+		currency: type
+	}).format(val);
+};

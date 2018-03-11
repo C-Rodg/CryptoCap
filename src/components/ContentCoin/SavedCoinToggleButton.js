@@ -1,5 +1,7 @@
+// Libraries
 import React from "react";
 
+// Styled Components
 import { StyledToggle } from "./StyledToggle";
 
 const SavedCoinToggleButton = ({ isSaved, onToggleSavedCoin }) => {

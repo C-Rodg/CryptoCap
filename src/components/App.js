@@ -347,7 +347,7 @@ class App extends Component {
 			setTimeout(() => {
 				const no = new Notification(note, {
 					body: "CryptoCap Price Alert!",
-					icon: iconPath
+					icon: ICON_DATA_PATH
 				});
 			}, 2000 * idx);
 		});

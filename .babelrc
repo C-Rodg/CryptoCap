@@ -1,5 +1,15 @@
 {
-	"presets": ["react", "env"],
+	"presets": [
+		"react",
+		[
+			"env",
+			{
+				"targets": {
+					"electron": "1.7.9"
+				}
+			}
+		]
+	],
 	"plugins": [
 		"transform-object-rest-spread",
 		"transform-class-properties",

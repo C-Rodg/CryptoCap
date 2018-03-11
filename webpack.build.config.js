@@ -10,6 +10,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "dist");
 const defaultInclude = [SRC_DIR];
 
 module.exports = {
+	target: "electron-renderer",
 	entry: SRC_DIR + "/index.js",
 	output: {
 		path: OUTPUT_DIR,
@@ -45,13 +46,18 @@ module.exports = {
 			}
 		]
 	},
-	target: "electron-renderer",
 	plugins: [
 		new webpack.DefinePlugin({
 			"process.env.NODE_ENV": JSON.stringify("production")
 		}),
 		new HtmlWebpackPlugin({
-			title: "CryptoCap"
+			title: "CryptoCap",
+			minify: {
+				collapseWhitespace: true,
+				collapseInlineTagWhitespace: true,
+				removeComments: true,
+				removeRedundantAttributes: true
+			}
 		}),
 		new ExtractTextPlugin("bundle.css"),
 		new BabiliPlugin()

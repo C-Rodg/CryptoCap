@@ -24,9 +24,6 @@ import {
 } from "../utils/cryptoApi";
 import { translateCurrency } from "../utils/currency";
 
-// Icon for notifications
-const ICON_DATA_PATH = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAABPlBMVEW/x8kAAAC3w8fAycy3wMO3wcUKCAiioKDEy829v8BDWF9DUlg1PUC2ursdHBugnp4oRVArSFIsP0ZCWmM2QUU1PT8NCwooPUUtQEczODu3vL0iISEALDsAKjkBIi0AJjMAKTYBICwBIi8AKDUBIS0AHyoAJDEAKTgAHiwAJTIAHCgDJTABJC8AGSYgPklac3tPaXEAFiMjRlENNEGElZt3ipB1iY9rgolgdn1KZG06V2A4U10pS1YnRVAPMDwAEyB4i5JnfYVcbnZDXmckQkwbO0YSOEUVNkENLjkQLDd/kZd8jpR6jpRkeoJUbHRGYmtAW2WKmp9xhYtJXmc9W2Q8VF4tTVgMN0cFLj0ULzqksLRzhYwaOUMIKTScqq6YpqtsfIQ1U1w4TVcxTVcsSVIeQU0aPUkJKzcFKjast7uki8juAAAAHHRSTlN0AH10fX0HDGtDxb96SxYT5N7bzYJzDOTYbk8dOkOj6AAAAypJREFUSMe11mVz2zAYB3B30BTXMdYW2JIlGRKHmRrmMo/x+3+BSV5Gd13rvNhfjp7TE/1Ol/iFrS2pxFZXtBuyshoLtyqw/OR530DhCBNWtZR1fsnRf7ix/APcWz/1BPkVJMffQfJCRHj99XsKLK9jgSJFWGvLEryoChQxpLexpMUeChQ54llMWz0lVsQgi/Q3tRUHGZGDkPyDjUUAubMYsBTAlhE9SALXwJETAicEhC0GnJYvZwshCxuGi+WEEUKGKzuyJ78h1h/Adcnl2WuH4Krvd8XlpWzgnnPh+w7p+u223zVEr9UTrmxbCmDX6p+fvx22RTrfzBb6e5brTd5Vdpv50elhM73b3PH2s83MjvgNyHkpCCozUjc8MeglEjV/6BUntaDUCGoHhVrwIYM8VP9IXDcErtHOeA5FjGcMUau3yfA02wqKiVpQ2RNiJyHEnk8c0soJuTUE6GPDcxy52k3sj/OItM4mHint7u8PKkgBVK9iB1czxKEKcEp7QwtT9sVNF2evHczFoItJafC+2CU8PKHxzuNeaSwoxXe024Bykmg4qBBnQxpMx4yzTJeyg2aNYM7JdCLwRdp3WukLzOcAcFY4exP/QidfOc1XqZGoUqtSZABwbh2VGGB+7m3OZ3JJFeBAmsweowDLLRYAAKsWBTLzii2TYVl/guhRwASLgLtzwBmjqmI1McaweTXgEkBgmjg1LXzGpgmS8nMym06T2LwqPwGujGaHoxKmn799orScfn+YLf5DKCDrqMPYSRKwuLwZtBz3WKqO4RWZA5DMMQgBN1P5YNzBChzlrgEQJBsMysIS2cNs3Eu+yY+zbQCvigI2hF/rKczNpDnYOZilQTlX7UBg/xPoENKj0YdKrlDMe9iLH8jzTChzDdDpp3j8yCp3TGh2yqkygNcD27YBxlwHpg1tE0Cg2zIwjOyohLNcmBJs23rk2HBBoIdA//9gO3J0+5a2crII0DVttWMvAFKbWuzBAgDe39KWnhzrkQ84fqwe7GtRf4W+/ehp+OqwdmxHILp9/OjV/OVk40Hqxruxnbr/+OlSCGS2NrVbN0R7uRVu/Q6LNzQYUF2R3AAAAABJRU5ErkJggg==`;
-
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -342,12 +339,10 @@ class App extends Component {
 		if (!this._notificationsEnabled) {
 			return false;
 		}
-		// TODO ADD ICON IMAGE C in blue
 		notes.forEach((note, idx) => {
 			setTimeout(() => {
 				const no = new Notification(note, {
-					body: "CryptoCap Price Alert!",
-					icon: ICON_DATA_PATH
+					body: "CryptoCap Price Alert!"
 				});
 			}, 2000 * idx);
 		});

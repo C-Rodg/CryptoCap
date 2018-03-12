@@ -119,7 +119,7 @@ class App extends Component {
 
 	// Quit button clicked
 	handleCloseApp() {
-		app.hide();
+		app.quit();
 	}
 
 	// Fiat Currency Type Changed

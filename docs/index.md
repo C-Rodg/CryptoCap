@@ -28,6 +28,7 @@ away!
 ## [](#header-where)Where is it?
 
 ![](https://github.com/C-Rodg/CryptoCap/blob/master/assets/where.png?raw=true)
+
 In your taskbar.
 
 ## [](#header-data)Data

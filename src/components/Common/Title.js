@@ -6,6 +6,7 @@ import styled from "styled-components";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
 import ExitButton from "./ExitButton";
+import MinimizeButton from "./MinimizeButton";
 
 // Styles
 const StyledTitle = styled.div`
@@ -38,7 +39,9 @@ const Title = ({
 	showBack,
 	showSettings,
 	showExit,
-	onCloseApp
+	onCloseApp,
+	onMinimizeApp,
+	showMinimize
 }) => {
 	return (
 		<StyledTitle>
@@ -49,6 +52,7 @@ const Title = ({
 			<NavButtons>
 				{showBack && <BackButton />}
 				{showSettings && <SettingsButton />}
+				{showMinimize && <MinimizeButton onMinimize={onMinimizeApp} />}
 				{showExit && <ExitButton onCloseApp={onCloseApp} />}
 			</NavButtons>
 		</StyledTitle>

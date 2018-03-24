@@ -122,6 +122,12 @@ class App extends Component {
 		app.quit();
 	}
 
+	// Minimize button clicked
+	handleMinimize() {
+		app.hide();
+		app.blur();
+	}
+
 	// Fiat Currency Type Changed
 	handleCurrencyTypeChange = select => {
 		const updateObject = {
@@ -386,6 +392,7 @@ class App extends Component {
 							<ContentHome
 								{...props}
 								onCloseApp={this.handleCloseApp}
+								onMinimizeApp={this.handleMinimize}
 								globalData={this.state.globalData}
 								selectedFiatCurrency={this.state.selectedFiatCurrency}
 								selectedLocale={this.state.selectedLocale}

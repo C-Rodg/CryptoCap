@@ -13,6 +13,7 @@ import { SubTitle } from "../Common/SubTitle";
 
 const ContentHome = ({
 	onCloseApp,
+	onMinimizeApp,
 	exchangeRates,
 	selectedFiatCurrency,
 	selectedLocale,
@@ -26,7 +27,9 @@ const ContentHome = ({
 				text="CryptoCap"
 				showSettings={true}
 				showExit={true}
+				showMinimize={true}
 				onCloseApp={onCloseApp}
+				onMinimizeApp={onMinimizeApp}
 			/>
 			<GridTwoColContainer>
 				{mySavedCryptos && mySavedCryptos.length > 0 ? (

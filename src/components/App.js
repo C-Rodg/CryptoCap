@@ -1,19 +1,19 @@
 // Libraries
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import axios from "axios";
-const app = require("electron").remote.app;
-import update from "immutability-helper";
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import axios from 'axios';
+const app = require('electron').remote.app;
+import update from 'immutability-helper';
 
 // Styles
-import "../styles/default.css";
+import '../styles/default.css';
 
 // Components
-import ContentHome from "./ContentHome/ContentHome";
-import ContentSettings from "./ContentSettings/ContentSettings";
-import ContentPriceAlert from "./ContentPriceAlert/ContentPriceAlert";
-import ContentCoin from "./ContentCoin/ContentCoin";
-import ContentGraph from "./ContentGraph/ContentGraph";
+import ContentHome from './ContentHome/ContentHome';
+import ContentSettings from './ContentSettings/ContentSettings';
+import ContentPriceAlert from './ContentPriceAlert/ContentPriceAlert';
+import ContentCoin from './ContentCoin/ContentCoin';
+import ContentGraph from './ContentGraph/ContentGraph';
 
 // Utilities
 import {
@@ -21,8 +21,8 @@ import {
 	getGlobalInfo,
 	getFullCryptoList,
 	getSpecificCrypto
-} from "../utils/cryptoApi";
-import { translateCurrency } from "../utils/currency";
+} from '../utils/cryptoApi';
+import { translateCurrency } from '../utils/currency';
 
 class App extends Component {
 	constructor(props) {
@@ -44,11 +44,11 @@ class App extends Component {
 
 		// Notification Flag
 		this._notificationsEnabled = false;
-		if (Notification && Notification.permission === "granted") {
+		if (Notification && Notification.permission === 'granted') {
 			this._notificationsEnabled = true;
 		} else if (Notification) {
 			Notification.requestPermission(permission => {
-				if (permission === "granted") {
+				if (permission === 'granted') {
 					this._notificationsEnabled = true;
 				}
 			});
@@ -85,7 +85,7 @@ class App extends Component {
 	getSettingsObject() {
 		const defaultSettings = this.getDefaultSettings();
 		let storedSettings = {};
-		const savedSettingsString = window.localStorage.getItem("crypto_settings");
+		const savedSettingsString = window.localStorage.getItem('crypto_settings');
 		if (savedSettingsString) {
 			storedSettings = JSON.parse(savedSettingsString);
 		}
@@ -94,14 +94,14 @@ class App extends Component {
 
 	// Update settings object in storage
 	updateSettingsObject(obj) {
-		const storedSettingsString = window.localStorage.getItem("crypto_settings");
+		const storedSettingsString = window.localStorage.getItem('crypto_settings');
 		let storedSettingsObject = this.getDefaultSettings();
 		if (storedSettingsString) {
 			storedSettingsObject = JSON.parse(storedSettingsString);
 		}
 		const updatedSettings = Object.assign({}, storedSettingsObject, obj);
 		window.localStorage.setItem(
-			"crypto_settings",
+			'crypto_settings',
 			JSON.stringify(updatedSettings)
 		);
 	}
@@ -109,10 +109,10 @@ class App extends Component {
 	// Get Default Settings
 	getDefaultSettings() {
 		return {
-			selectedFiatCurrency: "USD",
-			selectedLocale: "en-US",
+			selectedFiatCurrency: 'USD',
+			selectedLocale: 'en-US',
 			backgroundTickerTime: 10,
-			mySavedCryptoIds: ["BTC", "ETH", "XRP", "LTC", "NEO", "XMR"],
+			mySavedCryptoIds: ['BTC', 'ETH', 'XRP', 'LTC', 'NEO', 'XMR'],
 			priceAlerts: []
 		};
 	}
@@ -186,7 +186,7 @@ class App extends Component {
 	// Handle Toggling of saved crypto
 	handleToggleSavedCoin = (id, isSelected) => {
 		// Remove from mySavedCryptoIds, mySavedCryptos, and remove price alerts
-		if (isSelected === "true") {
+		if (isSelected === 'true') {
 			const newSavedIds = this.state.mySavedCryptoIds.filter(c => c !== id);
 			const newMySavedCryptos = this.state.mySavedCryptos.filter(
 				c => (c.id || c.symbol) !== id
@@ -348,7 +348,7 @@ class App extends Component {
 		notes.forEach((note, idx) => {
 			setTimeout(() => {
 				const no = new Notification(note, {
-					body: "CryptoCap Price Alert!"
+					body: 'CryptoCap Price Alert!'
 				});
 			}, 2000 * idx);
 		});
@@ -367,7 +367,7 @@ class App extends Component {
 	updateGlobalData = () => {
 		getGlobalInfo().then(resp => {
 			this.setState({
-				globalData: resp.data
+				globalData: resp.data.data
 			});
 		});
 	};

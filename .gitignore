@@ -4,6 +4,7 @@ dist/
 builds/
 docs/_site/
 docs/backup_index.md
+src/utils/sauce.js
 backup/
 backups/
 guides/

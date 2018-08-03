@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import exchangeKey from './sauce';
+
 // Get Coin History
 export const getCoinHistory = (time, id) => {
 	return axios.get(`http://coincap.io/history/${time}/${id}`);
@@ -22,5 +24,11 @@ export const getSpecificCrypto = id => {
 
 // Get Exchange Rates
 export const getExchangeRates = () => {
-	return axios.get('https://api.fixer.io/latest?base=USD');
+	// return axios.get(
+	// 	`http://data.fixer.io/api/latest?access_key=${exchangeKey}&base=USD`
+	// );
+
+	return axios.get(
+		`https://openexchangerates.org/api/latest.json?app_id=${exchangeKey}`
+	);
 };

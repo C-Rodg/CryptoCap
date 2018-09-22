@@ -1,7 +1,6 @@
 // Libraries
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import axios from 'axios';
 const app = require('electron').remote.app;
 import update from 'immutability-helper';
 

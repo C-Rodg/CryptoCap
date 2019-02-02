@@ -98,8 +98,10 @@ class App extends Component {
 				'global_market_data'
 			);
 			if (previousMarketData) {
+				const marketData = JSON.parse(previousMarketData);
+				marketData.last_updated = new Date().toJSON();
 				this.setState({
-					globalData: JSON.parse(previousMarketData)
+					globalData: marketData
 				});
 			}
 		}

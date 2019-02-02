@@ -1,10 +1,16 @@
-const menubar = require("menubar");
-const { Menu, shell } = require("electron");
-const path = require("path");
-const url = require("url");
+// Libraries
+const menubar = require('menubar');
+const { Menu, shell, ipcMain } = require('electron');
+const path = require('path');
+const url = require('url');
+const axios = require('axios');
 
+// Keys
+const apiKeys = require('./keys');
+
+//  -------  DEV SETUP  --------- //
 let dev = false,
-	indexPath = "";
+	indexPath = '';
 
 if (
 	process.defaultApp ||
@@ -14,24 +20,25 @@ if (
 	dev = true;
 }
 
-if (dev && process.argv.indexOf("--noDevServer") === -1) {
+if (dev && process.argv.indexOf('--noDevServer') === -1) {
 	indexPath = url.format({
-		protocol: "http:",
-		host: "localhost:8080",
-		pathname: "index.html",
+		protocol: 'http:',
+		host: 'localhost:8080',
+		pathname: 'index.html',
 		slashes: true
 	});
 } else {
 	indexPath = url.format({
-		protocol: "file:",
-		pathname: path.join(__dirname, "dist", "index.html"),
+		protocol: 'file:',
+		pathname: path.join(__dirname, 'dist', 'index.html'),
 		slashes: true
 	});
 }
 
+//  ------- MENUBAR CONFIGURATION --------- //
 const mb = menubar({
-	tooltip: "CryptoCap",
-	icon: path.join(__dirname, "assets", "icons", "png", "iconTemplate.png"),
+	tooltip: 'CryptoCap',
+	icon: path.join(__dirname, 'assets', 'icons', 'png', 'iconTemplate.png'),
 	index: indexPath,
 	alwaysOnTop: dev,
 	width: 820,
@@ -39,30 +46,47 @@ const mb = menubar({
 	preloadWindow: true
 });
 
-mb.on("ready", function() {
+mb.on('ready', function() {
 	// Never highlight tray icon on OS X
-	this.tray.setHighlightMode("never");
+	this.tray.setHighlightMode('never');
 
 	// Allow right click context menu
 	const contextMenu = Menu.buildFromTemplate([
 		{
-			label: "Learn More",
+			label: 'Learn More',
 			click: () => {
-				shell.openExternal("https://curtisrodgers.com/CryptoCap");
+				shell.openExternal('https://curtisrodgers.com/CryptoCap');
 			}
 		},
-		{ label: "Quit", role: "quit" }
+		{ label: 'Quit', role: 'quit' }
 	]);
 
 	// attach context menu to right-click event
-	this.tray.on("right-click", () => {
+	this.tray.on('right-click', () => {
 		this.tray.popUpContextMenu(contextMenu);
 	});
 });
 
 // Open dev tools if needed
-mb.on("after-create-window", () => {
+mb.on('after-create-window', () => {
 	if (dev) {
 		mb.window.openDevTools();
 	}
+});
+
+//  ------- MAIN EVENTS --------- //
+
+// Get Global Market Data
+ipcMain.on('api-get-global', event => {
+	axios({
+		method: 'get',
+		url: `https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest`,
+		headers: { 'X-CMC_PRO_API_KEY': apiKeys.globalApiKey }
+	})
+		.then(response => {
+			event.sender.send('api-get-global-response', response.data.data);
+		})
+		.catch(() => {
+			event.sender.send('api-get-global-response', { error: true });
+		});
 });

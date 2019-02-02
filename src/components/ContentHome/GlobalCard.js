@@ -21,7 +21,7 @@ const GlobalCard = ({
 				<CardRowTitle>Total Market Cap:</CardRowTitle>
 				<CardRowResponse>
 					<NumberCurrency
-						val={globalData.quotes.USD.total_market_cap}
+						val={globalData.quote.USD.total_market_cap}
 						type={selectedFiatCurrency}
 						exchangeRates={exchangeRates}
 						locale={selectedLocale}
@@ -32,7 +32,7 @@ const GlobalCard = ({
 				<CardRowTitle>Volume in last 24hrs:</CardRowTitle>
 				<CardRowResponse>
 					<NumberCurrency
-						val={globalData.quotes.USD.total_volume_24h}
+						val={globalData.quote.USD.total_volume_24h}
 						type={selectedFiatCurrency}
 						exchangeRates={exchangeRates}
 						locale={selectedLocale}
@@ -43,7 +43,17 @@ const GlobalCard = ({
 				<CardRowTitle>Bitcoin Dominance:</CardRowTitle>
 				<CardRowResponse>
 					<NumberPercent
-						val={globalData.bitcoin_percentage_of_market_cap}
+						val={globalData.btc_dominance}
+						locale={selectedLocale}
+						showColors={false}
+					/>
+				</CardRowResponse>
+			</CardRow>
+			<CardRow>
+				<CardRowTitle>Ethereum Dominance:</CardRowTitle>
+				<CardRowResponse>
+					<NumberPercent
+						val={globalData.eth_dominance}
 						locale={selectedLocale}
 						showColors={false}
 					/>
@@ -63,10 +73,20 @@ const GlobalCard = ({
 				<CardRowTitle>Active Markets:</CardRowTitle>
 				<CardRowResponse>
 					<NumberBasic
-						val={globalData.active_markets}
+						val={globalData.active_exchanges}
 						locale={selectedLocale}
 					/>{' '}
 					markets
+				</CardRowResponse>
+			</CardRow>
+			<CardRow>
+				<CardRowTitle>Active Market Pairs:</CardRowTitle>
+				<CardRowResponse>
+					<NumberBasic
+						val={globalData.active_market_pairs}
+						locale={selectedLocale}
+					/>{' '}
+					pairs
 				</CardRowResponse>
 			</CardRow>
 		</Card>

@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-import { openExchangeKey, coinMarketCapKey } from './sauce';
+import { openExchangeKey } from './sauce';
 
 // Get Coin History
 export const getCoinHistory = (time, id) => {
@@ -9,14 +8,9 @@ export const getCoinHistory = (time, id) => {
 
 // Get Global Coin Info
 export const getGlobalInfo = () => {
-	return axios.get('https://api.coinmarketcap.com/v2/global/'); // Deprecated in December
-	// CoinMarketCap sucks - abandon
-	// return axios({
-	// 	method: 'get',
-	// 	url: `https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest`,
-	// 	headers: { 'X-CMC_PRO_API_KEY': coinMarketCapKey }
-	// });
-	return axios.get(`http://coincap.io/global`);
+	// !!!! DEPRECATED !!!!!
+	// return axios.get('https://api.coinmarketcap.com/v2/global/');
+	// return axios.get(`http://coincap.io/global`);
 };
 
 // Get Full Crypto List

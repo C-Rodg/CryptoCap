@@ -1,27 +1,27 @@
 // Libraries
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
 // Components
-import Title from "../Common/Title";
-import InputBar from "./InputBar";
-import CryptoTile from "./CryptoTile";
-import InputRange from "react-input-range";
-import Select from "react-select";
-import SearchListContainer from "./SearchListContainer";
-import SearchList from "./SearchList";
+import Title from '../Common/Title';
+import InputBar from './InputBar';
+import CryptoTile from './CryptoTile';
+import InputRange from 'react-input-range';
+import Select from 'react-select';
+import SearchListContainer from './SearchListContainer';
+import SearchList from './SearchList';
 
 // Styled Components
-import { Container, GridTwoColContainer } from "../Common/Containers";
-import { SelectContainer } from "../Common/SelectContainer";
-import { SubTitle } from "../Common/SubTitle";
+import { Container, GridTwoColContainer } from '../Common/Containers';
+import { SelectContainer } from '../Common/SelectContainer';
+import { SubTitle } from '../Common/SubTitle';
 
 // Utilities
-import { currencySelect } from "../../utils/currency";
+import { currencySelect } from '../../utils/currency';
 
 // Styles
-import "../../styles/react-select.css";
-import "../../styles/input-slider.css";
+import '../../styles/react-select.css';
+import '../../styles/input-slider.css';
 
 const InputSliderContainer = styled.div`
 	margin-top: 13px;
@@ -33,12 +33,8 @@ const InputSliderContainer = styled.div`
 `;
 
 class ContentSettings extends Component {
-	state = { searchTerm: "" };
+	state = { searchTerm: '' };
 	changedItemFlag = false;
-
-	componentWillMount() {
-		console.log("MOUNTING...");
-	}
 
 	componentWillUnmount() {
 		// If items have changed, update
@@ -56,7 +52,9 @@ class ContentSettings extends Component {
 
 	// Crypto Tile clicked
 	onCryptoToggle = ev => {
-		const { target: { dataset } } = ev;
+		const {
+			target: { dataset }
+		} = ev;
 		if (dataset && dataset.cryptoid && dataset.selected) {
 			// Handle saving / removing crypto + alerts
 			this.changedItemFlag = true;

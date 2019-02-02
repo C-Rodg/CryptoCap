@@ -8,6 +8,7 @@ src/utils/sauce.js
 backup/
 backups/
 guides/
+keys.js
 *.provisionprofile
 yarn.lock
 

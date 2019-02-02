@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 const app = require('electron').remote.app;
+const { ipcRenderer } = require('electron');
 import update from 'immutability-helper';
 
 // Styles
@@ -17,7 +18,6 @@ import ContentGraph from './ContentGraph/ContentGraph';
 // Utilities
 import {
 	getExchangeRates,
-	getGlobalInfo,
 	getFullCryptoList,
 	getSpecificCrypto
 } from '../utils/cryptoApi';
@@ -72,7 +72,38 @@ class App extends Component {
 			this.getDailyInformation,
 			86400000
 		);
+
+		// Set event listener for global info
+		ipcRenderer.on('api-get-global-response', this.onGlobalInformationResponse);
 	}
+
+	// Cleanup listeners
+	componentWillUnmount() {
+		ipcRenderer.removeListener(
+			'api-get-global-response',
+			this.onGlobalInformationResponse
+		);
+	}
+
+	// Set the global information data set
+	onGlobalInformationResponse = (_, data) => {
+		if (!data.error) {
+			window.localStorage.setItem('global_market_data', JSON.stringify(data));
+			this.setState({
+				globalData: data
+			});
+		} else {
+			// Load from cache if there was an error
+			const previousMarketData = window.localStorage.getItem(
+				'global_market_data'
+			);
+			if (previousMarketData) {
+				this.setState({
+					globalData: JSON.parse(previousMarketData)
+				});
+			}
+		}
+	};
 
 	// Do Daily Tasks
 	getDailyInformation = () => {
@@ -364,11 +395,7 @@ class App extends Component {
 
 	// Get Global Data
 	updateGlobalData = () => {
-		getGlobalInfo().then(resp => {
-			this.setState({
-				globalData: resp.data.data
-			});
-		});
+		ipcRenderer.send('api-get-global');
 	};
 
 	// Get Full Crypto List

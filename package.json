@@ -1,6 +1,6 @@
 {
 	"name": "cryptocap",
-	"version": "1.0.9",
+	"version": "1.1.0",
 	"description": "A taskbar application for tracking your cryptocurrencies. Built using electron, react, and webpack.",
 	"main": "main.js",
 	"productName": "CryptoCap",
@@ -12,9 +12,9 @@
 		"package-win": "webpack --config webpack.build.config.js",
 		"package-mac": "webpack --config webpack.build.config.js",
 		"package-mas": "webpack --config webpack.build.config.js",
-		"postpackage-win": "electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.9 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cryptocap.png.ico --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap",
-		"postpackage-mac": "electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.9 --overwrite --platform=darwin --arch=x64 --icon=assets/MyIcon.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap --app-category-type=public.app-category.finance",
-		"postpackage-mas": "electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.0.9 --overwrite --platform=mas --arch=x64 --icon=assets/MyIcon.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=com.curtisrodgers.cryptocap --helper-bundle-id=com.curtisrodgers.cryptocap.helper --app-category-type=public.app-category.finance --app-copyright='Copyright © 2019 Curtis Rodgers'",
+		"postpackage-win": "electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.1.0 --overwrite --platform=win32 --arch=all --icon=assets/icons/win/cryptocap.png.ico --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap",
+		"postpackage-mac": "electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.1.0 --overwrite --platform=darwin --arch=x64 --icon=assets/MyIcon.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=cryptocap --app-category-type=public.app-category.finance",
+		"postpackage-mas": "electron-packager ./ CryptoCap --out=./builds/output --asar --app-version=1.1.0 --overwrite --platform=mas --arch=x64 --icon=assets/MyIcon.icns --prune=true --version-string.FileDescription='CryptoCap' --app-bundle-id=com.curtisrodgers.cryptocap --helper-bundle-id=com.curtisrodgers.cryptocap.helper --app-category-type=public.app-category.finance --app-copyright='Copyright © 2019 Curtis Rodgers'",
 		"sign-mas-dev": "electron-osx-sign ./builds/output/CryptoCap-mas-x64/CryptoCap.app --verbose --type=development --entitlements=./builds/entitlements/mas.entitlements --entitlements-inherit=./builds/entitlements/mas.inherit.entitlements",
 		"sign-mas": "electron-osx-sign ./builds/output/CryptoCap-mas-x64/CryptoCap.app --verbose --entitlements=./builds/entitlements/mas.entitlements --entitlements-inherit=./builds/entitlements/mas.inherit.entitlements",
 		"release-win32": "node ./win/installer-win-x86.js",
@@ -41,10 +41,10 @@
 	},
 	"homepage": "https://github.com/C-Rodg/CryptoCap#readme",
 	"dependencies": {
-		"menubar": "^5.2.3"
+		"menubar": "^5.2.3",
+		"axios": "^0.17.1"
 	},
 	"devDependencies": {
-		"axios": "^0.17.1",
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
 		"babel-plugin-transform-class-properties": "^6.24.1",

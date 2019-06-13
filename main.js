@@ -77,16 +77,27 @@ mb.on('after-create-window', () => {
 //  ------- MAIN EVENTS --------- //
 
 // Get Global Market Data
+let lastGlobalResponse = null;
+let lastGlobalResponseDate = null;
 ipcMain.on('api-get-global', event => {
-	axios({
-		method: 'get',
-		url: `https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest`,
-		headers: { 'X-CMC_PRO_API_KEY': apiKeys.globalApiKey }
-	})
-		.then(response => {
-			event.sender.send('api-get-global-response', response.data.data);
+	const today = new Date().getDate();
+	if (today === lastGlobalResponseDate && lastGlobalResponse) {
+		// Serve from cache
+		event.sender.send('api-get-global-response', lastGlobalResponse);
+	} else {
+		// If first attempt or it's been more than a day, make request
+		axios({
+			method: 'get',
+			url: `https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest`,
+			headers: { 'X-CMC_PRO_API_KEY': apiKeys.getGlobalApiKey() }
 		})
-		.catch(() => {
-			event.sender.send('api-get-global-response', { error: true });
-		});
+			.then(response => {
+				lastGlobalResponse = response.data.data;
+				lastGlobalResponseDate = new Date().getDate();
+				event.sender.send('api-get-global-response', lastGlobalResponse);
+			})
+			.catch(() => {
+				event.sender.send('api-get-global-response', { error: true });
+			});
+	}
 });

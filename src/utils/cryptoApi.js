@@ -5,7 +5,6 @@ import { openExchangeKey } from './sauce';
 export const getCoinHistory = (id, interval, start) => {
 	const now = Date.now();
 	const convertedStart = now - 60 * 1000 * parseInt(start, 10);
-	console.log(start);
 	return axios.get(
 		`https://api.coincap.io/v2/assets/${id}/history?interval=${interval}&start=${convertedStart}&end=${now}`
 	);

@@ -43,15 +43,13 @@ const StyledTooltip = styled.div`
 	}
 `;
 
-const CoinGraph = ({ isLoading, data, selectedTimeline, selectedData }) => {
+const CoinGraph = ({ isLoading, data }) => {
 	if (isLoading) {
 		return <SubTitle>Loading...</SubTitle>;
 	}
-	if (!data) {
+	if (!data || data.length === 0) {
 		return <SubTitle>Sorry, no graph data available...</SubTitle>;
 	}
-
-	console.log(data);
 
 	return (
 		<ResponsiveContainer width="100%" height={260}>

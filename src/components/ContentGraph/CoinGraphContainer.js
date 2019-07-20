@@ -20,11 +20,34 @@ const StyledInlineSelects = styled.div`
 	justify-content: space-around;
 	margin-bottom: 20px;
 
+	.past {
+		margin-left: 15px;
+	}
+
 	> div {
 		flex: 1;
 
 		.Select {
 			margin-left: 15px;
+		}
+
+		.start-button {
+			background: #0e2c3b;
+			border-color: #0e2c3b;
+			color: #f5f5f5;
+			padding: 7px 15px;
+			border-radius: 15px;
+			cursor: pointer;
+			font-size: 0.9rem;
+			opacity: 0.9;
+
+			&:hover {
+				opacity: 1;
+			}
+
+			&:focus {
+				outline: 0;
+			}
 		}
 	}
 `;
@@ -138,7 +161,7 @@ class CoinGraphContainer extends Component {
 			return {
 				type: 'Price',
 				time: responseItem.time,
-				value: responseItem.priceUsd,
+				value: parseFloat(parseFloat(responseItem.priceUsd).toFixed(4)),
 				date: responseItem.date
 			};
 		});
@@ -152,7 +175,7 @@ class CoinGraphContainer extends Component {
 			dataObject = dataObject.map(convertedItem => {
 				return {
 					...convertedItem,
-					value: rate * parseFloat(convertedItem.value)
+					value: parseFloat((rate * parseFloat(convertedItem.value)).toFixed(4))
 				};
 			});
 		}
@@ -214,7 +237,7 @@ class CoinGraphContainer extends Component {
 							searchable={false}
 						/>
 					</SelectContainer>
-					<SelectContainer>
+					<SelectContainer className="past">
 						<SubTitle>Past:</SubTitle>
 						<Select
 							options={this.state.filteredTimelineOptions}
@@ -225,7 +248,11 @@ class CoinGraphContainer extends Component {
 						/>
 					</SelectContainer>
 					<SelectContainer>
-						<button type="button" onClick={this.startRequestForChartData}>
+						<button
+							type="button"
+							className="start-button"
+							onClick={this.startRequestForChartData}
+						>
 							Update
 						</button>
 					</SelectContainer>
@@ -233,8 +260,6 @@ class CoinGraphContainer extends Component {
 
 				<CoinGraph
 					data={this.state.formattedGraphData}
-					selectedTimeline={this.state.selectedTimeline}
-					selectedInterval={this.state.selectedInterval}
 					isLoading={this.state.isLoading}
 				/>
 			</div>

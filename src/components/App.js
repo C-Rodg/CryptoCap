@@ -118,8 +118,17 @@ class App extends Component {
 		const defaultSettings = this.getDefaultSettings();
 		let storedSettings = {};
 		const savedSettingsString = window.localStorage.getItem('crypto_settings');
+
 		if (savedSettingsString) {
 			storedSettings = JSON.parse(savedSettingsString);
+			// Remove old JSON settings from before 07-20-2019 (no version)
+			if (!storedSettings.version) {
+				storedSettings = {};
+				window.localStorage.setItem(
+					'crypto_settings',
+					JSON.stringify(defaultSettings)
+				);
+			}
 		}
 		return Object.assign({}, defaultSettings, storedSettings);
 	}
@@ -153,7 +162,8 @@ class App extends Component {
 				'eos',
 				'tether'
 			],
-			priceAlerts: []
+			priceAlerts: [],
+			version: 1
 		};
 	}
 

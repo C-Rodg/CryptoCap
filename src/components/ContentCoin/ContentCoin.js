@@ -1,19 +1,19 @@
 // Libraries
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 // Components
-import Title from "../Common/Title";
-import CoinCard from "./CoinCard";
-import CreatePriceButton from "./CreatePriceButton";
-import SavedCoinToggleButton from "./SavedCoinToggleButton";
-import SubContainer from "./SubContainer";
+import Title from '../Common/Title';
+import CoinCard from './CoinCard';
+import CreatePriceButton from './CreatePriceButton';
+import SavedCoinToggleButton from './SavedCoinToggleButton';
+import SubContainer from './SubContainer';
 
 // Styled Components
-import { Container, GridTwoColContainer } from "../Common/Containers";
-import { SubTitle } from "../Common/SubTitle";
+import { Container, GridTwoColContainer } from '../Common/Containers';
+import { SubTitle } from '../Common/SubTitle';
 
 // Utilities
-import { translateCurrency } from "../../utils/currency";
+import { translateCurrency } from '../../utils/currency';
 
 class ContentCoin extends Component {
 	changedItemFlag = false;
@@ -41,7 +41,7 @@ class ContentCoin extends Component {
 
 	// Toggle Saved Coin
 	toggleSavedCoin = (id, isSaved) => () => {
-		const strSaved = isSaved ? "true" : "false";
+		const strSaved = isSaved ? 'true' : 'false';
 		if (!isSaved) {
 			this.changedItemFlag = true;
 		}
@@ -90,23 +90,19 @@ class ContentCoin extends Component {
 
 		return (
 			<Container>
-				<Title
-					text={coin.display_name || coin.id}
-					showBack={true}
-					icon={coin.id}
-				/>
+				<Title text={coin.name || coin.id} showBack={true} icon={coin.symbol} />
 				<GridTwoColContainer>
 					<div>
-						<SubContainer id={coin.id} coin={coin} />
+						<SubContainer id={coin.symbol} coin={coin} />
 						<CoinCard
-							price={coin.price_usd || coin.price}
+							price={coin.priceUsd || coin.price}
 							rank={coin.rank}
 							priceBTC={coin.price_btc}
-							change24={coin.cap24hrChange}
-							vwap24={coin.vwap_h24}
+							change24={coin.changePercent24Hr}
+							vwap24={coin.vwap24Hr}
 							supply={coin.supply}
-							volume={coin.volume}
-							marketCap={coin.market_cap}
+							volume={coin.volumeUsd24Hr}
+							marketCap={coin.marketCapUsd}
 							exchangeRates={exchangeRates}
 							selectedLocale={selectedLocale}
 							selectedFiatCurrency={selectedFiatCurrency}

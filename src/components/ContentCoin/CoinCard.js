@@ -1,16 +1,16 @@
 // Libraries
-import React from "react";
+import React from 'react';
 
 // Styled Components
-import { Card, CardRow, CardRowTitle, CardRowResponse } from "../Common/Card";
+import { Card, CardRow, CardRowTitle, CardRowResponse } from '../Common/Card';
 
 // Components
-import NumberBasic from "../Common/NumberBasic";
-import NumberCurrency from "../Common/NumberCurrency";
-import NumberPercent from "../Common/NumberPercent";
+import NumberBasic from '../Common/NumberBasic';
+import NumberCurrency from '../Common/NumberCurrency';
+import NumberPercent from '../Common/NumberPercent';
 
 // Utilities
-import { ordinalSuffixOf } from "../../utils/dateHelper";
+import { ordinalSuffixOf } from '../../utils/dateHelper';
 
 const CoinCard = ({
 	exchangeRates,
@@ -38,12 +38,12 @@ const CoinCard = ({
 					/>
 				</CardRowResponse>
 			</CardRow>
-			<CardRow>
+			{/* <CardRow>
 				<CardRowTitle>Current Price (BTC):</CardRowTitle>
 				<CardRowResponse>
 					<NumberBasic val={priceBTC} locale={selectedLocale} />
 				</CardRowResponse>
-			</CardRow>
+			</CardRow> */}
 			<CardRow>
 				<CardRowTitle>Percent Change (24hrs):</CardRowTitle>
 				<CardRowResponse>

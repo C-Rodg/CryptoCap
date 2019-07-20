@@ -1,19 +1,19 @@
 // Libraries
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { DragSource, DropTarget } from "react-dnd";
-import { findDOMNode } from "react-dom";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { DragSource, DropTarget } from 'react-dnd';
+import { findDOMNode } from 'react-dom';
+import styled from 'styled-components';
 
 // Styled Components
-import { Card, CardRow, CardRowResponse, CardRowTitle } from "../Common/Card";
+import { Card, CardRow, CardRowResponse, CardRowTitle } from '../Common/Card';
 
 // Components
-import NumberPercent from "../Common/NumberPercent";
-import NumberCurrency from "../Common/NumberCurrency";
+import NumberPercent from '../Common/NumberPercent';
+import NumberCurrency from '../Common/NumberCurrency';
 
 // Properties
-import { colors } from "../../styles/colors";
+import { colors } from '../../styles/colors';
 
 // Styles
 const CryptoCard = Card.extend`
@@ -84,10 +84,10 @@ const cardTarget = {
 	}
 };
 
-@DropTarget("currencytile", cardTarget, connect => ({
+@DropTarget('currencytile', cardTarget, connect => ({
 	connectDropTarget: connect.dropTarget()
 }))
-@DragSource("currencytile", cardSource, (connect, monitor) => ({
+@DragSource('currencytile', cardSource, (connect, monitor) => ({
 	connectDragSource: connect.dragSource(),
 	isDragging: monitor.isDragging()
 }))
@@ -97,6 +97,7 @@ export default class CurrencyTile extends Component {
 			exchangeRates,
 			selectedFiatCurrency,
 			selectedLocale,
+			id,
 			symbol,
 			name = symbol,
 			change = 0,
@@ -115,7 +116,7 @@ export default class CurrencyTile extends Component {
 					<div>
 						<Link
 							to={{
-								pathname: "/crypto/" + symbol,
+								pathname: '/crypto/' + id,
 								state: { coin }
 							}}
 						>

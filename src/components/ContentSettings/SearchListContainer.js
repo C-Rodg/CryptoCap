@@ -1,12 +1,12 @@
 // Libraries
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
 // Components
-import SearchList from "./SearchList";
+import SearchList from './SearchList';
 
 // Styled Components
-import { SubTitle } from "../Common/SubTitle";
+import { SubTitle } from '../Common/SubTitle';
 
 // Styles
 const ScrollCryptoList = styled.div`
@@ -17,7 +17,7 @@ const ScrollCryptoList = styled.div`
 
 class SearchListContainer extends Component {
 	// Determine if list needs to be rerendered
-	shouldComponentUpdate(nextProps, nextState) {
+	shouldComponentUpdate(nextProps) {
 		if (
 			this.props.searchTerm === nextProps.searchTerm &&
 			this.props.savedCryptoIds.length === nextProps.savedCryptoIds.length

@@ -5,11 +5,9 @@ import styled from 'styled-components';
 // Components
 import Title from '../Common/Title';
 import InputBar from './InputBar';
-import CryptoTile from './CryptoTile';
 import InputRange from 'react-input-range';
 import Select from 'react-select';
 import SearchListContainer from './SearchListContainer';
-import SearchList from './SearchList';
 
 // Styled Components
 import { Container, GridTwoColContainer } from '../Common/Containers';

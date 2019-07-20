@@ -144,7 +144,15 @@ class App extends Component {
 			selectedFiatCurrency: 'USD',
 			selectedLocale: 'en-US',
 			backgroundTickerTime: 10,
-			mySavedCryptoIds: ['BTC', 'ETH', 'XRP', 'LTC', 'NEO', 'XMR'],
+			mySavedCryptoIds: [
+				'bitcoin',
+				'ethereum',
+				'ripple',
+				'litecoin',
+				'neo',
+				'eos',
+				'tether'
+			],
 			priceAlerts: []
 		};
 	}
@@ -296,9 +304,9 @@ class App extends Component {
 		Promise.all(cryptoPromises).then(results => {
 			const responseData = [];
 			results.forEach(r => {
-				if (r.data) {
-					newCryptoList.push(r.data);
-					responseData.push(r.data);
+				if (r.data && r.data.data) {
+					newCryptoList.push(r.data.data);
+					responseData.push(r.data.data);
 				}
 			});
 			this.checkForPriceAlert(responseData);
@@ -404,7 +412,7 @@ class App extends Component {
 	updateFullCryptoList = () => {
 		getFullCryptoList().then(resp => {
 			this.setState({
-				fullCryptoList: resp.data
+				fullCryptoList: resp.data.data
 			});
 		});
 	};

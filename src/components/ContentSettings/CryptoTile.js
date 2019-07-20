@@ -1,9 +1,9 @@
 // Libraries
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 // Properties
-import { colors } from "../../styles/colors";
+import { colors } from '../../styles/colors';
 
 // Styles
 const StyledCryptoTile = styled.div`
@@ -36,15 +36,21 @@ const StyledCryptoTile = styled.div`
 	}
 `;
 
-const CryptoTile = ({ symbol, name = symbol, isSelected, hasPriceAlert }) => {
+const CryptoTile = ({
+	symbol,
+	name = symbol,
+	identifier,
+	isSelected,
+	hasPriceAlert
+}) => {
 	return (
 		<StyledCryptoTile
-			className={isSelected ? "selected" : ""}
-			data-cryptoid={symbol}
+			className={isSelected ? 'selected' : ''}
+			data-cryptoid={identifier}
 			data-selected={isSelected}
 		>
 			<div className="currency-title">
-				{name} {symbol ? `(${symbol})` : ""}
+				{name} {symbol ? `(${symbol})` : ''}
 			</div>
 			{hasPriceAlert && (
 				<svg

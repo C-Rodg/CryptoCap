@@ -1,11 +1,11 @@
 // Libraries
-import React, { Component } from "react";
-import { DragDropContext } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+import styled from 'styled-components';
 
 // Components
-import CurrencyTile from "./CurrencyTile";
+import CurrencyTile from './CurrencyTile';
 
 // Styles
 const StyledScrollContainer = styled.div`
@@ -28,15 +28,16 @@ export default class SavedCryptosContainer extends Component {
 				{mySavedCryptos.map((curr, i) => (
 					<CurrencyTile
 						key={curr.id}
+						id={curr.id}
 						moveCard={onMovedCrypto}
 						index={i}
 						exchangeRates={exchangeRates}
 						selectedFiatCurrency={selectedFiatCurrency}
 						selectedLocale={selectedLocale}
-						name={curr.display_name}
-						symbol={curr.id}
-						change={curr.cap24hrChange}
-						price={curr.price_usd}
+						name={curr.name}
+						symbol={curr.symbol}
+						change={curr.changePercent24Hr}
+						price={curr.priceUsd}
 						coin={curr}
 					/>
 				))}

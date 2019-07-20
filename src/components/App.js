@@ -338,11 +338,11 @@ class App extends Component {
 			if (specifiedCrypto) {
 				if (
 					priceAlert.alertBelow &&
-					specifiedCrypto.price_usd < priceAlert.priceUSD
+					parseFloat(specifiedCrypto.priceUsd) < priceAlert.priceUSD
 				) {
 					// alert below a specified price
 					notificationArray.push(
-						`${specifiedCrypto.id} is below ${translateCurrency(
+						`${specifiedCrypto.name} is below ${translateCurrency(
 							priceAlert.priceUSD,
 							type,
 							locale,
@@ -352,11 +352,11 @@ class App extends Component {
 					priceAlert.hasAlerted = true;
 				} else if (
 					!priceAlert.alertBelow &&
-					specifiedCrypto.price_usd > priceAlert.priceUSD
+					parseFloat(specifiedCrypto.priceUsd) > priceAlert.priceUSD
 				) {
 					// alert above a specified price
 					notificationArray.push(
-						`${specifiedCrypto.id} is above ${translateCurrency(
+						`${specifiedCrypto.name} is above ${translateCurrency(
 							priceAlert.priceUSD,
 							type,
 							locale,

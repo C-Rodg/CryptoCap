@@ -1,13 +1,13 @@
 // Libraries
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 // Components
-import Title from "../Common/Title";
-import CoinGraphContainer from "./CoinGraphContainer";
+import Title from '../Common/Title';
+import CoinGraphContainer from './CoinGraphContainer';
 
 // Styled Components
-import { Container, GridTwoColContainer } from "../Common/Containers";
-import { SubTitle } from "../Common/SubTitle";
+import { Container, GridTwoColContainer } from '../Common/Containers';
+import { SubTitle } from '../Common/SubTitle';
 
 class ContentGraph extends Component {
 	renderEmptyCoin() {
@@ -31,14 +31,10 @@ class ContentGraph extends Component {
 
 		return (
 			<Container>
-				<Title
-					text={coin.display_name || coin.id}
-					showBack={true}
-					icon={coin.id}
-				/>
+				<Title text={coin.name || coin.id} showBack={true} icon={coin.symbol} />
 				<GridTwoColContainer>
 					<div>
-						<SubTitle>{coin.id}</SubTitle>
+						<SubTitle>{coin.symbol}</SubTitle>
 						<CoinGraphContainer
 							id={coin.id}
 							exchangeRates={this.props.exchangeRates}

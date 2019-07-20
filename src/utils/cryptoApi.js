@@ -2,8 +2,13 @@ import axios from 'axios';
 import { openExchangeKey } from './sauce';
 
 // Get Coin History
-export const getCoinHistory = (time, id) => {
-	return axios.get(`http://coincap.io/history/${time}/${id}`);
+export const getCoinHistory = (id, interval, start) => {
+	const now = Date.now();
+	const convertedStart = now - 60 * 1000 * parseInt(start, 10);
+	console.log(start);
+	return axios.get(
+		`https://api.coincap.io/v2/assets/${id}/history?interval=${interval}&start=${convertedStart}&end=${now}`
+	);
 };
 
 // Get Full Crypto List

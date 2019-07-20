@@ -1,6 +1,6 @@
 // Libraries
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import {
 	ResponsiveContainer,
 	LineChart,
@@ -8,20 +8,20 @@ import {
 	XAxis,
 	YAxis,
 	Tooltip
-} from "recharts";
+} from 'recharts';
 
 // Utilities
-import { dateTickerFormat } from "../../utils/dateHelper";
+import { dateTickerFormat } from '../../utils/dateHelper';
 
 // Properties
-import { colors } from "../../styles/colors";
+import { colors } from '../../styles/colors';
 
 // Styled Components
-import { SubTitle } from "../Common/SubTitle";
+import { SubTitle } from '../Common/SubTitle';
 
 // Helper - Format y axis
 const yaxisTickFormat = format => t => {
-	if (format === "price") {
+	if (format === 'price') {
 		return t.toFixed(2);
 	}
 	return t;
@@ -51,6 +51,8 @@ const CoinGraph = ({ isLoading, data, selectedTimeline, selectedData }) => {
 		return <SubTitle>Sorry, no graph data available...</SubTitle>;
 	}
 
+	console.log(data);
+
 	return (
 		<ResponsiveContainer width="100%" height={260}>
 			<LineChart
@@ -61,14 +63,14 @@ const CoinGraph = ({ isLoading, data, selectedTimeline, selectedData }) => {
 					dataKey="time"
 					type="number"
 					allowDataOverflow={true}
-					domain={["dataMin", "dataMax"]}
+					domain={['dataMin', 'dataMax']}
 					tickFormatter={dateTickerFormat}
 					padding={{ left: 2 }}
 				/>
 				<YAxis
 					type="number"
 					dataKey="value"
-					domain={["dataMin", "dataMax"]}
+					domain={['dataMin', 'dataMax']}
 					padding={{ bottom: 30 }}
 				/>
 				<Tooltip content={<CustomTooltip />} />

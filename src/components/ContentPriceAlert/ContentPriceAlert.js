@@ -1,20 +1,20 @@
 // Libraries
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 // Components
-import Title from "../Common/Title";
-import PriceInput from "./PriceInput";
-import AboveBelow from "./AboveBelow";
-import SubmitButton from "./SubmitButton";
+import Title from '../Common/Title';
+import PriceInput from './PriceInput';
+import AboveBelow from './AboveBelow';
+import SubmitButton from './SubmitButton';
 
 // Styled Components
-import { Container, GridTwoColContainer } from "../Common/Containers";
-import { SubTitle } from "../Common/SubTitle";
-import { MessageContainer } from "./MessageContainer";
+import { Container, GridTwoColContainer } from '../Common/Containers';
+import { SubTitle } from '../Common/SubTitle';
+import { MessageContainer } from './MessageContainer';
 
 class ContentPriceAlert extends Component {
 	state = {
-		alertAmount: "",
+		alertAmount: '',
 		alertBelow: true,
 		errorMessage: false,
 		success: false
@@ -39,12 +39,12 @@ class ContentPriceAlert extends Component {
 		ev.preventDefault();
 
 		if (!this.state.alertAmount) {
-			this.setState({ errorMessage: "Please set a price..." });
+			this.setState({ errorMessage: 'Please set a price...' });
 			return false;
 		}
 		const amountFloat = parseFloat(this.state.alertAmount, 10);
 		if (isNaN(amountFloat)) {
-			this.setState({ errorMessage: "Please enter a valid price..." });
+			this.setState({ errorMessage: 'Please enter a valid price...' });
 			return false;
 		}
 
@@ -54,7 +54,7 @@ class ContentPriceAlert extends Component {
 		// Calculate price in USD
 		let priceUSD = amountFloat;
 		if (
-			selectedFiatCurrency !== "USD" &&
+			selectedFiatCurrency !== 'USD' &&
 			exchangeRates &&
 			exchangeRates.rates &&
 			exchangeRates.rates[selectedFiatCurrency]
@@ -74,7 +74,7 @@ class ContentPriceAlert extends Component {
 		this.props.onAddAlert(alertObject);
 		this.setState({ success: true, errorMessage: false }, () => {
 			setTimeout(() => {
-				this.props.history.push("/");
+				this.props.history.push('/');
 			}, 1400);
 		});
 	};
@@ -100,11 +100,11 @@ class ContentPriceAlert extends Component {
 
 		return (
 			<Container>
-				<Title text="Create Price Alert" showBack={true} icon={coin.id} />
+				<Title text="Create Price Alert" showBack={true} icon={coin.symbol} />
 				<GridTwoColContainer>
 					<div>
 						<div>
-							<SubTitle>{coin.display_name || coin.id}</SubTitle>
+							<SubTitle>{coin.name || coin.id}</SubTitle>
 						</div>
 						<AboveBelow
 							alertBelow={this.state.alertBelow}

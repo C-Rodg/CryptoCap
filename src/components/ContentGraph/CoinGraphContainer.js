@@ -1,17 +1,17 @@
 // Libraries
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
 // Components
-import Select from "react-select";
-import CoinGraph from "./CoinGraph";
+import Select from 'react-select';
+import CoinGraph from './CoinGraph';
 
 // Styled Components
-import { SelectContainer } from "../Common/SelectContainer";
-import { SubTitle } from "../Common/SubTitle";
+import { SelectContainer } from '../Common/SelectContainer';
+import { SubTitle } from '../Common/SubTitle';
 
 // Utilities
-import { getCoinHistory } from "../../utils/cryptoApi";
+import { getCoinHistory } from '../../utils/cryptoApi';
 
 // Styles
 const StyledInlineSelects = styled.div`
@@ -29,120 +29,175 @@ const StyledInlineSelects = styled.div`
 	}
 `;
 
-// Timeline Select
-const timelineOptions = [
-	{ value: "1day", label: "24 hours" },
-	{ value: "7day", label: "7 days" },
-	{ value: "30day", label: "1 month" },
-	{ value: "90day", label: "3 months" },
-	{ value: "180day", label: "6 months" },
-	{ value: "365day", label: "1 year" }
+// Interval & Timeline Options
+const intervalOptions = [
+	{ value: 'm1', label: '1 minute' },
+	{ value: 'm5', label: '5 minutes' },
+	{ value: 'm15', label: '15 minutes' },
+	{ value: 'm30', label: '30 minutes' },
+	{ value: 'h1', label: '1 hour' },
+	{ value: 'h2', label: '2 hours' },
+	{ value: 'h6', label: '6 hours' },
+	{ value: 'h12', label: '12 hours' },
+	{ value: 'd1', label: '1 day' }
 ];
-
-// Data Select
-const dataOptions = [
-	{ value: "price", label: "Price" },
-	{ value: "market_cap", label: "Market Cap" },
-	{ value: "volume", label: "Volume" }
+const timelineOptions = [
+	{ value: '60', label: '1 hour', allowed: ['m1', 'm5', 'm15'] },
+	{
+		value: '720',
+		label: '12 hours',
+		allowed: ['m1', 'm5', 'm15', 'm30', 'h1', 'h2']
+	},
+	{
+		value: '1440',
+		label: '1 day',
+		allowed: ['m1', 'm5', 'm15', 'm30', 'h1', 'h2', 'h6']
+	},
+	{
+		value: '4320',
+		label: '3 days',
+		allowed: ['m5', 'm15', 'm30', 'h1', 'h2', 'h6']
+	},
+	{
+		value: '10080',
+		label: '1 week',
+		allowed: ['m15', 'm30', 'h1', 'h2', 'h6', 'h12', 'd1']
+	},
+	{
+		value: '20160',
+		label: '2 weeks',
+		allowed: ['m30', 'h1', 'h2', 'h6', 'h12', 'd1']
+	},
+	{
+		value: '43200',
+		label: '1 month',
+		allowed: ['h1', 'h2', 'h6', 'h12', 'd1']
+	},
+	{
+		value: '86400',
+		label: '2 months',
+		allowed: ['h2', 'h6', 'h12', 'd1']
+	},
+	{
+		value: '259200',
+		label: '6 months',
+		allowed: ['h6', 'h12', 'd1']
+	},
+	{
+		value: '525600',
+		label: '1 year',
+		allowed: ['h12', 'd1']
+	}
 ];
 
 class CoinGraphContainer extends Component {
 	state = {
-		selectedTimeline: "1day",
-		selectedData: "price",
-		formattedGraphData: {},
+		selectedInterval: 'm30',
+		selectedTimeline: '20160',
+		filteredTimelineOptions: [],
+		formattedGraphData: [],
 		isLoading: true
 	};
-	// Cache graph data
-	_apiGraphData = {};
 
 	componentDidMount() {
 		// Get Initial Graph Data
-		getCoinHistory(this.state.selectedTimeline, this.props.id)
-			.then(resp => {
-				this._apiGraphData[this.state.selectedTimeline] = resp.data;
-				this.setState({
-					isLoading: false,
-					formattedGraphData: this.formatGraphData(
-						this._apiGraphData[this.state.selectedTimeline]
-					)
-				});
-			})
-			.catch(() => {
-				this.setState({
-					isLoading: false
-				});
-			});
+		this.getChartData(
+			this.props.id,
+			this.state.selectedInterval,
+			this.state.selectedTimeline
+		);
+		this.setTimelineOptions();
 	}
+
+	setTimelineOptions = () => {
+		let isFound = false;
+		const { selectedInterval, selectedTimeline } = this.state;
+		const newTimelineOptions = timelineOptions.filter(timelineOpt => {
+			if (~timelineOpt.allowed.indexOf(selectedInterval)) {
+				if (timelineOpt.value === selectedTimeline) {
+					isFound = true;
+				}
+				return true;
+			}
+			return false;
+		});
+
+		this.setState({
+			selectedTimeline: isFound
+				? selectedTimeline
+				: newTimelineOptions[0].value,
+			filteredTimelineOptions: newTimelineOptions
+		});
+	};
 
 	// Format Graph Data for RechartJS
 	formatGraphData = graphData => {
-		if (graphData) {
-			let price = graphData.price.map(formatGraphDataHelper("Price"));
-			let market_cap = graphData.market_cap.map(
-				formatGraphDataHelper("Market Cap")
-			);
-			const { selectedFiatCurrency, exchangeRates } = this.props;
-			if (
-				selectedFiatCurrency !== "USD" &&
-				exchangeRates &&
-				exchangeRates.rates[selectedFiatCurrency]
-			) {
-				price = price.map(
-					convertUSDdata(exchangeRates.rates[selectedFiatCurrency])
-				);
-
-				market_cap = market_cap.map(
-					convertUSDdata(exchangeRates.rates[selectedFiatCurrency])
-				);
-			}
-			const volume = graphData.volume.map(formatGraphDataHelper("Volume"));
-			[price, market_cap, volume].forEach(arr => arr.pop());
-			const obj = {
-				price,
-				market_cap,
-				volume
+		const { selectedFiatCurrency, exchangeRates } = this.props;
+		let dataObject = graphData || [];
+		dataObject = dataObject.map(responseItem => {
+			return {
+				type: 'Price',
+				time: responseItem.time,
+				value: responseItem.priceUsd,
+				date: responseItem.date
 			};
-			return obj;
-		}
-		return {};
-	};
+		});
 
-	// Change Selected Data
-	handleChangeSelectData = ev => {
-		this.setState({ selectedData: ev.value });
-	};
-
-	// Change the Time Format
-	handleChangeTimeFormat = ev => {
-		if (!this._apiGraphData[ev.value]) {
-			this.setState(
-				{
-					isLoading: true
-				},
-				() => {
-					getCoinHistory(ev.value, this.props.id)
-						.then(resp => {
-							const { _apiGraphData } = this;
-							_apiGraphData[ev.value] = resp.data;
-
-							this.setState({
-								formattedGraphData: this.formatGraphData(
-									_apiGraphData[ev.value]
-								),
-								selectedTimeline: ev.value,
-								isLoading: false
-							});
-						})
-						.catch(() => this.setState({ isLoading: false }));
-				}
-			);
-		} else {
-			this.setState({
-				selectedTimeline: ev.value,
-				formattedGraphData: this.formatGraphData(this._apiGraphData[ev.value])
+		if (
+			selectedFiatCurrency !== 'USD' &&
+			exchangeRates &&
+			exchangeRates.rates[selectedFiatCurrency]
+		) {
+			const rate = parseFloat(exchangeRates.rates[selectedFiatCurrency]);
+			dataObject = dataObject.map(convertedItem => {
+				return {
+					...convertedItem,
+					value: rate * parseFloat(convertedItem.value)
+				};
 			});
 		}
+
+		return dataObject;
+	};
+
+	handleUpdateInterval = ev => {
+		this.setState(
+			{
+				selectedInterval: ev.value
+			},
+			() => {
+				this.setTimelineOptions();
+			}
+		);
+	};
+
+	handleUpdateTimeline = ev => {
+		this.setState({
+			selectedTimeline: ev.value
+		});
+	};
+
+	startRequestForChartData = () => {
+		this.getChartData(
+			this.props.id,
+			this.state.selectedInterval,
+			this.state.selectedTimeline
+		);
+	};
+
+	getChartData = (id, interval, start) => {
+		this.setState({ isLoading: true }, () => {
+			getCoinHistory(id, interval, start)
+				.then(resp => {
+					this.setState({
+						formattedGraphData: this.formatGraphData(resp.data.data),
+						selectedTimeline: start,
+						selectedInterval: interval,
+						isLoading: false
+					});
+				})
+				.catch(() => this.setState({ isLoading: false }));
+		});
 	};
 
 	render() {
@@ -150,51 +205,41 @@ class CoinGraphContainer extends Component {
 			<div>
 				<StyledInlineSelects>
 					<SelectContainer>
-						<SubTitle>Graph Data:</SubTitle>
+						<SubTitle>Interval:</SubTitle>
 						<Select
-							options={dataOptions}
-							value={this.state.selectedData}
-							onChange={this.handleChangeSelectData}
+							options={intervalOptions}
+							value={this.state.selectedInterval}
+							onChange={this.handleUpdateInterval}
 							clearable={false}
 							searchable={false}
 						/>
 					</SelectContainer>
-
 					<SelectContainer>
-						<SubTitle>Timeline:</SubTitle>
+						<SubTitle>Past:</SubTitle>
 						<Select
-							options={timelineOptions}
+							options={this.state.filteredTimelineOptions}
 							value={this.state.selectedTimeline}
-							onChange={this.handleChangeTimeFormat}
+							onChange={this.handleUpdateTimeline}
 							clearable={false}
 							searchable={false}
 						/>
+					</SelectContainer>
+					<SelectContainer>
+						<button type="button" onClick={this.startRequestForChartData}>
+							Update
+						</button>
 					</SelectContainer>
 				</StyledInlineSelects>
 
 				<CoinGraph
-					data={this.state.formattedGraphData[this.state.selectedData]}
-					selectedData={this.state.selectedData}
+					data={this.state.formattedGraphData}
 					selectedTimeline={this.state.selectedTimeline}
+					selectedInterval={this.state.selectedInterval}
 					isLoading={this.state.isLoading}
 				/>
 			</div>
 		);
 	}
 }
-
-// HELPER - Format Graph Data objects
-const formatGraphDataHelper = type => tup => {
-	return {
-		type,
-		time: tup[0],
-		value: tup[1]
-	};
-};
-
-// HELPER - convert USD to other currency
-const convertUSDdata = fiat => obj => {
-	return Object.assign({}, obj, { value: fiat * obj.value });
-};
 
 export default CoinGraphContainer;

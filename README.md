@@ -4,7 +4,7 @@
 
 A taskbar application for tracking your cryptocurrencies. Built using electron,
 react, styled-components, and webpack.
-[https://curtisrodgers.com/CryptoCap/](https://curtisrodgers.com/CryptoCap/)
+[https://cryptocap.curtisrodgers.com](https://cryptocap.curtisrodgers.com)
 
 Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id1334581292)!
 
@@ -20,7 +20,7 @@ Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id13
 
 ## Documentation
 
-Please see our [product page](https://curtisrodgers.com/CryptoCap).
+Please see our [product page](https://cryptocap.curtisrodgers.com).
 
 ## Resources
 
@@ -28,4 +28,4 @@ All supplied data comes from [CoinMarketCap](https://coinmarketcap.com/api/) and
 
 ## Contributors
 
-Curtis Rodgers (me) : https://curtisrodgers.com
+Curtis Rodgers (me) : [https://curtisrodgers.com](https://curtisrodgers.com)

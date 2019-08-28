@@ -1,5 +1,7 @@
 # CryptoCap
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/660c84b3-6718-4abf-b0e0-0f60ae1ca9a7/deploy-status)](https://app.netlify.com/sites/cr-cryptocap/deploys)
+
 A taskbar application for tracking your cryptocurrencies. Built using electron,
 react, styled-components, and webpack.
 [https://curtisrodgers.com/CryptoCap/](https://curtisrodgers.com/CryptoCap/)
@@ -8,13 +10,13 @@ Now available on the [Mac App Store](https://itunes.apple.com/app/cryptocap/id13
 
 ## Key Features
 
-* Over 1,000 coins supported.
-* Save a list of your favorite cryptos (drag-n-drop supported).
-* Get desktop notifications for above or below a price point.
-* View historical data ranging from the last 24 hours to 365 days.
-* Graph view to help you analyze price, market cap, and volume of a coin.
-* Global data view shows key measures for the cryptocurrency market as a whole.
-* Over 32 fiat currencies are supported to help you track no matter where you live.
+- Over 1,000 coins supported.
+- Save a list of your favorite cryptos (drag-n-drop supported).
+- Get desktop notifications for above or below a price point.
+- View historical data ranging from the last 24 hours to 365 days.
+- Graph view to help you analyze price, market cap, and volume of a coin.
+- Global data view shows key measures for the cryptocurrency market as a whole.
+- Over 32 fiat currencies are supported to help you track no matter where you live.
 
 ## Documentation
 

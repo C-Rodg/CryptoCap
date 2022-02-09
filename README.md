@@ -2,6 +2,9 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/660c84b3-6718-4abf-b0e0-0f60ae1ca9a7/deploy-status)](https://app.netlify.com/sites/cr-cryptocap/deploys)
 
+| :warning: Due to lack of time, this product has been discontinued. |
+| ------------------------------------------------------------------ |
+
 A taskbar application for tracking your cryptocurrencies. Built using electron,
 react, styled-components, and webpack.
 [https://cryptocap.curtisrodgers.com](https://cryptocap.curtisrodgers.com)
